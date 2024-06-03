@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/globalReset.css">
+    <link rel="stylesheet" href="../css/globalStyles.css">
+    <link rel="stylesheet" href="../css/basica.css">
+
+    <title>FDV Básica</title>
+</head>
+
+<body>
+    <a id="home" href="../../index.html">Ferramentas</a>
+
+    <aside>
+        <button id="FDVDrop">FDV</button>
+        <div class="options hide" id="FDVOptions">
+            <a target="_blank" href="./movel.html">Móvel</a>
+            <a>Básica</a>
+            <a target="_blank" href="./avancada.html">Avançada</a>
+        </div>
+
+        <button id="MapaParqueDrop">Mapa Parque</button>
+        <div class="options hide" id="MapaParqueOptions">
+            <a target="_blank" href="./mapaparque.html">Mapa Parque</a>
+        </div>
+    </aside>
+
+    <div id="ferramenta">
+        <h1>FDV Básica</h1>
+
+        <label id="labelFileInput" for="fileInput">Escolha
+            o arquivo Fixa Básica .xlsx</label>
+        <input type="file" id="fileInput" accept=".xlsx">
+
+        <button id="exportBtn">Exportar para XLSX</button>
+
+        <p id="p">Processando..</p>
+    </div>
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="../js/globalScripts.js"></script>
+    <script src="../js/basica.js"></script>
+</body>
+
+</html>

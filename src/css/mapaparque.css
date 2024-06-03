@@ -1,0 +1,42 @@
+#ferramenta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ferramenta h1 {
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+
+#labelFileInput {
+    padding: 5px 10px;
+    background-color: #485c46;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    width: max-content;
+    display: block;
+    margin: 10px;
+}
+
+#fileInput, #estagio01, #estagio02, #estagio03 {
+    display: none;
+}
+
+#exportBtn {
+    padding: 5px 10px;
+    background-color: #77009a;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    width: max-content;
+    display: block;
+    margin: 20px 10px;
+    border: 0;
+}
+
+#pProcessando {
+    display: none;
+    color: aliceblue;
+}

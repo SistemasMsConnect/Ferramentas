@@ -1,0 +1,67 @@
+body {
+    background-color: #242424;
+}
+
+aside {
+    position: fixed;
+    max-width: 200px;
+    min-height: max-content;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+#FDVDrop, #MapaParqueDrop {
+    width: 150px;
+    border: none;
+    background-color: #555675;
+    cursor: pointer;
+    height: 30px;
+    border-radius: 0 10px 0 0;
+    outline: none;
+    color: aliceblue;
+    border-bottom: 2px solid aliceblue;
+}
+
+#MapaParqueDrop {
+    border-radius: 0;
+}
+
+#FDVOptions a:last-child, #MapaParqueOptions a:last-child {
+    border-bottom: 2px solid aliceblue;
+}
+
+#FDVOptions a, #MapaParqueOptions a {
+    display: block;
+    
+    width: 150px;
+    padding: 10px 0 10px 20px;
+    transition: .4s;
+}
+
+#FDVOptions a:hover, #MapaParqueOptions a:hover {
+    background-color: aliceblue;
+    color: #262749;
+}
+
+.hide {
+    display: none;
+}
+
+.desactive {
+    color: aliceblue;
+    background-color: #262749;
+}
+
+.active {
+    background-color: aliceblue;
+    color: #262749;
+}
+
+#home {
+    font-size: 2rem;
+    margin: 25px 50px;
+    color: aliceblue;
+    display: block;
+    width: max-content;
+    background-color: transparent;
+}
