@@ -1,16 +1,15 @@
 body {
     background-color: #242424;
+    display: flex;
+    gap: 100px;
 }
 
 aside {
-    position: fixed;
-    max-width: 200px;
-    min-height: max-content;
-    max-height: 100vh;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-#FDVDrop, #MapaParqueDrop {
+#FDVDrop, #MapaParqueDrop, #ParqueBasicaDrop {
     width: 150px;
     border: none;
     background-color: #555675;
@@ -22,23 +21,22 @@ aside {
     border-bottom: 2px solid aliceblue;
 }
 
-#MapaParqueDrop {
+#MapaParqueDrop, #ParqueBasicaDrop {
     border-radius: 0;
 }
 
-#FDVOptions a:last-child, #MapaParqueOptions a:last-child {
+#FDVOptions a:last-child, #MapaParqueOptions a:last-child, #ParqueBasicaOptions a:last-child {
     border-bottom: 2px solid aliceblue;
 }
 
-#FDVOptions a, #MapaParqueOptions a {
+#FDVOptions a, #MapaParqueOptions a, #ParqueBasicaOptions a {
     display: block;
-    
     width: 150px;
     padding: 10px 0 10px 20px;
     transition: .4s;
 }
 
-#FDVOptions a:hover, #MapaParqueOptions a:hover {
+#FDVOptions a:hover, #MapaParqueOptions a:hover, #ParqueBasicaOptions a:hover {
     background-color: aliceblue;
     color: #262749;
 }

@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 150px;
 }
 
 #ferramenta h1 {
@@ -9,30 +10,82 @@
     margin-bottom: 20px;
 }
 
-#labelFileInput {
+#labelFileInputDados {
     padding: 5px 10px;
-    background-color: #485c46;
+    background-color: cadetblue;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
     width: max-content;
     display: block;
-    margin: 10px;
+    margin-top: 50px;
 }
 
-#exportBtn {
+#labelFileInputSip {
     padding: 5px 10px;
-    background-color: #77009a;
+    background-color: cadetblue;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
     width: max-content;
     display: block;
-    margin: 20px 10px;
-    border: 0;
+    margin-top: 50px;
 }
 
-#p {
+#labelFileInputCep {
+    padding: 5px 10px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    width: max-content;
+    display: block;
+    margin-top: 50px;
+}
+
+#labelFileInputVoz {
+    padding: 5px 10px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    width: max-content;
+    display: block;
+    margin-top: 50px;
+}
+
+#fileInputDados,
+#fileInputSip,
+#fileInputCep,
+#fileInputVoz,
+#pProcessandoDados,
+#btnCriarArquivo,
+#btnDados {
     display: none;
+}
+
+#btnAtualizarCep {
+    display: block;
+    border: none;
+    background-color: cadetblue;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 15px;
+}
+
+#btnCriarPorcentagem {
+    display: block;
+    border: none;
+    background-color: cadetblue;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 15px;
+}
+
+#pProcessandoDados {
     color: aliceblue;
 }

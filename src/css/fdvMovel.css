@@ -10,7 +10,7 @@
     margin-bottom: 20px;
 }
 
-#labelFileInput {
+#labelFileInputMovel, #labelFileInputMovel2 {
     padding: 5px 10px;
     background-color: #485c46;
     border-radius: 5px;
@@ -21,7 +21,7 @@
     margin: 10px;
 }
 
-#fileInput, #estagio01, #estagio02, #estagio03 {
+#fileInputMovel, #fileInputMovel2 {
     display: none;
 }
 
@@ -37,7 +37,10 @@
     border: 0;
 }
 
-#pProcessando {
+#p {
     display: none;
+}
+
+#p, #span {
     color: aliceblue;
 }

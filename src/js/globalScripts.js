@@ -2,6 +2,8 @@ let pFDV = document.getElementById('FDVDrop')
 let dFDV = document.getElementById('FDVOptions')
 let pMP = document.getElementById('MapaParqueDrop')
 let dMP = document.getElementById('MapaParqueOptions')
+let pPB = document.getElementById('ParqueBasicaDrop')
+let dPB = document.getElementById('ParqueBasicaOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -19,4 +21,8 @@ pFDV.addEventListener('click', () => {
 
 pMP.addEventListener('click', () => {
     dMP.classList.toggle('hide')
+})
+
+pPB.addEventListener('click', () => {
+    dPB.classList.toggle('hide')
 })

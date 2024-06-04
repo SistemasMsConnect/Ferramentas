@@ -14,40 +14,51 @@
     <link rel="stylesheet" href="../css/globalStyles.css">
     <link rel="stylesheet" href="../css/movel.css">
 
-    <title>FDV Movel</title>
+    <title>Parque Básica - Móvel</title>
 </head>
 
 <body>
-    <a id="home" href="../../index.html">Ferramentas</a>
+    <div id="side">
+        <a id="home" href="../../index.html"">Ferramentas</a>
 
-    <aside>
-        <button id="FDVDrop">FDV</button>
-        <div class="options hide" id="FDVOptions">
-            <a>Móvel</a>
-            <a target="_blank" href="./basica.html">Básica</a>
-            <a target="_blank" href="./avancada.html">Avançada</a>
-        </div>
+        <aside>
+            <button id="FDVDrop">FDV</button>
+            <div class="options hide" id="FDVOptions">
+                <a href="./fdvMovel.html">Móvel</a>
+                <a href="./fdvBasica.html">Básica</a>
+                <a href="./fdvAvancada.html">Avançada</a>
+            </div>
 
-        <button id="MapaParqueDrop">Mapa Parque</button>
-        <div class="options hide" id="MapaParqueOptions">
-            <a target="_blank" href="./mapaparque.html">Mapa Parque</a>
-        </div>
-    </aside>
+            <button id="MapaParqueDrop">Mapa Parque</button>
+            <div class="options hide" id="MapaParqueOptions">
+                <a href="./mapaparque.html">Mapa Parque</a>
+            </div>
+
+            <button id="ParqueBasicaDrop">Parque Básica</button>
+            <div class="options hide" id="ParqueBasicaOptions">
+                <a href="./fixa.html">Fixa</a>
+                <a>Móvel</a>
+                <a href="./avancada.html">Avançada</a>
+                <a href="./fixaRecomendacao.html">Fixa Recomendação</a>
+            </div>
+            </aside>
+    </div>
 
     <div id="ferramenta">
-        <h1>FDV Movel</h1>
+        <h1>Parque Básica - Móvel</h1>
 
-        <label id="labelFileInputMovel" for="fileInputMovel">Escolha
-            o arquivo Movel 1 .xlsx</label>
-        <input type="file" id="fileInputMovel" accept=".xlsx">
+        <label class="labelFileInput" id="labelMovelFileInput" for="MovelFileInput">Arquivo CSV Movel</label>
+        <label class="labelFileInput" id="labelRecomendacaoFileInput" for="RecomendacaoFileInput">Arquivo CSV Recomendação</label>
+        <label class="labelFileInput" id="labelSuspensaoFileInput" for="SuspensaoFileInput">Arquivo CSV Suspensão</label>
+        
+        <input type="file" id="MovelFileInput" accept=".csv">
+        <input type="file" name="RecomendacaoFileInput" id="RecomendacaoFileInput" accept=".csv" onchange="lerArquivoCSV(event)">
+        <input type="file" accept=".csv" name="SuspensaoFileInput" id="SuspensaoFileInput" onchange="lerArquivoSuspensao(event)">
 
-        <label id="labelFileInputMovel2" for="fileInputMovel2">Escolha
-            o arquivo Movel 2 .xlsx</label>
-        <input type="file" id="fileInputMovel2" accept=".xlsx">
+        <p id="pProcessando">Processando..</p>
 
-        <button id="exportBtn">Exportar para XLSX</button>
-
-        <p id="p">Processando..</p> <span id="span"></span>
+        <button class="btnProcessarMovel" onclick="atualizar()">Atualizar</button>
+        <button class="btnDownloadMovel hide" id="btnMovel">Baixar</button>
     </div>
 
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>

@@ -14,36 +14,52 @@
     <link rel="stylesheet" href="../css/globalStyles.css">
     <link rel="stylesheet" href="../css/avancada.css">
 
-    <title>FDV Avançada</title>
+    <title>Parque Básica - Avançada</title>
 </head>
 
 <body>
-    <a id="home" href="../../index.html">Ferramentas</a>
+    <div id="side">
+        <a id="home" href="../../index.html"">Ferramentas</a>
 
-    <aside>
-        <button id="FDVDrop">FDV</button>
-        <div class="options hide" id="FDVOptions">
-            <a target="_blank" href="./movel.html">Móvel</a>
-            <a target="_blank" href="./basica.html">Básica</a>
-            <a>Avançada</a>
-        </div>
+        <aside>
+            <button id="FDVDrop">FDV</button>
+            <div class="options hide" id="FDVOptions">
+                <a target="_blank" href="./fdvMovel.html">Móvel</a>
+                <a target="_blank" href="./fdvBasica.html">Básica</a>
+                <a target="_blank" href="./fdvAvancada.html">Avançada</a>
+            </div>
 
-        <button id="MapaParqueDrop">Mapa Parque</button>
-        <div class="options hide" id="MapaParqueOptions">
-            <a target="_blank" href="./mapaparque.html">Mapa Parque</a>
-        </div>
-    </aside>
+            <button id="MapaParqueDrop">Mapa Parque</button>
+            <div class="options hide" id="MapaParqueOptions">
+                <a target="_blank" href="./mapaparque.html">Mapa Parque</a>
+            </div>
+
+            <button id="ParqueBasicaDrop">Parque Básica</button>
+            <div class="options hide" id="ParqueBasicaOptions">
+                <a target="_blank" href="./fixa.html">Fixa</a>
+                <a target="_blank" href="./movel.html">Móvel</a>
+                <a>Avançada</a>
+                <a target="_blank" href="./fixaRecomendacao.html">Fixa Recomendação</a>
+            </div>
+            </aside>
+    </div>
 
     <div id="ferramenta">
-        <h1>FDV Avançada</h1>
-
-        <label id="labelFileInput" for="fileInput">Escolha
-            o arquivo Fixa Avançada .xlsx</label>
-        <input type="file" id="fileInput" style="display: none;" accept=".xlsx">
-
-        <button id="exportBtn">Exportar para XLSX</button>
-
-        <p id="p">Processando..</p>
+        <h1>Parque Básica - Avançada</h1>
+        
+        <label id="labelFileInputDados" for="fileInputDados">Escolha o arquivo DADOS .CSV</label>
+        <label id="labelFileInputSip" for="fileInputSip">Escolha o arquivo SIP .CSV</label>
+        <label id="labelFileInputCep" for="fileInputCep">Escolha o arquivo CEP .CSV</label>
+        <label id="labelFileInputVoz" for="fileInputVoz">Escolha o arquivo VOZ .CSV</label>
+        <input type="file" id="fileInputDados" accept=".csv">
+        <input type="file" id="fileInputSip" accept=".csv">
+        <input type="file" id="fileInputCep" accept=".csv">
+        <input type="file" id="fileInputVoz" accept=".csv">
+        <p id="pProcessandoDados">Processando..</p>
+        <button id="btnAtualizarCep" onclick="atualizarCep()">Atualizar Cep</button>
+        <button id="btnCriarPorcentagem" onclick="dataDiff()">Atualizar %</button>
+        <button id="btnCriarArquivo" onclick="criarArquivo()">Gerar Arquivo</button>
+        <button id="btnDados">Baixar</button>
     </div>
 
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>

@@ -1,0 +1,29 @@
+#ferramenta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+}
+
+#ferramenta h1 {
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+
+#pProcessando {
+    color: aliceblue;
+}
+
+#labelRecomendadoFileInput {
+    display: block;
+    padding: 5px 10px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    max-width: max-content;
+}
+
+#recomendadoFileInput, #pProcessando, #btn {
+    display: none;
+}

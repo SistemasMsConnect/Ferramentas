@@ -12,9 +12,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/mapaparque.css">
+    <link rel="stylesheet" href="../css/fdvAvancada.css">
 
-    <title>Mapa Parque</title>
+    <title>FDV Avançada</title>
 </head>
 
 <body>
@@ -26,12 +26,12 @@
             <div class="options hide" id="FDVOptions">
                 <a href="./fdvMovel.html">Móvel</a>
                 <a href="./fdvBasica.html">Básica</a>
-                <a href="./fdvAvancada.html">Avançada</a>
+                <a>Avançada</a>
             </div>
 
             <button id="MapaParqueDrop">Mapa Parque</button>
             <div class="options hide" id="MapaParqueOptions">
-                <a>Mapa Parque</a>
+                <a href="./mapaparque.html">Mapa Parque</a>
             </div>
 
             <button id="ParqueBasicaDrop">Parque Básica</button>
@@ -45,22 +45,20 @@
     </div>
 
     <div id="ferramenta">
-        <h1>Mapa Parque</h1>
+        <h1>FDV Avançada</h1>
 
         <label id="labelFileInput" for="fileInput">Escolha
-            os arquivos</label>
-        <input type="file" id="fileInput" multiple>
+            o arquivo Fixa Avançada .xlsx</label>
+        <input type="file" id="fileInput" style="display: none;" accept=".xlsx">
 
-        <button id="estagio01" onclick="estanciar()">Estágio 01</button>
-        <button id="estagio02" onclick="compilar()">Estágio 02</button>
-        <button id="estagio03" onclick="verificar()">Estágio 03</button>
-        <button disabled id="exportBtn">Exportar para XLSX</button>
-        <p id="pProcessando">Processando..</p>
+        <button id="exportBtn">Exportar para XLSX</button>
+
+        <p id="p">Processando..</p>
     </div>
 
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/mapaparque.js"></script>
+    <script src="../js/fdvAvancada.js"></script>
 </body>
 
 </html>

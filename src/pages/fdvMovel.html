@@ -12,9 +12,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/mapaparque.css">
+    <link rel="stylesheet" href="../css/fdvMovel.css">
 
-    <title>Mapa Parque</title>
+    <title>FDV Movel</title>
 </head>
 
 <body>
@@ -24,14 +24,14 @@
         <aside>
             <button id="FDVDrop">FDV</button>
             <div class="options hide" id="FDVOptions">
-                <a href="./fdvMovel.html">Móvel</a>
+                <a>Móvel</a>
                 <a href="./fdvBasica.html">Básica</a>
                 <a href="./fdvAvancada.html">Avançada</a>
             </div>
 
             <button id="MapaParqueDrop">Mapa Parque</button>
             <div class="options hide" id="MapaParqueOptions">
-                <a>Mapa Parque</a>
+                <a href="./mapaparque.html">Mapa Parque</a>
             </div>
 
             <button id="ParqueBasicaDrop">Parque Básica</button>
@@ -45,22 +45,24 @@
     </div>
 
     <div id="ferramenta">
-        <h1>Mapa Parque</h1>
+        <h1>FDV Movel</h1>
 
-        <label id="labelFileInput" for="fileInput">Escolha
-            os arquivos</label>
-        <input type="file" id="fileInput" multiple>
+        <label id="labelFileInputMovel" for="fileInputMovel">Escolha
+            o arquivo Movel 1 .xlsx</label>
+        <input type="file" id="fileInputMovel" accept=".xlsx">
 
-        <button id="estagio01" onclick="estanciar()">Estágio 01</button>
-        <button id="estagio02" onclick="compilar()">Estágio 02</button>
-        <button id="estagio03" onclick="verificar()">Estágio 03</button>
-        <button disabled id="exportBtn">Exportar para XLSX</button>
-        <p id="pProcessando">Processando..</p>
+        <label id="labelFileInputMovel2" for="fileInputMovel2">Escolha
+            o arquivo Movel 2 .xlsx</label>
+        <input type="file" id="fileInputMovel2" accept=".xlsx">
+
+        <button id="exportBtn">Exportar para XLSX</button>
+
+        <p id="p">Processando..</p> <span id="span"></span>
     </div>
 
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/mapaparque.js"></script>
+    <script src="../js/fdvMovel.js"></script>
 </body>
 
 </html>
