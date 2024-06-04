@@ -11,11 +11,35 @@ const btnExportar = document.getElementById('exportBtn')
 let mapaParqueData = []
 let dispData = []
 let cnaeData = []
+let cepData = []
+
+fetch('../public/cep.json').then(response => {
+    response.json().then(e => {
+        console.log(e)
+
+        e.forEach(el => {
+            faixaCep.push(el.col3)
+            faixaCep.push(el.col4)
+        })
+
+        faixaCep.sort((a, b) => {
+            return parseInt(a) - parseInt(b)
+        })
+
+        cepData = e
+    })
+})
+
+fetch('../public/cnae.json').then(response => {
+    response.json().then(e => {
+        cnaeData = e
+    })
+})
+
 let fixaData = []
 let fixaFTTH = []
 let fixaFTTC = []
 let faixaCep = []
-let cepData = []
 let tiData = []
 let movelData = []
 let avancadaData = []
@@ -58,10 +82,6 @@ document.getElementById('fileInput').addEventListener('change', async function (
 });
 
 function estanciar() {
-    cnaeFile = filesArray.find(e => e.name == 'cnae.xlsx')
-
-    cepFile = filesArray.find(e => e.name == 'cep.csv')
-
     recFixaFile = filesArray.find(e => e.name == 'recomendacaofixa.xlsx')
 
     recMovelFile = filesArray.find(e => e.name == 'recomendacaomovel.xlsx')
@@ -91,7 +111,7 @@ function estanciar() {
 }
 
 async function compilar() {
-    await cnae(cnaeFile)
+    recFixa(recFixaFile)
 }
 
 
@@ -957,29 +977,6 @@ function ti(arquivo) {
 
 
 
-// ===========  Arquivo Cnae  ===========
-async function cnae(arquivo) {
-    var file = arquivo
-
-    var reader = new FileReader();
-    reader.onload = function (event) {
-        var data = new Uint8Array(event.target.result);
-        var workbook = XLSX.read(data, { type: 'array' });
-        var sheetName = workbook.SheetNames[0]; // Assume que estamos lendo a primeira planilha
-
-        var sheet = workbook.Sheets[sheetName];
-        cnaeData = XLSX.utils.sheet_to_json(sheet, { defval: 0 });
-
-        console.log(cnaeData)
-        console.log('Lido: Cnae')
-    };
-
-    reader.readAsArrayBuffer(file);
-    await cep(cepFile)
-};
-
-
-
 // ===========  Arquivo Fixa  ===========
 function fixa(arquivo) {
     var file = arquivo
@@ -1046,91 +1043,6 @@ function mapaDisp(arquivo) {
 
     reader.readAsArrayBuffer(file);
 };
-
-
-
-// ===========  Arquivo CEP  ===========
-function cep(arquivo) {
-    const file = arquivo
-
-    if (!file) {
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSVCep(content);
-    };
-
-    reader.readAsText(file, 'ISO-8859-1');
-};
-
-
-async function processCSVCep(content) {
-    // Divida o conteúdo em linhas
-    const lines = content.split('\n');
-
-    // Remove a ultima linha em branco
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
-
-    // Processar cada linha
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
-
-        if (columns[3] !== "" || columns[3] !== undefined || columns[3] !== ' ' || columns[3] !== null) {
-            faixaCep.push(columns[3])
-            faixaCep.push(columns[4])
-        }
-
-        if (columns[1].includes('á')) {
-            columns[1] = columns[1].replace('á', 'a')
-        }
-        if (columns[1].includes('â')) {
-            columns[1] = columns[1].replace('â', 'a')
-        }
-        if (columns[1].includes('ç')) {
-            columns[1] = columns[1].replace('ç', 'c')
-        }
-        if (columns[1].includes('í')) {
-            columns[1] = columns[1].replace('í', 'i')
-        }
-        if (columns[1].includes('ú')) {
-            columns[1] = columns[1].replace('ú', 'u')
-        }
-        if (columns[1].includes('é')) {
-            columns[1] = columns[1].replace('é', 'e')
-        }
-        if (columns[1].includes('ã')) {
-            columns[1] = columns[1].replace('ã', 'a')
-        }
-        if (columns[1].includes('ó')) {
-            columns[1] = columns[1].replace('ó', 'o')
-        }
-        if (columns[1].includes('João')) {
-            columns[1] = columns[1].replace('João', 'Joao')
-        }
-
-        cepData.push({
-            col1: columns[0],
-            col2: columns[1],
-            col3: columns[3],
-            col4: columns[4],
-        });
-    });
-    faixaCep.sort((a, b) => {
-        return parseInt(a) - parseInt(b)
-    })
-    console.log(cepData)
-    console.log('Lido: Cep')
-    await recFixa(recFixaFile)
-}
 
 
 
