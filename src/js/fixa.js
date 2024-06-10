@@ -1,28 +1,29 @@
-const arquivo = document.getElementById('fileInput')
 const btn = document.getElementById('btn')
 const fileName = document.getElementById('labelFileInput')
 const pProcessando = document.getElementById('pProcessando')
 
-document.getElementById('fileInput').addEventListener('change', function (event) {
+document.getElementById('fileInput').addEventListener('change', function (arquivo) {
     console.time('meu timer')
-    const file = event.target.files[0];
+    var file = arquivo
 
-    if (!file) {
-        return;
-    }
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var data = new Uint8Array(event.target.result);
+        var workbook = XLSX.read(data, { type: 'array' });
+        var sheetName = workbook.SheetNames[0]; // Assume que estamos lendo a primeira planilha
 
-    const reader = new FileReader();
+        var sheet = workbook.Sheets[sheetName];
+        var jsonMapa = XLSX.utils.sheet_to_json(sheet, { defval: 0 });
 
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSV(content);
+        console.log(jsonMapa)
+        processCSV(jsonMapa)
     };
 
-    reader.readAsText(file, 'ISO-8859-1');
+    reader.readAsArrayBuffer(file);
 
     pProcessando.setAttribute('style', 'display: inline-block')
     btn.setAttribute('style', 'display: none')
+    console.log(file.name)
     fileName.textContent = file.name
 });
 
