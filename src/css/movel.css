@@ -16,7 +16,7 @@
 
 .labelFileInput {
     padding: 5px 10px;
-    background-color: cadetblue;
+    background-color: #485c46;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
@@ -29,7 +29,7 @@
 .btnProcessarMovel {
     display: block;
     border: none;
-    background-color: cadetblue;
+    background-color: #77009a;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;

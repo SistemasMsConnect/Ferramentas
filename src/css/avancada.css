@@ -12,7 +12,7 @@
 
 #labelFileInputDados {
     padding: 5px 10px;
-    background-color: cadetblue;
+    background-color: #485c46;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
@@ -23,7 +23,7 @@
 
 #labelFileInputSip {
     padding: 5px 10px;
-    background-color: cadetblue;
+    background-color: #485c46;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
@@ -34,7 +34,7 @@
 
 #labelFileInputCep {
     padding: 5px 10px;
-    background-color: cadetblue;
+    background-color: #485c46;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
@@ -45,7 +45,7 @@
 
 #labelFileInputVoz {
     padding: 5px 10px;
-    background-color: cadetblue;
+    background-color: #485c46;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
@@ -67,7 +67,7 @@
 #btnAtualizarCep {
     display: block;
     border: none;
-    background-color: cadetblue;
+    background-color: #77009a;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
@@ -78,7 +78,7 @@
 #btnCriarPorcentagem {
     display: block;
     border: none;
-    background-color: cadetblue;
+    background-color: #77009a;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
