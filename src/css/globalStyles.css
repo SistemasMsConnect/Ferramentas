@@ -9,6 +9,10 @@ aside {
     flex-direction: column;
 }
 
+i {
+    margin-right: 15px;
+}
+
 #FDVDrop, #MapaParqueDrop, #ParqueBasicaDrop, #DivisorDrop {
     width: 150px;
     border: none;

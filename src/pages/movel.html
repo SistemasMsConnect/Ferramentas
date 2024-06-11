@@ -19,7 +19,7 @@
 
 <body>
     <div id="side">
-        <a id="home" href="../../index.html"">Ferramentas</a>
+        <a id="home" href="../../index.html"><i class="fa-solid fa-screwdriver-wrench"></i>Ferramentas</a>
 
         <aside>
             <button id="FDVDrop">FDV</button>
@@ -46,19 +46,23 @@
             <div class="options hide" id="DivisorOptions">
                 <a target="_blank" href="./divisor.html">Divisor</a>
             </div>
-            </aside>
+        </aside>
     </div>
 
     <div id="ferramenta">
         <h1>Parque Básica - Móvel</h1>
 
-        <label class="labelFileInput" id="labelMovelFileInput" for="MovelFileInput">Arquivo CSV Movel</label>
-        <label class="labelFileInput" id="labelRecomendacaoFileInput" for="RecomendacaoFileInput">Arquivo CSV Recomendação</label>
-        <label class="labelFileInput" id="labelSuspensaoFileInput" for="SuspensaoFileInput">Arquivo CSV Suspensão</label>
-        
+        <label class="labelFileInput" id="labelMovelFileInput" for="MovelFileInput">Arquivo CSV Movel <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelRecomendacaoFileInput" for="RecomendacaoFileInput">Arquivo CSV
+            Recomendação <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelSuspensaoFileInput" for="SuspensaoFileInput">Arquivo CSV
+            Suspensão <i class="fa-solid fa-file-csv"></i></label>
+
         <input type="file" id="MovelFileInput" accept=".csv">
-        <input type="file" name="RecomendacaoFileInput" id="RecomendacaoFileInput" accept=".csv" onchange="lerArquivoCSV(event)">
-        <input type="file" accept=".csv" name="SuspensaoFileInput" id="SuspensaoFileInput" onchange="lerArquivoSuspensao(event)">
+        <input type="file" name="RecomendacaoFileInput" id="RecomendacaoFileInput" accept=".csv"
+            onchange="lerArquivoCSV(event)">
+        <input type="file" accept=".csv" name="SuspensaoFileInput" id="SuspensaoFileInput"
+            onchange="lerArquivoSuspensao(event)">
 
         <p id="pProcessando">Processando..</p>
 
@@ -66,6 +70,7 @@
         <button class="btnDownloadMovel hide" id="btnMovel">Baixar</button>
     </div>
 
+    <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
     <script src="../js/movel.js"></script>
