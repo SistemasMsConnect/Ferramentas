@@ -10,23 +10,18 @@
     margin-bottom: 20px;
 }
 
-#pProcessando {
-    color: aliceblue;
-}
-
-.labelFileInput {
+#labelFileInput {
     padding: 5px 10px;
     background-color: #485c46;
     border-radius: 5px;
     color: aliceblue;
     cursor: pointer;
+    width: max-content;
     display: block;
     margin-top: 50px;
-    width: max-content;
 }
 
-.btnDownloadMovel,
-.btnProcessarMovel {
+#exportBtn {
     display: block;
     border: none;
     background-color: #77009a;
@@ -34,9 +29,10 @@
     color: aliceblue;
     cursor: pointer;
     padding: 5px 10px;
-    margin-top: 50px
+    margin-top: 15px;
 }
 
-#MovelFileInput, #RecomendacaoFileInput, #SuspensaoFileInput, #pProcessando {
-    display: none;
+#p {
+    color: aliceblue;
+    margin-top: 20px;
 }

@@ -4,6 +4,8 @@ let pMP = document.getElementById('MapaParqueDrop')
 let dMP = document.getElementById('MapaParqueOptions')
 let pPB = document.getElementById('ParqueBasicaDrop')
 let dPB = document.getElementById('ParqueBasicaOptions')
+let pDP = document.getElementById('DivisorDrop')
+let dDP = document.getElementById('DivisorOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -25,4 +27,8 @@ pMP.addEventListener('click', () => {
 
 pPB.addEventListener('click', () => {
     dPB.classList.toggle('hide')
+})
+
+pDP.addEventListener('click', () => {
+    dDP.classList.toggle('hide')
 })

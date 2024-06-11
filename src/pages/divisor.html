@@ -12,9 +12,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/fdvMovel.css">
+    <link rel="stylesheet" href="../css/divisor.css">
 
-    <title>FDV Movel</title>
+    <title>Divisor - Parque</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         <aside>
             <button id="FDVDrop">FDV</button>
             <div class="options hide" id="FDVOptions">
-                <a>Móvel</a>
+                <a href="./fdvMovel.html">Móvel</a>
                 <a href="./fdvBasica.html">Básica</a>
                 <a href="./fdvAvancada.html">Avançada</a>
             </div>
@@ -44,30 +44,26 @@
 
             <button id="DivisorDrop">Divisor Parque</button>
             <div class="options hide" id="DivisorOptions">
-                <a target="_blank" href="./divisor.html">Divisor</a>
+                <a>Divisor</a>
             </div>
             </aside>
     </div>
 
     <div id="ferramenta">
-        <h1>FDV Movel</h1>
-
-        <label id="labelFileInputMovel" for="fileInputMovel">Escolha
-            o arquivo Movel 1 .xlsx</label>
-        <input type="file" id="fileInputMovel" accept=".xlsx">
-
-        <label id="labelFileInputMovel2" for="fileInputMovel2">Escolha
-            o arquivo Movel 2 .xlsx</label>
-        <input type="file" id="fileInputMovel2" accept=".xlsx">
-
+        <h1>Divisor - Parque</h1>
+        
+        <label id="labelFileInput" for="fileInput">Escolha
+            o arquivo .xlsb</label>
+        <input type="file" id="fileInput" style="display: none;" accept=".xlsb">
+    
         <button id="exportBtn">Exportar para XLSX</button>
-
-        <p id="p">Processando..</p> <span id="span"></span>
+    
+        <p id="p" class="hide">Processando..</p>
     </div>
 
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/fdvMovel.js"></script>
+    <script src="../js/divisor.js"></script>
 </body>
 
 </html>

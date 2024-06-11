@@ -9,7 +9,7 @@ aside {
     flex-direction: column;
 }
 
-#FDVDrop, #MapaParqueDrop, #ParqueBasicaDrop {
+#FDVDrop, #MapaParqueDrop, #ParqueBasicaDrop, #DivisorDrop {
     width: 150px;
     border: none;
     background-color: #555675;
@@ -21,22 +21,22 @@ aside {
     border-bottom: 2px solid aliceblue;
 }
 
-#MapaParqueDrop, #ParqueBasicaDrop {
+#MapaParqueDrop, #ParqueBasicaDrop, #DivisorDrop {
     border-radius: 0;
 }
 
-#FDVOptions a:last-child, #MapaParqueOptions a:last-child, #ParqueBasicaOptions a:last-child {
+#FDVOptions a:last-child, #MapaParqueOptions a:last-child, #ParqueBasicaOptions a:last-child, #DivisorOptions a:last-child {
     border-bottom: 2px solid aliceblue;
 }
 
-#FDVOptions a, #MapaParqueOptions a, #ParqueBasicaOptions a {
+#FDVOptions a, #MapaParqueOptions a, #ParqueBasicaOptions a, #DivisorOptions a {
     display: block;
     width: 150px;
     padding: 10px 0 10px 20px;
     transition: .4s;
 }
 
-#FDVOptions a:hover, #MapaParqueOptions a:hover, #ParqueBasicaOptions a:hover {
+#FDVOptions a:hover, #MapaParqueOptions a:hover, #ParqueBasicaOptions a:hover, #DivisorOptions a:hover {
     background-color: aliceblue;
     color: #262749;
 }
