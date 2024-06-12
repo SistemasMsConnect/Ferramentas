@@ -526,9 +526,9 @@ function createFile(data1, data2, data3, data4, data5, data6, name) {
     const workbook = XLSX.utils.book_new();
 
     XLSX.utils.book_append_sheet(workbook, wsNome1, "Mapa Parque");
-    XLSX.utils.book_append_sheet(workbook, wsNome2, "Parque Móvel");
+    XLSX.utils.book_append_sheet(workbook, wsNome2, "Parque móvel");
     XLSX.utils.book_append_sheet(workbook, wsNome3, "Parque Básica");
-    XLSX.utils.book_append_sheet(workbook, wsNome4, "Parque Avançada");
+    XLSX.utils.book_append_sheet(workbook, wsNome4, "Parque de avançada");
     XLSX.utils.book_append_sheet(workbook, wsNome5, "Parque TI");
     XLSX.utils.book_append_sheet(workbook, wsNome6, "Recomendações");
 
