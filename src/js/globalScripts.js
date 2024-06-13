@@ -9,6 +9,8 @@ let dDP = document.getElementById('DivisorOptions')
 
 let as = document.querySelectorAll('a')
 
+ScrollReveal().reveal('.delay', {delay: 500});
+
 as.forEach(e => {
     if(!e.href) {
         e.classList.add('active')

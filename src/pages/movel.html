@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
 
+        <link rel="shortcut icon" href="../img/favicon-32x32.png" type="image/x-icon">
+
+    <script src="https://unpkg.com/scrollreveal@4"></script>
+
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
     <link rel="stylesheet" href="../css/movel.css">
@@ -49,10 +53,11 @@
         </aside>
     </div>
 
-    <div id="ferramenta">
+    <div class="delay" id="ferramenta">
         <h1>Parque Básica - Móvel</h1>
 
-        <label class="labelFileInput" id="labelMovelFileInput" for="MovelFileInput">Arquivo CSV Movel <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelMovelFileInput" for="MovelFileInput">Arquivo CSV Movel <i
+                class="fa-solid fa-file-csv"></i></label>
         <label class="labelFileInput" id="labelRecomendacaoFileInput" for="RecomendacaoFileInput">Arquivo CSV
             Recomendação <i class="fa-solid fa-file-csv"></i></label>
         <label class="labelFileInput" id="labelSuspensaoFileInput" for="SuspensaoFileInput">Arquivo CSV
@@ -66,8 +71,8 @@
 
         <p id="pProcessando">Processando..</p>
 
-        <button class="btnProcessarMovel" onclick="atualizar()">Atualizar</button>
-        <button class="btnDownloadMovel hide" id="btnMovel">Baixar</button>
+        <button class="btns btnProcessarMovel" onclick="atualizar()">Atualizar</button>
+        <button class="btns btnDownloadMovel hide" id="btnMovel">Baixar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>

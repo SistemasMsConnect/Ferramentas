@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
 
+    <link rel="shortcut icon" href="../img/favicon-32x32.png" type="image/x-icon">
+
+    <script src="https://unpkg.com/scrollreveal@4"></script>
+
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
     <link rel="stylesheet" href="../css/divisor.css">
@@ -46,18 +50,18 @@
             <div class="options hide" id="DivisorOptions">
                 <a>Divisor</a>
             </div>
-            </aside>
+        </aside>
     </div>
 
-    <div id="ferramenta">
+    <div class="delay" id="ferramenta">
         <h1>Divisor - Parque</h1>
-        
-        <label id="labelFileInput" for="fileInput">Escolha
+
+        <label class="labelFileInput" id="labelFileInput" for="fileInput">Escolha
             o arquivo .xlsb <i class="fa-solid fa-file-excel"></i></label>
         <input type="file" id="fileInput" style="display: none;" accept=".xlsb">
-    
-        <button id="exportBtn">Exportar para XLSX</button>
-    
+
+        <button class="btns" id="exportBtn">Exportar para XLSX</button>
+
         <p id="p" class="hide">Processando..</p>
     </div>
 

@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
 
+    <link rel="shortcut icon" href="../img/favicon-32x32.png" type="image/x-icon">
+
+    <script src="https://unpkg.com/scrollreveal@4"></script>
+
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
     <link rel="stylesheet" href="../css/fixaRecomendacao.css">
@@ -46,16 +50,17 @@
             <div class="options hide" id="DivisorOptions">
                 <a href="./divisor.html">Divisor</a>
             </div>
-            </aside>
+        </aside>
     </div>
 
-    <div id="ferramenta">
+    <div class="delay" id="ferramenta">
         <h1>Parque Básica - Fixa Recomendação</h1>
 
-        <label id="labelRecomendadoFileInput" for="recomendadoFileInput">Escolha o arquivo RECOMENDACAO .CSV <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelRecomendadoFileInput" for="recomendadoFileInput">Escolha o arquivo
+            RECOMENDACAO .CSV <i class="fa-solid fa-file-csv"></i></label>
         <input type="file" id="recomendadoFileInput" accept=".csv">
         <p id="pProcessando">Processando..</p>
-        <button id="btn">Baixar</button>
+        <button class="btns" id="btn">Baixar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>

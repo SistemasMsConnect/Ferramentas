@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
 
+    <link rel="shortcut icon" href="../img/favicon-32x32.png" type="image/x-icon">
+
+    <script src="https://unpkg.com/scrollreveal@4"></script>
+
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
     <link rel="stylesheet" href="../css/fdvAvancada.css">
@@ -46,17 +50,17 @@
             <div class="options hide" id="DivisorOptions">
                 <a href="./divisor.html">Divisor</a>
             </div>
-            </aside>
+        </aside>
     </div>
 
-    <div id="ferramenta">
+    <div class="delay" id="ferramenta">
         <h1>FDV Avançada</h1>
 
-        <label id="labelFileInput" for="fileInput">Escolha
+        <label class="labelFileInput" id="labelFileInput" for="fileInput">Escolha
             o arquivo Fixa Avançada .xlsx <i class="fa-solid fa-file-excel"></i></label>
         <input type="file" id="fileInput" style="display: none;" accept=".xlsx">
 
-        <button id="exportBtn">Exportar para XLSX</button>
+        <button class="btns" id="exportBtn">Exportar para XLSX</button>
 
         <p id="p">Processando..</p>
     </div>

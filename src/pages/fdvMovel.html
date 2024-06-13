@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
 
+    <link rel="shortcut icon" href="../img/favicon-32x32.png" type="image/x-icon">
+
+    <script src="https://unpkg.com/scrollreveal@4"></script>
+
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
     <link rel="stylesheet" href="../css/fdvMovel.css">
@@ -46,21 +50,21 @@
             <div class="options hide" id="DivisorOptions">
                 <a href="./divisor.html">Divisor</a>
             </div>
-            </aside>
+        </aside>
     </div>
 
-    <div id="ferramenta">
+    <div class="delay" id="ferramenta">
         <h1>FDV Movel</h1>
 
-        <label id="labelFileInputMovel" for="fileInputMovel">Escolha
+        <label class="labelFileInput" id="labelFileInputMovel" for="fileInputMovel">Escolha
             o arquivo Movel 1 .xlsx <i class="fa-solid fa-file-excel"></i></label>
         <input type="file" id="fileInputMovel" accept=".xlsx">
 
-        <label id="labelFileInputMovel2" for="fileInputMovel2">Escolha
+        <label class="labelFileInput" id="labelFileInputMovel2" for="fileInputMovel2">Escolha
             o arquivo Movel 2 .xlsx <i class="fa-solid fa-file-excel"></i></label>
         <input type="file" id="fileInputMovel2" accept=".xlsx">
 
-        <button id="exportBtn">Exportar para XLSX</button>
+        <button class="btns" id="exportBtn">Exportar para XLSX</button>
 
         <p id="p">Processando..</p> <span id="span"></span>
     </div>

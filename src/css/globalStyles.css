@@ -13,6 +13,11 @@ i {
     margin-right: 15px;
 }
 
+label i {
+    margin-right: 0;
+    margin-left: 5px;
+}
+
 #FDVDrop, #MapaParqueDrop, #ParqueBasicaDrop, #DivisorDrop {
     width: 150px;
     border: none;
@@ -43,6 +48,32 @@ i {
 #FDVOptions a:hover, #MapaParqueOptions a:hover, #ParqueBasicaOptions a:hover, #DivisorOptions a:hover {
     background-color: aliceblue;
     color: #262749;
+}
+
+.labelFileInput {
+    min-width: 250px;
+    width: max-content;
+    height: 50px;
+    padding: 0 10px;
+    background-color: #883397;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns {
+    display: block;
+    border: none;
+    background-color: #7089aa;
+    border-radius: 5px;
+    color: aliceblue;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 25px;
 }
 
 .hide {
