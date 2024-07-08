@@ -40,27 +40,63 @@ fileInput.addEventListener('change', (arquivo) => {
         processarAbaCinco(jsonData05)
         processarAbaSeis(jsonData06)
 
-        createFile(avancados1Um, avancados1Dois, avancados1Tres, avancados1Quatro, avancados1Cinco, avancados1Seis, "avancada1")
-        createFile(avancados2Um, avancados2Dois, avancados2Tres, avancados2Quatro, avancados2Cinco, avancados2Seis, "avancada2")
-        createFile(cpfUm, cpfDois, cpfTres, cpfQuatro, cpfCinco, cpfSeis, "cpf")
-        createFile(basica1Um, basica1Dois, basica1Tres, basica1Quatro, basica1Cinco, basica1Seis, "basica1")
-        createFile(basica2Um, basica2Dois, basica2Tres, basica2Quatro, basica2Cinco, basica2Seis, "basica2")
-        createFile(basica3Um, basica3Dois, basica3Tres, basica3Quatro, basica3Cinco, basica3Seis, "basica3")
-        createFile(basica4Um, basica4Dois, basica4Tres, basica4Quatro, basica4Cinco, basica4Seis, "basica4")
-        createFile(basica5Um, basica5Dois, basica5Tres, basica5Quatro, basica5Cinco, basica5Seis, "basica5")
-        createFile(basica6Um, basica6Dois, basica6Tres, basica6Quatro, basica6Cinco, basica6Seis, "basica6")
-        createFile(movel1Um, movel1Dois, movel1Tres, movel1Quatro, movel1Cinco, movel1Seis, "movel1")
-        createFile(movel2Um, movel2Dois, movel2Tres, movel2Quatro, movel2Cinco, movel2Seis, "movel2")
-        createFile(movel3Um, movel3Dois, movel3Tres, movel3Quatro, movel3Cinco, movel3Seis, "movel3")
-        createFile(movel4Um, movel4Dois, movel4Tres, movel4Quatro, movel4Cinco, movel4Seis, "movel4")
-        createFile(movel5Um, movel5Dois, movel5Tres, movel5Quatro, movel5Cinco, movel5Seis, "movel5")
-        createFile(movel6Um, movel6Dois, movel6Tres, movel6Quatro, movel6Cinco, movel6Seis, "movel6")
-        createFile(mb1Um, mb1Dois, mb1Tres, mb1Quatro, mb1Cinco, mb1Seis, "mb1")
-        createFile(mb2Um, mb2Dois, mb2Tres, mb2Quatro, mb2Cinco, mb2Seis, "mb2")
-        createFile(mb3Um, mb3Dois, mb3Tres, mb3Quatro, mb3Cinco, mb3Seis, "mb3")
-        createFile(mb4Um, mb4Dois, mb4Tres, mb4Quatro, mb4Cinco, mb4Seis, "mb4")
-        createFile(mb5Um, mb5Dois, mb5Tres, mb5Quatro, mb5Cinco, mb5Seis, "mb5")
-        createFile(mb6Um, mb6Dois, mb6Tres, mb6Quatro, mb6Cinco, mb6Seis, "mb6")
+        createFile(_1Um, _1Dois, _1Tres, _1Quatro, _1Cinco, _1Seis, "1")
+        createFile(_2Um, _2Dois, _2Tres, _2Quatro, _2Cinco, _2Seis, "2")
+        createFile(_3Um, _3Dois, _3Tres, _3Quatro, _3Cinco, _3Seis, "3")
+        createFile(_4Um, _4Dois, _4Tres, _4Quatro, _4Cinco, _4Seis, "4")
+        createFile(_5Um, _5Dois, _5Tres, _5Quatro, _5Cinco, _5Seis, "5")
+        createFile(_6Um, _6Dois, _6Tres, _6Quatro, _6Cinco, _6Seis, "6")
+        createFile(_7Um, _7Dois, _7Tres, _7Quatro, _7Cinco, _7Seis, "7")
+        createFile(_8Um, _8Dois, _8Tres, _8Quatro, _8Cinco, _8Seis, "8")
+        createFile(_9Um, _9Dois, _9Tres, _9Quatro, _9Cinco, _9Seis, "9")
+        createFile(_10Um, _10Dois, _10Tres, _10Quatro, _10Cinco, _10Seis, "10")
+        createFile(_11Um, _11Dois, _11Tres, _11Quatro, _11Cinco, _11Seis, "11")
+        createFile(_12Um, _12Dois, _12Tres, _12Quatro, _12Cinco, _12Seis, "12")
+        createFile(_13Um, _13Dois, _13Tres, _13Quatro, _13Cinco, _13Seis, "13")
+        createFile(_14Um, _14Dois, _14Tres, _14Quatro, _14Cinco, _14Seis, "14")
+        createFile(_15Um, _15Dois, _15Tres, _15Quatro, _15Cinco, _15Seis, "15")
+        createFile(_16Um, _16Dois, _16Tres, _16Quatro, _16Cinco, _16Seis, "16")
+        createFile(_17Um, _17Dois, _17Tres, _17Quatro, _17Cinco, _17Seis, "17")
+        createFile(_18Um, _18Dois, _18Tres, _18Quatro, _18Cinco, _18Seis, "18")
+        createFile(_19Um, _19Dois, _19Tres, _19Quatro, _19Cinco, _19Seis, "19")
+        createFile(_20Um, _20Dois, _20Tres, _20Quatro, _20Cinco, _20Seis, "20")
+        createFile(_21Um, _21Dois, _21Tres, _21Quatro, _21Cinco, _21Seis, "21")
+        createFile(_22Um, _22Dois, _22Tres, _22Quatro, _22Cinco, _22Seis, "22")
+        createFile(_23Um, _23Dois, _23Tres, _23Quatro, _23Cinco, _23Seis, "23")
+        createFile(_24Um, _24Dois, _24Tres, _24Quatro, _24Cinco, _24Seis, "24")
+        createFile(_25Um, _25Dois, _25Tres, _25Quatro, _25Cinco, _25Seis, "25")
+        createFile(_26Um, _26Dois, _26Tres, _26Quatro, _26Cinco, _26Seis, "26")
+        createFile(_27Um, _27Dois, _27Tres, _27Quatro, _27Cinco, _27Seis, "27")
+        createFile(_28Um, _28Dois, _28Tres, _28Quatro, _28Cinco, _28Seis, "28")
+        createFile(_29Um, _29Dois, _29Tres, _29Quatro, _29Cinco, _29Seis, "29")
+        createFile(_30Um, _30Dois, _30Tres, _30Quatro, _30Cinco, _30Seis, "30")
+        createFile(_31Um, _31Dois, _31Tres, _31Quatro, _31Cinco, _31Seis, "31")
+        createFile(_32Um, _32Dois, _32Tres, _32Quatro, _32Cinco, _32Seis, "32")
+        createFile(_33Um, _33Dois, _33Tres, _33Quatro, _33Cinco, _33Seis, "33")
+        createFile(_34Um, _34Dois, _34Tres, _34Quatro, _34Cinco, _34Seis, "34")
+        createFile(_35Um, _35Dois, _35Tres, _35Quatro, _35Cinco, _35Seis, "35")
+        createFile(_36Um, _36Dois, _36Tres, _36Quatro, _36Cinco, _36Seis, "36")
+        createFile(_37Um, _37Dois, _37Tres, _37Quatro, _37Cinco, _37Seis, "37")
+        createFile(_38Um, _38Dois, _38Tres, _38Quatro, _38Cinco, _38Seis, "38")
+        createFile(_39Um, _39Dois, _39Tres, _39Quatro, _39Cinco, _39Seis, "39")
+        createFile(_40Um, _40Dois, _40Tres, _40Quatro, _40Cinco, _40Seis, "40")
+        createFile(_41Um, _41Dois, _41Tres, _41Quatro, _41Cinco, _41Seis, "41")
+        createFile(_42Um, _42Dois, _42Tres, _42Quatro, _42Cinco, _42Seis, "42")
+        createFile(_43Um, _43Dois, _43Tres, _43Quatro, _43Cinco, _43Seis, "43")
+        createFile(_44Um, _44Dois, _44Tres, _44Quatro, _44Cinco, _44Seis, "44")
+        createFile(_45Um, _45Dois, _45Tres, _45Quatro, _45Cinco, _45Seis, "45")
+        createFile(_46Um, _46Dois, _46Tres, _46Quatro, _46Cinco, _46Seis, "46")
+        createFile(_47Um, _47Dois, _47Tres, _47Quatro, _47Cinco, _47Seis, "47")
+        createFile(_48Um, _48Dois, _48Tres, _48Quatro, _48Cinco, _48Seis, "48")
+        createFile(_49Um, _49Dois, _49Tres, _49Quatro, _49Cinco, _49Seis, "49")
+        createFile(_50Um, _50Dois, _50Tres, _50Quatro, _50Cinco, _50Seis, "50")
+        createFile(_51Um, _51Dois, _51Tres, _51Quatro, _51Cinco, _51Seis, "51")
+        createFile(_52Um, _52Dois, _52Tres, _52Quatro, _52Cinco, _52Seis, "52")
+        createFile(_53Um, _53Dois, _53Tres, _53Quatro, _53Cinco, _53Seis, "53")
+        createFile(_54Um, _54Dois, _54Tres, _54Quatro, _54Cinco, _54Seis, "54")
+        createFile(_55Um, _55Dois, _55Tres, _55Quatro, _55Cinco, _55Seis, "55")
+        createFile(_56Um, _56Dois, _56Tres, _56Quatro, _56Cinco, _56Seis, "56")
+        createFile(_57Um, _57Dois, _57Tres, _57Quatro, _57Cinco, _57Seis, "57")
 
         pProcessando.classList.add('hide')
 
@@ -76,183 +112,470 @@ fileInput.addEventListener('change', (arquivo) => {
 })
 
 
-let avancados1Um = []
-let avancados2Um = []
-let cpfUm = []
-let basica1Um = []
-let basica2Um = []
-let basica3Um = []
-let basica4Um = []
-let basica5Um = []
-let basica6Um = []
-let movel1Um = []
-let movel2Um = []
-let movel3Um = []
-let movel4Um = []
-let movel5Um = []
-let movel6Um = []
-let mb1Um = []
-let mb2Um = []
-let mb3Um = []
-let mb4Um = []
-let mb5Um = []
-let mb6Um = []
+let _1Um = []
+let _2Um = []
+let _3Um = []
+let _4Um = []
+let _5Um = []
+let _6Um = []
+let _7Um = []
+let _8Um = []
+let _9Um = []
+let _10Um = []
+let _11Um = []
+let _12Um = []
+let _13Um = []
+let _14Um = []
+let _15Um = []
+let _16Um = []
+let _17Um = []
+let _18Um = []
+let _19Um = []
+let _20Um = []
+let _21Um = []
+let _22Um = []
+let _23Um = []
+let _24Um = []
+let _25Um = []
+let _26Um = []
+let _27Um = []
+let _28Um = []
+let _29Um = []
+let _30Um = []
+let _31Um = []
+let _32Um = []
+let _33Um = []
+let _34Um = []
+let _35Um = []
+let _36Um = []
+let _37Um = []
+let _38Um = []
+let _39Um = []
+let _40Um = []
+let _41Um = []
+let _42Um = []
+let _43Um = []
+let _44Um = []
+let _45Um = []
+let _46Um = []
+let _47Um = []
+let _48Um = []
+let _49Um = []
+let _50Um = []
+let _51Um = []
+let _52Um = []
+let _53Um = []
+let _54Um = []
+let _55Um = []
+let _56Um = []
+let _57Um = []
 
-let avancados1Dois = []
-let avancados2Dois = []
-let cpfDois = []
-let basica1Dois = []
-let basica2Dois = []
-let basica3Dois = []
-let basica4Dois = []
-let basica5Dois = []
-let basica6Dois = []
-let movel1Dois = []
-let movel2Dois = []
-let movel3Dois = []
-let movel4Dois = []
-let movel5Dois = []
-let movel6Dois = []
-let mb1Dois = []
-let mb2Dois = []
-let mb3Dois = []
-let mb4Dois = []
-let mb5Dois = []
-let mb6Dois = []
+let _1Dois = []
+let _2Dois = []
+let _3Dois = []
+let _4Dois = []
+let _5Dois = []
+let _6Dois = []
+let _7Dois = []
+let _8Dois = []
+let _9Dois = []
+let _10Dois = []
+let _11Dois = []
+let _12Dois = []
+let _13Dois = []
+let _14Dois = []
+let _15Dois = []
+let _16Dois = []
+let _17Dois = []
+let _18Dois = []
+let _19Dois = []
+let _20Dois = []
+let _21Dois = []
+let _22Dois = []
+let _23Dois = []
+let _24Dois = []
+let _25Dois = []
+let _26Dois = []
+let _27Dois = []
+let _28Dois = []
+let _29Dois = []
+let _30Dois = []
+let _31Dois = []
+let _32Dois = []
+let _33Dois = []
+let _34Dois = []
+let _35Dois = []
+let _36Dois = []
+let _37Dois = []
+let _38Dois = []
+let _39Dois = []
+let _40Dois = []
+let _41Dois = []
+let _42Dois = []
+let _43Dois = []
+let _44Dois = []
+let _45Dois = []
+let _46Dois = []
+let _47Dois = []
+let _48Dois = []
+let _49Dois = []
+let _50Dois = []
+let _51Dois = []
+let _52Dois = []
+let _53Dois = []
+let _54Dois = []
+let _55Dois = []
+let _56Dois = []
+let _57Dois = []
 
-let avancados1Tres = []
-let avancados2Tres = []
-let cpfTres = []
-let basica1Tres = []
-let basica2Tres = []
-let basica3Tres = []
-let basica4Tres = []
-let basica5Tres = []
-let basica6Tres = []
-let movel1Tres = []
-let movel2Tres = []
-let movel3Tres = []
-let movel4Tres = []
-let movel5Tres = []
-let movel6Tres = []
-let mb1Tres = []
-let mb2Tres = []
-let mb3Tres = []
-let mb4Tres = []
-let mb5Tres = []
-let mb6Tres = []
+let _1Tres = []
+let _2Tres = []
+let _3Tres = []
+let _4Tres = []
+let _5Tres = []
+let _6Tres = []
+let _7Tres = []
+let _8Tres = []
+let _9Tres = []
+let _10Tres = []
+let _11Tres = []
+let _12Tres = []
+let _13Tres = []
+let _14Tres = []
+let _15Tres = []
+let _16Tres = []
+let _17Tres = []
+let _18Tres = []
+let _19Tres = []
+let _20Tres = []
+let _21Tres = []
+let _22Tres = []
+let _23Tres = []
+let _24Tres = []
+let _25Tres = []
+let _26Tres = []
+let _27Tres = []
+let _28Tres = []
+let _29Tres = []
+let _30Tres = []
+let _31Tres = []
+let _32Tres = []
+let _33Tres = []
+let _34Tres = []
+let _35Tres = []
+let _36Tres = []
+let _37Tres = []
+let _38Tres = []
+let _39Tres = []
+let _40Tres = []
+let _41Tres = []
+let _42Tres = []
+let _43Tres = []
+let _44Tres = []
+let _45Tres = []
+let _46Tres = []
+let _47Tres = []
+let _48Tres = []
+let _49Tres = []
+let _50Tres = []
+let _51Tres = []
+let _52Tres = []
+let _53Tres = []
+let _54Tres = []
+let _55Tres = []
+let _56Tres = []
+let _57Tres = []
 
-let avancados1Quatro = []
-let avancados2Quatro = []
-let cpfQuatro = []
-let basica1Quatro = []
-let basica2Quatro = []
-let basica3Quatro = []
-let basica4Quatro = []
-let basica5Quatro = []
-let basica6Quatro = []
-let movel1Quatro = []
-let movel2Quatro = []
-let movel3Quatro = []
-let movel4Quatro = []
-let movel5Quatro = []
-let movel6Quatro = []
-let mb1Quatro = []
-let mb2Quatro = []
-let mb3Quatro = []
-let mb4Quatro = []
-let mb5Quatro = []
-let mb6Quatro = []
+let _1Quatro = []
+let _2Quatro = []
+let _3Quatro = []
+let _4Quatro = []
+let _5Quatro = []
+let _6Quatro = []
+let _7Quatro = []
+let _8Quatro = []
+let _9Quatro = []
+let _10Quatro = []
+let _11Quatro = []
+let _12Quatro = []
+let _13Quatro = []
+let _14Quatro = []
+let _15Quatro = []
+let _16Quatro = []
+let _17Quatro = []
+let _18Quatro = []
+let _19Quatro = []
+let _20Quatro = []
+let _21Quatro = []
+let _22Quatro = []
+let _23Quatro = []
+let _24Quatro = []
+let _25Quatro = []
+let _26Quatro = []
+let _27Quatro = []
+let _28Quatro = []
+let _29Quatro = []
+let _30Quatro = []
+let _31Quatro = []
+let _32Quatro = []
+let _33Quatro = []
+let _34Quatro = []
+let _35Quatro = []
+let _36Quatro = []
+let _37Quatro = []
+let _38Quatro = []
+let _39Quatro = []
+let _40Quatro = []
+let _41Quatro = []
+let _42Quatro = []
+let _43Quatro = []
+let _44Quatro = []
+let _45Quatro = []
+let _46Quatro = []
+let _47Quatro = []
+let _48Quatro = []
+let _49Quatro = []
+let _50Quatro = []
+let _51Quatro = []
+let _52Quatro = []
+let _53Quatro = []
+let _54Quatro = []
+let _55Quatro = []
+let _56Quatro = []
+let _57Quatro = []
 
-let avancados1Cinco = []
-let avancados2Cinco = []
-let cpfCinco = []
-let basica1Cinco = []
-let basica2Cinco = []
-let basica3Cinco = []
-let basica4Cinco = []
-let basica5Cinco = []
-let basica6Cinco = []
-let movel1Cinco = []
-let movel2Cinco = []
-let movel3Cinco = []
-let movel4Cinco = []
-let movel5Cinco = []
-let movel6Cinco = []
-let mb1Cinco = []
-let mb2Cinco = []
-let mb3Cinco = []
-let mb4Cinco = []
-let mb5Cinco = []
-let mb6Cinco = []
+let _1Cinco = []
+let _2Cinco = []
+let _3Cinco = []
+let _4Cinco = []
+let _5Cinco = []
+let _6Cinco = []
+let _7Cinco = []
+let _8Cinco = []
+let _9Cinco = []
+let _10Cinco = []
+let _11Cinco = []
+let _12Cinco = []
+let _13Cinco = []
+let _14Cinco = []
+let _15Cinco = []
+let _16Cinco = []
+let _17Cinco = []
+let _18Cinco = []
+let _19Cinco = []
+let _20Cinco = []
+let _21Cinco = []
+let _22Cinco = []
+let _23Cinco = []
+let _24Cinco = []
+let _25Cinco = []
+let _26Cinco = []
+let _27Cinco = []
+let _28Cinco = []
+let _29Cinco = []
+let _30Cinco = []
+let _31Cinco = []
+let _32Cinco = []
+let _33Cinco = []
+let _34Cinco = []
+let _35Cinco = []
+let _36Cinco = []
+let _37Cinco = []
+let _38Cinco = []
+let _39Cinco = []
+let _40Cinco = []
+let _41Cinco = []
+let _42Cinco = []
+let _43Cinco = []
+let _44Cinco = []
+let _45Cinco = []
+let _46Cinco = []
+let _47Cinco = []
+let _48Cinco = []
+let _49Cinco = []
+let _50Cinco = []
+let _51Cinco = []
+let _52Cinco = []
+let _53Cinco = []
+let _54Cinco = []
+let _55Cinco = []
+let _56Cinco = []
+let _57Cinco = []
 
-let avancados1Seis = []
-let avancados2Seis = []
-let cpfSeis = []
-let basica1Seis = []
-let basica2Seis = []
-let basica3Seis = []
-let basica4Seis = []
-let basica5Seis = []
-let basica6Seis = []
-let movel1Seis = []
-let movel2Seis = []
-let movel3Seis = []
-let movel4Seis = []
-let movel5Seis = []
-let movel6Seis = []
-let mb1Seis = []
-let mb2Seis = []
-let mb3Seis = []
-let mb4Seis = []
-let mb5Seis = []
-let mb6Seis = []
-
+let _1Seis = []
+let _2Seis = []
+let _3Seis = []
+let _4Seis = []
+let _5Seis = []
+let _6Seis = []
+let _7Seis = []
+let _8Seis = []
+let _9Seis = []
+let _10Seis = []
+let _11Seis = []
+let _12Seis = []
+let _13Seis = []
+let _14Seis = []
+let _15Seis = []
+let _16Seis = []
+let _17Seis = []
+let _18Seis = []
+let _19Seis = []
+let _20Seis = []
+let _21Seis = []
+let _22Seis = []
+let _23Seis = []
+let _24Seis = []
+let _25Seis = []
+let _26Seis = []
+let _27Seis = []
+let _28Seis = []
+let _29Seis = []
+let _30Seis = []
+let _31Seis = []
+let _32Seis = []
+let _33Seis = []
+let _34Seis = []
+let _35Seis = []
+let _36Seis = []
+let _37Seis = []
+let _38Seis = []
+let _39Seis = []
+let _40Seis = []
+let _41Seis = []
+let _42Seis = []
+let _43Seis = []
+let _44Seis = []
+let _45Seis = []
+let _46Seis = []
+let _47Seis = []
+let _48Seis = []
+let _49Seis = []
+let _50Seis = []
+let _51Seis = []
+let _52Seis = []
+let _53Seis = []
+let _54Seis = []
+let _55Seis = []
+let _56Seis = []
+let _57Seis = []
 
 function processarAbaUm(content) {
     content.forEach(e => {
-        if (e.N === 'CPF') {
-            cpfUm.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 1') {
-            avancados1Um.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 2') {
-            avancados2Um.push(e)
-        } else if (e.N === 'Basica-1') {
-            basica1Um.push(e)
-        } else if (e.N === 'Basica-2') {
-            basica2Um.push(e)
-        } else if (e.N === 'Basica-3') {
-            basica3Um.push(e)
-        } else if (e.N === 'Basica-4') {
-            basica4Um.push(e)
-        } else if (e.N === 'Basica-5') {
-            basica5Um.push(e)
-        } else if (e.N === 'Basica-6') {
-            basica6Um.push(e)
-        } else if (e.N === 'Movel-1') {
-            movel1Um.push(e)
-        } else if (e.N === 'Movel-2') {
-            movel2Um.push(e)
-        } else if (e.N === 'Movel-3') {
-            movel3Um.push(e)
-        } else if (e.N === 'Movel-4') {
-            movel4Um.push(e)
-        } else if (e.N === 'Movel-5') {
-            movel5Um.push(e)
-        } else if (e.N === 'Movel-6') {
-            movel6Um.push(e)
-        } else if (e.N === 'Movel&Basica-1') {
-            mb1Um.push(e)
-        } else if (e.N === 'Movel&Basica-2') {
-            mb2Um.push(e)
-        } else if (e.N === 'Movel&Basica-3') {
-            mb3Um.push(e)
-        } else if (e.N === 'Movel&Basica-4') {
-            mb4Um.push(e)
-        } else if (e.N === 'Movel&Basica-5') {
-            mb5Um.push(e)
-        } else if (e.N === 'Movel&Basica-6') {
-            mb6Um.push(e)
+        if (e.N == '1') {
+            _1Um.push(e)
+        } else if (e.N == '2') {
+            _2Um.push(e)
+        } else if (e.N == '3') {
+            _3Um.push(e)
+        } else if (e.N == '4') {
+            _4Um.push(e)
+        } else if (e.N == '5') {
+            _5Um.push(e)
+        } else if (e.N == '6') {
+            _6Um.push(e)
+        } else if (e.N == '7') {
+            _7Um.push(e)
+        } else if (e.N == '8') {
+            _8Um.push(e)
+        } else if (e.N == '9') {
+            _9Um.push(e)
+        } else if (e.N == '10') {
+            _10Um.push(e)
+        } else if (e.N == '11') {
+            _11Um.push(e)
+        } else if (e.N == '12') {
+            _12Um.push(e)
+        } else if (e.N == '13') {
+            _13Um.push(e)
+        } else if (e.N == '14') {
+            _14Um.push(e)
+        } else if (e.N == '15') {
+            _15Um.push(e)
+        } else if (e.N == '16') {
+            _16Um.push(e)
+        } else if (e.N == '17') {
+            _17Um.push(e)
+        } else if (e.N == '18') {
+            _18Um.push(e)
+        } else if (e.N == '19') {
+            _19Um.push(e)
+        } else if (e.N == '20') {
+            _20Um.push(e)
+        } else if (e.N == '21') {
+            _21Um.push(e)
+        } else if (e.N == '22') {
+            _22Um.push(e)
+        } else if (e.N == '23') {
+            _23Um.push(e)
+        } else if (e.N == '24') {
+            _24Um.push(e)
+        } else if (e.N == '25') {
+            _25Um.push(e)
+        } else if (e.N == '26') {
+            _26Um.push(e)
+        } else if (e.N == '27') {
+            _27Um.push(e)
+        } else if (e.N == '28') {
+            _28Um.push(e)
+        } else if (e.N == '29') {
+            _29Um.push(e)
+        } else if (e.N == '30') {
+            _30Um.push(e)
+        } else if (e.N == '31') {
+            _31Um.push(e)
+        } else if (e.N == '32') {
+            _32Um.push(e)
+        } else if (e.N == '33') {
+            _33Um.push(e)
+        } else if (e.N == '34') {
+            _34Um.push(e)
+        } else if (e.N == '35') {
+            _35Um.push(e)
+        } else if (e.N == '36') {
+            _36Um.push(e)
+        } else if (e.N == '37') {
+            _37Um.push(e)
+        } else if (e.N == '38') {
+            _38Um.push(e)
+        } else if (e.N == '39') {
+            _39Um.push(e)
+        } else if (e.N == '40') {
+            _40Um.push(e)
+        } else if (e.N == '41') {
+            _41Um.push(e)
+        } else if (e.N == '42') {
+            _42Um.push(e)
+        } else if (e.N == '43') {
+            _43Um.push(e)
+        } else if (e.N == '44') {
+            _44Um.push(e)
+        } else if (e.N == '45') {
+            _45Um.push(e)
+        } else if (e.N == '46') {
+            _46Um.push(e)
+        } else if (e.N == '47') {
+            _47Um.push(e)
+        } else if (e.N == '48') {
+            _48Um.push(e)
+        } else if (e.N == '49') {
+            _49Um.push(e)
+        } else if (e.N == '50') {
+            _50Um.push(e)
+        } else if (e.N == '51') {
+            _51Um.push(e)
+        } else if (e.N == '52') {
+            _52Um.push(e)
+        } else if (e.N == '53') {
+            _53Um.push(e)
+        } else if (e.N == '54') {
+            _54Um.push(e)
+        } else if (e.N == '55') {
+            _55Um.push(e)
+        } else if (e.N == '56') {
+            _56Um.push(e)
+        } else if (e.N == '57') {
+            _57Um.push(e)
         }
 
         // Deletar propriedades
@@ -262,48 +585,120 @@ function processarAbaUm(content) {
 
 function processarAbaDois(content) {
     content.forEach(e => {
-        if (e.N === 'CPF') {
-            cpfDois.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 1') {
-            avancados1Dois.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 2') {
-            avancados2Dois.push(e)
-        } else if (e.N === 'Basica-1') {
-            basica1Dois.push(e)
-        } else if (e.N === 'Basica-2') {
-            basica2Dois.push(e)
-        } else if (e.N === 'Basica-3') {
-            basica3Dois.push(e)
-        } else if (e.N === 'Basica-4') {
-            basica4Dois.push(e)
-        } else if (e.N === 'Basica-5') {
-            basica5Dois.push(e)
-        } else if (e.N === 'Basica-6') {
-            basica6Dois.push(e)
-        } else if (e.N === 'Movel-1') {
-            movel1Dois.push(e)
-        } else if (e.N === 'Movel-2') {
-            movel2Dois.push(e)
-        } else if (e.N === 'Movel-3') {
-            movel3Dois.push(e)
-        } else if (e.N === 'Movel-4') {
-            movel4Dois.push(e)
-        } else if (e.N === 'Movel-5') {
-            movel5Dois.push(e)
-        } else if (e.N === 'Movel-6') {
-            movel6Dois.push(e)
-        } else if (e.N === 'Movel&Basica-1') {
-            mb1Dois.push(e)
-        } else if (e.N === 'Movel&Basica-2') {
-            mb2Dois.push(e)
-        } else if (e.N === 'Movel&Basica-3') {
-            mb3Dois.push(e)
-        } else if (e.N === 'Movel&Basica-4') {
-            mb4Dois.push(e)
-        } else if (e.N === 'Movel&Basica-5') {
-            mb5Dois.push(e)
-        } else if (e.N === 'Movel&Basica-6') {
-            mb6Dois.push(e)
+        if (e.N == '1') {
+            _1Dois.push(e)
+        } else if (e.N == '2') {
+            _2Dois.push(e)
+        } else if (e.N == '3') {
+            _3Dois.push(e)
+        } else if (e.N == '4') {
+            _4Dois.push(e)
+        } else if (e.N == '5') {
+            _5Dois.push(e)
+        } else if (e.N == '6') {
+            _6Dois.push(e)
+        } else if (e.N == '7') {
+            _7Dois.push(e)
+        } else if (e.N == '8') {
+            _8Dois.push(e)
+        } else if (e.N == '9') {
+            _9Dois.push(e)
+        } else if (e.N == '10') {
+            _10Dois.push(e)
+        } else if (e.N == '11') {
+            _11Dois.push(e)
+        } else if (e.N == '12') {
+            _12Dois.push(e)
+        } else if (e.N == '13') {
+            _13Dois.push(e)
+        } else if (e.N == '14') {
+            _14Dois.push(e)
+        } else if (e.N == '15') {
+            _15Dois.push(e)
+        } else if (e.N == '16') {
+            _16Dois.push(e)
+        } else if (e.N == '17') {
+            _17Dois.push(e)
+        } else if (e.N == '18') {
+            _18Dois.push(e)
+        } else if (e.N == '19') {
+            _19Dois.push(e)
+        } else if (e.N == '20') {
+            _20Dois.push(e)
+        } else if (e.N == '21') {
+            _21Dois.push(e)
+        } else if (e.N == '22') {
+            _22Dois.push(e)
+        } else if (e.N == '23') {
+            _23Dois.push(e)
+        } else if (e.N == '24') {
+            _24Dois.push(e)
+        } else if (e.N == '25') {
+            _25Dois.push(e)
+        } else if (e.N == '26') {
+            _26Dois.push(e)
+        } else if (e.N == '27') {
+            _27Dois.push(e)
+        } else if (e.N == '28') {
+            _28Dois.push(e)
+        } else if (e.N == '29') {
+            _29Dois.push(e)
+        } else if (e.N == '30') {
+            _30Dois.push(e)
+        } else if (e.N == '31') {
+            _31Dois.push(e)
+        } else if (e.N == '32') {
+            _32Dois.push(e)
+        } else if (e.N == '33') {
+            _33Dois.push(e)
+        } else if (e.N == '34') {
+            _34Dois.push(e)
+        } else if (e.N == '35') {
+            _35Dois.push(e)
+        } else if (e.N == '36') {
+            _36Dois.push(e)
+        } else if (e.N == '37') {
+            _37Dois.push(e)
+        } else if (e.N == '38') {
+            _38Dois.push(e)
+        } else if (e.N == '39') {
+            _39Dois.push(e)
+        } else if (e.N == '40') {
+            _40Dois.push(e)
+        } else if (e.N == '41') {
+            _41Dois.push(e)
+        } else if (e.N == '42') {
+            _42Dois.push(e)
+        } else if (e.N == '43') {
+            _43Dois.push(e)
+        } else if (e.N == '44') {
+            _44Dois.push(e)
+        } else if (e.N == '45') {
+            _45Dois.push(e)
+        } else if (e.N == '46') {
+            _46Dois.push(e)
+        } else if (e.N == '47') {
+            _47Dois.push(e)
+        } else if (e.N == '48') {
+            _48Dois.push(e)
+        } else if (e.N == '49') {
+            _49Dois.push(e)
+        } else if (e.N == '50') {
+            _50Dois.push(e)
+        } else if (e.N == '51') {
+            _51Dois.push(e)
+        } else if (e.N == '52') {
+            _52Dois.push(e)
+        } else if (e.N == '53') {
+            _53Dois.push(e)
+        } else if (e.N == '54') {
+            _54Dois.push(e)
+        } else if (e.N == '55') {
+            _55Dois.push(e)
+        } else if (e.N == '56') {
+            _56Dois.push(e)
+        } else if (e.N == '57') {
+            _57Dois.push(e)
         }
 
         // Deletar propriedades
@@ -313,48 +708,120 @@ function processarAbaDois(content) {
 
 function processarAbaTres(content) {
     content.forEach(e => {
-        if (e.N === 'CPF') {
-            cpfTres.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 1') {
-            avancados1Tres.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 2') {
-            avancados2Tres.push(e)
-        } else if (e.N === 'Basica-1') {
-            basica1Tres.push(e)
-        } else if (e.N === 'Basica-2') {
-            basica2Tres.push(e)
-        } else if (e.N === 'Basica-3') {
-            basica3Tres.push(e)
-        } else if (e.N === 'Basica-4') {
-            basica4Tres.push(e)
-        } else if (e.N === 'Basica-5') {
-            basica5Tres.push(e)
-        } else if (e.N === 'Basica-6') {
-            basica6Tres.push(e)
-        } else if (e.N === 'Movel-1') {
-            movel1Tres.push(e)
-        } else if (e.N === 'Movel-2') {
-            movel2Tres.push(e)
-        } else if (e.N === 'Movel-3') {
-            movel3Tres.push(e)
-        } else if (e.N === 'Movel-4') {
-            movel4Tres.push(e)
-        } else if (e.N === 'Movel-5') {
-            movel5Tres.push(e)
-        } else if (e.N === 'Movel-6') {
-            movel6Tres.push(e)
-        } else if (e.N === 'Movel&Basica-1') {
-            mb1Tres.push(e)
-        } else if (e.N === 'Movel&Basica-2') {
-            mb2Tres.push(e)
-        } else if (e.N === 'Movel&Basica-3') {
-            mb3Tres.push(e)
-        } else if (e.N === 'Movel&Basica-4') {
-            mb4Tres.push(e)
-        } else if (e.N === 'Movel&Basica-5') {
-            mb5Tres.push(e)
-        } else if (e.N === 'Movel&Basica-6') {
-            mb6Tres.push(e)
+        if (e.N == '1') {
+            _1Tres.push(e)
+        } else if (e.N == '2') {
+            _2Tres.push(e)
+        } else if (e.N == '3') {
+            _3Tres.push(e)
+        } else if (e.N == '4') {
+            _4Tres.push(e)
+        } else if (e.N == '5') {
+            _5Tres.push(e)
+        } else if (e.N == '6') {
+            _6Tres.push(e)
+        } else if (e.N == '7') {
+            _7Tres.push(e)
+        } else if (e.N == '8') {
+            _8Tres.push(e)
+        } else if (e.N == '9') {
+            _9Tres.push(e)
+        } else if (e.N == '10') {
+            _10Tres.push(e)
+        } else if (e.N == '11') {
+            _11Tres.push(e)
+        } else if (e.N == '12') {
+            _12Tres.push(e)
+        } else if (e.N == '13') {
+            _13Tres.push(e)
+        } else if (e.N == '14') {
+            _14Tres.push(e)
+        } else if (e.N == '15') {
+            _15Tres.push(e)
+        } else if (e.N == '16') {
+            _16Tres.push(e)
+        } else if (e.N == '17') {
+            _17Tres.push(e)
+        } else if (e.N == '18') {
+            _18Tres.push(e)
+        } else if (e.N == '19') {
+            _19Tres.push(e)
+        } else if (e.N == '20') {
+            _20Tres.push(e)
+        } else if (e.N == '21') {
+            _21Tres.push(e)
+        } else if (e.N == '22') {
+            _22Tres.push(e)
+        } else if (e.N == '23') {
+            _23Tres.push(e)
+        } else if (e.N == '24') {
+            _24Tres.push(e)
+        } else if (e.N == '25') {
+            _25Tres.push(e)
+        } else if (e.N == '26') {
+            _26Tres.push(e)
+        } else if (e.N == '27') {
+            _27Tres.push(e)
+        } else if (e.N == '28') {
+            _28Tres.push(e)
+        } else if (e.N == '29') {
+            _29Tres.push(e)
+        } else if (e.N == '30') {
+            _30Tres.push(e)
+        } else if (e.N == '31') {
+            _31Tres.push(e)
+        } else if (e.N == '32') {
+            _32Tres.push(e)
+        } else if (e.N == '33') {
+            _33Tres.push(e)
+        } else if (e.N == '34') {
+            _34Tres.push(e)
+        } else if (e.N == '35') {
+            _35Tres.push(e)
+        } else if (e.N == '36') {
+            _36Tres.push(e)
+        } else if (e.N == '37') {
+            _37Tres.push(e)
+        } else if (e.N == '38') {
+            _38Tres.push(e)
+        } else if (e.N == '39') {
+            _39Tres.push(e)
+        } else if (e.N == '40') {
+            _40Tres.push(e)
+        } else if (e.N == '41') {
+            _41Tres.push(e)
+        } else if (e.N == '42') {
+            _42Tres.push(e)
+        } else if (e.N == '43') {
+            _43Tres.push(e)
+        } else if (e.N == '44') {
+            _44Tres.push(e)
+        } else if (e.N == '45') {
+            _45Tres.push(e)
+        } else if (e.N == '46') {
+            _46Tres.push(e)
+        } else if (e.N == '47') {
+            _47Tres.push(e)
+        } else if (e.N == '48') {
+            _48Tres.push(e)
+        } else if (e.N == '49') {
+            _49Tres.push(e)
+        } else if (e.N == '50') {
+            _50Tres.push(e)
+        } else if (e.N == '51') {
+            _51Tres.push(e)
+        } else if (e.N == '52') {
+            _52Tres.push(e)
+        } else if (e.N == '53') {
+            _53Tres.push(e)
+        } else if (e.N == '54') {
+            _54Tres.push(e)
+        } else if (e.N == '55') {
+            _55Tres.push(e)
+        } else if (e.N == '56') {
+            _56Tres.push(e)
+        } else if (e.N == '57') {
+            _57Tres.push(e)
         }
 
         // Deletar propriedades
@@ -364,48 +831,120 @@ function processarAbaTres(content) {
 
 function processarAbaQuatro(content) {
     content.forEach(e => {
-        if (e.N === 'CPF') {
-            cpfQuatro.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 1') {
-            avancados1Quatro.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 2') {
-            avancados2Quatro.push(e)
-        } else if (e.N === 'Basica-1') {
-            basica1Quatro.push(e)
-        } else if (e.N === 'Basica-2') {
-            basica2Quatro.push(e)
-        } else if (e.N === 'Basica-3') {
-            basica3Quatro.push(e)
-        } else if (e.N === 'Basica-4') {
-            basica4Quatro.push(e)
-        } else if (e.N === 'Basica-5') {
-            basica5Quatro.push(e)
-        } else if (e.N === 'Basica-6') {
-            basica6Quatro.push(e)
-        } else if (e.N === 'Movel-1') {
-            movel1Quatro.push(e)
-        } else if (e.N === 'Movel-2') {
-            movel2Quatro.push(e)
-        } else if (e.N === 'Movel-3') {
-            movel3Quatro.push(e)
-        } else if (e.N === 'Movel-4') {
-            movel4Quatro.push(e)
-        } else if (e.N === 'Movel-5') {
-            movel5Quatro.push(e)
-        } else if (e.N === 'Movel-6') {
-            movel6Quatro.push(e)
-        } else if (e.N === 'Movel&Basica-1') {
-            mb1Quatro.push(e)
-        } else if (e.N === 'Movel&Basica-2') {
-            mb2Quatro.push(e)
-        } else if (e.N === 'Movel&Basica-3') {
-            mb3Quatro.push(e)
-        } else if (e.N === 'Movel&Basica-4') {
-            mb4Quatro.push(e)
-        } else if (e.N === 'Movel&Basica-5') {
-            mb5Quatro.push(e)
-        } else if (e.N === 'Movel&Basica-6') {
-            mb6Quatro.push(e)
+        if (e.N == '1') {
+            _1Quatro.push(e)
+        } else if (e.N == '2') {
+            _2Quatro.push(e)
+        } else if (e.N == '3') {
+            _3Quatro.push(e)
+        } else if (e.N == '4') {
+            _4Quatro.push(e)
+        } else if (e.N == '5') {
+            _5Quatro.push(e)
+        } else if (e.N == '6') {
+            _6Quatro.push(e)
+        } else if (e.N == '7') {
+            _7Quatro.push(e)
+        } else if (e.N == '8') {
+            _8Quatro.push(e)
+        } else if (e.N == '9') {
+            _9Quatro.push(e)
+        } else if (e.N == '10') {
+            _10Quatro.push(e)
+        } else if (e.N == '11') {
+            _11Quatro.push(e)
+        } else if (e.N == '12') {
+            _12Quatro.push(e)
+        } else if (e.N == '13') {
+            _13Quatro.push(e)
+        } else if (e.N == '14') {
+            _14Quatro.push(e)
+        } else if (e.N == '15') {
+            _15Quatro.push(e)
+        } else if (e.N == '16') {
+            _16Quatro.push(e)
+        } else if (e.N == '17') {
+            _17Quatro.push(e)
+        } else if (e.N == '18') {
+            _18Quatro.push(e)
+        } else if (e.N == '19') {
+            _19Quatro.push(e)
+        } else if (e.N == '20') {
+            _20Quatro.push(e)
+        } else if (e.N == '21') {
+            _21Quatro.push(e)
+        } else if (e.N == '22') {
+            _22Quatro.push(e)
+        } else if (e.N == '23') {
+            _23Quatro.push(e)
+        } else if (e.N == '24') {
+            _24Quatro.push(e)
+        } else if (e.N == '25') {
+            _25Quatro.push(e)
+        } else if (e.N == '26') {
+            _26Quatro.push(e)
+        } else if (e.N == '27') {
+            _27Quatro.push(e)
+        } else if (e.N == '28') {
+            _28Quatro.push(e)
+        } else if (e.N == '29') {
+            _29Quatro.push(e)
+        } else if (e.N == '30') {
+            _30Quatro.push(e)
+        } else if (e.N == '31') {
+            _31Quatro.push(e)
+        } else if (e.N == '32') {
+            _32Quatro.push(e)
+        } else if (e.N == '33') {
+            _33Quatro.push(e)
+        } else if (e.N == '34') {
+            _34Quatro.push(e)
+        } else if (e.N == '35') {
+            _35Quatro.push(e)
+        } else if (e.N == '36') {
+            _36Quatro.push(e)
+        } else if (e.N == '37') {
+            _37Quatro.push(e)
+        } else if (e.N == '38') {
+            _38Quatro.push(e)
+        } else if (e.N == '39') {
+            _39Quatro.push(e)
+        } else if (e.N == '40') {
+            _40Quatro.push(e)
+        } else if (e.N == '41') {
+            _41Quatro.push(e)
+        } else if (e.N == '42') {
+            _42Quatro.push(e)
+        } else if (e.N == '43') {
+            _43Quatro.push(e)
+        } else if (e.N == '44') {
+            _44Quatro.push(e)
+        } else if (e.N == '45') {
+            _45Quatro.push(e)
+        } else if (e.N == '46') {
+            _46Quatro.push(e)
+        } else if (e.N == '47') {
+            _47Quatro.push(e)
+        } else if (e.N == '48') {
+            _48Quatro.push(e)
+        } else if (e.N == '49') {
+            _49Quatro.push(e)
+        } else if (e.N == '50') {
+            _50Quatro.push(e)
+        } else if (e.N == '51') {
+            _51Quatro.push(e)
+        } else if (e.N == '52') {
+            _52Quatro.push(e)
+        } else if (e.N == '53') {
+            _53Quatro.push(e)
+        } else if (e.N == '54') {
+            _54Quatro.push(e)
+        } else if (e.N == '55') {
+            _55Quatro.push(e)
+        } else if (e.N == '56') {
+            _56Quatro.push(e)
+        } else if (e.N == '57') {
+            _57Quatro.push(e)
         }
 
         // Deletar propriedades
@@ -415,48 +954,120 @@ function processarAbaQuatro(content) {
 
 function processarAbaCinco(content) {
     content.forEach(e => {
-        if (e.N === 'CPF') {
-            cpfCinco.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 1') {
-            avancados1Cinco.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 2') {
-            avancados2Cinco.push(e)
-        } else if (e.N === 'Basica-1') {
-            basica1Cinco.push(e)
-        } else if (e.N === 'Basica-2') {
-            basica2Cinco.push(e)
-        } else if (e.N === 'Basica-3') {
-            basica3Cinco.push(e)
-        } else if (e.N === 'Basica-4') {
-            basica4Cinco.push(e)
-        } else if (e.N === 'Basica-5') {
-            basica5Cinco.push(e)
-        } else if (e.N === 'Basica-6') {
-            basica6Cinco.push(e)
-        } else if (e.N === 'Movel-1') {
-            movel1Cinco.push(e)
-        } else if (e.N === 'Movel-2') {
-            movel2Cinco.push(e)
-        } else if (e.N === 'Movel-3') {
-            movel3Cinco.push(e)
-        } else if (e.N === 'Movel-4') {
-            movel4Cinco.push(e)
-        } else if (e.N === 'Movel-5') {
-            movel5Cinco.push(e)
-        } else if (e.N === 'Movel-6') {
-            movel6Cinco.push(e)
-        } else if (e.N === 'Movel&Basica-1') {
-            mb1Cinco.push(e)
-        } else if (e.N === 'Movel&Basica-2') {
-            mb2Cinco.push(e)
-        } else if (e.N === 'Movel&Basica-3') {
-            mb3Cinco.push(e)
-        } else if (e.N === 'Movel&Basica-4') {
-            mb4Cinco.push(e)
-        } else if (e.N === 'Movel&Basica-5') {
-            mb5Cinco.push(e)
-        } else if (e.N === 'Movel&Basica-6') {
-            mb6Cinco.push(e)
+        if (e.N == '1') {
+            _1Cinco.push(e)
+        } else if (e.N == '2') {
+            _2Cinco.push(e)
+        } else if (e.N == '3') {
+            _3Cinco.push(e)
+        } else if (e.N == '4') {
+            _4Cinco.push(e)
+        } else if (e.N == '5') {
+            _5Cinco.push(e)
+        } else if (e.N == '6') {
+            _6Cinco.push(e)
+        } else if (e.N == '7') {
+            _7Cinco.push(e)
+        } else if (e.N == '8') {
+            _8Cinco.push(e)
+        } else if (e.N == '9') {
+            _9Cinco.push(e)
+        } else if (e.N == '10') {
+            _10Cinco.push(e)
+        } else if (e.N == '11') {
+            _11Cinco.push(e)
+        } else if (e.N == '12') {
+            _12Cinco.push(e)
+        } else if (e.N == '13') {
+            _13Cinco.push(e)
+        } else if (e.N == '14') {
+            _14Cinco.push(e)
+        } else if (e.N == '15') {
+            _15Cinco.push(e)
+        } else if (e.N == '16') {
+            _16Cinco.push(e)
+        } else if (e.N == '17') {
+            _17Cinco.push(e)
+        } else if (e.N == '18') {
+            _18Cinco.push(e)
+        } else if (e.N == '19') {
+            _19Cinco.push(e)
+        } else if (e.N == '20') {
+            _20Cinco.push(e)
+        } else if (e.N == '21') {
+            _21Cinco.push(e)
+        } else if (e.N == '22') {
+            _22Cinco.push(e)
+        } else if (e.N == '23') {
+            _23Cinco.push(e)
+        } else if (e.N == '24') {
+            _24Cinco.push(e)
+        } else if (e.N == '25') {
+            _25Cinco.push(e)
+        } else if (e.N == '26') {
+            _26Cinco.push(e)
+        } else if (e.N == '27') {
+            _27Cinco.push(e)
+        } else if (e.N == '28') {
+            _28Cinco.push(e)
+        } else if (e.N == '29') {
+            _29Cinco.push(e)
+        } else if (e.N == '30') {
+            _30Cinco.push(e)
+        } else if (e.N == '31') {
+            _31Cinco.push(e)
+        } else if (e.N == '32') {
+            _32Cinco.push(e)
+        } else if (e.N == '33') {
+            _33Cinco.push(e)
+        } else if (e.N == '34') {
+            _34Cinco.push(e)
+        } else if (e.N == '35') {
+            _35Cinco.push(e)
+        } else if (e.N == '36') {
+            _36Cinco.push(e)
+        } else if (e.N == '37') {
+            _37Cinco.push(e)
+        } else if (e.N == '38') {
+            _38Cinco.push(e)
+        } else if (e.N == '39') {
+            _39Cinco.push(e)
+        } else if (e.N == '40') {
+            _40Cinco.push(e)
+        } else if (e.N == '41') {
+            _41Cinco.push(e)
+        } else if (e.N == '42') {
+            _42Cinco.push(e)
+        } else if (e.N == '43') {
+            _43Cinco.push(e)
+        } else if (e.N == '44') {
+            _44Cinco.push(e)
+        } else if (e.N == '45') {
+            _45Cinco.push(e)
+        } else if (e.N == '46') {
+            _46Cinco.push(e)
+        } else if (e.N == '47') {
+            _47Cinco.push(e)
+        } else if (e.N == '48') {
+            _48Cinco.push(e)
+        } else if (e.N == '49') {
+            _49Cinco.push(e)
+        } else if (e.N == '50') {
+            _50Cinco.push(e)
+        } else if (e.N == '51') {
+            _51Cinco.push(e)
+        } else if (e.N == '52') {
+            _52Cinco.push(e)
+        } else if (e.N == '53') {
+            _53Cinco.push(e)
+        } else if (e.N == '54') {
+            _54Cinco.push(e)
+        } else if (e.N == '55') {
+            _55Cinco.push(e)
+        } else if (e.N == '56') {
+            _56Cinco.push(e)
+        } else if (e.N == '57') {
+            _57Cinco.push(e)
         }
 
         // Deletar propriedades
@@ -466,48 +1077,120 @@ function processarAbaCinco(content) {
 
 function processarAbaSeis(content) {
     content.forEach(e => {
-        if (e.N === 'CPF') {
-            cpfSeis.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 1') {
-            avancados1Seis.push(e)
-        } else if (e.N === 'Avançados&TI M-B - 2') {
-            avancados2Seis.push(e)
-        } else if (e.N === 'Basica-1') {
-            basica1Seis.push(e)
-        } else if (e.N === 'Basica-2') {
-            basica2Seis.push(e)
-        } else if (e.N === 'Basica-3') {
-            basica3Seis.push(e)
-        } else if (e.N === 'Basica-4') {
-            basica4Seis.push(e)
-        } else if (e.N === 'Basica-5') {
-            basica5Seis.push(e)
-        } else if (e.N === 'Basica-6') {
-            basica6Seis.push(e)
-        } else if (e.N === 'Movel-1') {
-            movel1Seis.push(e)
-        } else if (e.N === 'Movel-2') {
-            movel2Seis.push(e)
-        } else if (e.N === 'Movel-3') {
-            movel3Seis.push(e)
-        } else if (e.N === 'Movel-4') {
-            movel4Seis.push(e)
-        } else if (e.N === 'Movel-5') {
-            movel5Seis.push(e)
-        } else if (e.N === 'Movel-6') {
-            movel6Seis.push(e)
-        } else if (e.N === 'Movel&Basica-1') {
-            mb1Seis.push(e)
-        } else if (e.N === 'Movel&Basica-2') {
-            mb2Seis.push(e)
-        } else if (e.N === 'Movel&Basica-3') {
-            mb3Seis.push(e)
-        } else if (e.N === 'Movel&Basica-4') {
-            mb4Seis.push(e)
-        } else if (e.N === 'Movel&Basica-5') {
-            mb5Seis.push(e)
-        } else if (e.N === 'Movel&Basica-6') {
-            mb6Seis.push(e)
+        if (e.N == '1') {
+            _1Seis.push(e)
+        } else if (e.N == '2') {
+            _2Seis.push(e)
+        } else if (e.N == '3') {
+            _3Seis.push(e)
+        } else if (e.N == '4') {
+            _4Seis.push(e)
+        } else if (e.N == '5') {
+            _5Seis.push(e)
+        } else if (e.N == '6') {
+            _6Seis.push(e)
+        } else if (e.N == '7') {
+            _7Seis.push(e)
+        } else if (e.N == '8') {
+            _8Seis.push(e)
+        } else if (e.N == '9') {
+            _9Seis.push(e)
+        } else if (e.N == '10') {
+            _10Seis.push(e)
+        } else if (e.N == '11') {
+            _11Seis.push(e)
+        } else if (e.N == '12') {
+            _12Seis.push(e)
+        } else if (e.N == '13') {
+            _13Seis.push(e)
+        } else if (e.N == '14') {
+            _14Seis.push(e)
+        } else if (e.N == '15') {
+            _15Seis.push(e)
+        } else if (e.N == '16') {
+            _16Seis.push(e)
+        } else if (e.N == '17') {
+            _17Seis.push(e)
+        } else if (e.N == '18') {
+            _18Seis.push(e)
+        } else if (e.N == '19') {
+            _19Seis.push(e)
+        } else if (e.N == '20') {
+            _20Seis.push(e)
+        } else if (e.N == '21') {
+            _21Seis.push(e)
+        } else if (e.N == '22') {
+            _22Seis.push(e)
+        } else if (e.N == '23') {
+            _23Seis.push(e)
+        } else if (e.N == '24') {
+            _24Seis.push(e)
+        } else if (e.N == '25') {
+            _25Seis.push(e)
+        } else if (e.N == '26') {
+            _26Seis.push(e)
+        } else if (e.N == '27') {
+            _27Seis.push(e)
+        } else if (e.N == '28') {
+            _28Seis.push(e)
+        } else if (e.N == '29') {
+            _29Seis.push(e)
+        } else if (e.N == '30') {
+            _30Seis.push(e)
+        } else if (e.N == '31') {
+            _31Seis.push(e)
+        } else if (e.N == '32') {
+            _32Seis.push(e)
+        } else if (e.N == '33') {
+            _33Seis.push(e)
+        } else if (e.N == '34') {
+            _34Seis.push(e)
+        } else if (e.N == '35') {
+            _35Seis.push(e)
+        } else if (e.N == '36') {
+            _36Seis.push(e)
+        } else if (e.N == '37') {
+            _37Seis.push(e)
+        } else if (e.N == '38') {
+            _38Seis.push(e)
+        } else if (e.N == '39') {
+            _39Seis.push(e)
+        } else if (e.N == '40') {
+            _40Seis.push(e)
+        } else if (e.N == '41') {
+            _41Seis.push(e)
+        } else if (e.N == '42') {
+            _42Seis.push(e)
+        } else if (e.N == '43') {
+            _43Seis.push(e)
+        } else if (e.N == '44') {
+            _44Seis.push(e)
+        } else if (e.N == '45') {
+            _45Seis.push(e)
+        } else if (e.N == '46') {
+            _46Seis.push(e)
+        } else if (e.N == '47') {
+            _47Seis.push(e)
+        } else if (e.N == '48') {
+            _48Seis.push(e)
+        } else if (e.N == '49') {
+            _49Seis.push(e)
+        } else if (e.N == '50') {
+            _50Seis.push(e)
+        } else if (e.N == '51') {
+            _51Seis.push(e)
+        } else if (e.N == '52') {
+            _52Seis.push(e)
+        } else if (e.N == '53') {
+            _53Seis.push(e)
+        } else if (e.N == '54') {
+            _54Seis.push(e)
+        } else if (e.N == '55') {
+            _55Seis.push(e)
+        } else if (e.N == '56') {
+            _56Seis.push(e)
+        } else if (e.N == '57') {
+            _57Seis.push(e)
         }
 
         // Deletar propriedades
