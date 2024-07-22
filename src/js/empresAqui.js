@@ -1,4 +1,5 @@
 const pProcess = document.getElementById('pProcessando')
+const loader = document.getElementById('loader')
 let generalData = []
 let arquivoModelo = []
 let telefones = []
@@ -10,6 +11,7 @@ const prospectChunkSize = 250000;
 fileInput.addEventListener('change', (arquivo) => {
     var file = arquivo.target.files[0]
 
+    loader.setAttribute('style', 'display: block')
     pProcess.setAttribute('style', 'display: block')
 
     var reader = new FileReader();
@@ -53,6 +55,7 @@ fileInput.addEventListener('change', (arquivo) => {
         console.log(jsonData01)
         console.log(generalData)
         pProcess.setAttribute('style', 'display: none')
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsArrayBuffer(file);
