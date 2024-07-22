@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/divisor.css">
+    <link rel="stylesheet" href="../css/empresAqui.css">
 
-    <title>Divisor - Parque</title>
+    <title>EmpresAqui</title>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
 
             <button id="MapaParqueDrop">Mapa Parque</button>
             <div class="options hide" id="MapaParqueOptions">
-                <a href="./mapaparque.html">Mapa Parque</a>
+                <a>Mapa Parque</a>
             </div>
 
             <button id="ParqueBasicaDrop">Parque</button>
@@ -48,32 +48,30 @@
 
             <button id="DivisorDrop">Divisor Parque</button>
             <div class="options hide" id="DivisorOptions">
-                <a>Divisor</a>
+                <a href="./divisor.html">Divisor</a>
             </div>
 
             <button id="EmpresAquiDrop">EmpresAqui</button>
             <div class="options hide" id="EmpresAquiOptions">
-                <a href="./empresAqui.html">EmpresAqui</a>
+                <a>EmpresAqui</a>
             </div>
         </aside>
     </div>
 
     <div class="delay" id="ferramenta">
-        <h1>Divisor - Parque</h1>
+        <h1>EmpresAqui</h1>
 
         <label class="labelFileInput" id="labelFileInput" for="fileInput">Escolha
             o arquivo .xlsb <i class="fa-solid fa-file-excel"></i></label>
-        <input type="file" id="fileInput" style="display: none;" accept=".xlsb">
+        <input type="file" id="fileInput" accept=".xlsb">
 
-        <button class="btns" id="exportBtn">Exportar para XLSX</button>
-
-        <p id="p" class="hide">Processando..</p>
+        <p id="pProcessando">Processando..</p>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/divisor.js"></script>
+    <script src="../js/empresAqui.js"></script>
 </body>
 
 </html>

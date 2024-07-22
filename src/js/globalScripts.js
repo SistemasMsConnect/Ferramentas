@@ -6,6 +6,8 @@ let pPB = document.getElementById('ParqueBasicaDrop')
 let dPB = document.getElementById('ParqueBasicaOptions')
 let pDP = document.getElementById('DivisorDrop')
 let dDP = document.getElementById('DivisorOptions')
+let pEA = document.getElementById('EmpresAquiDrop')
+let dEA = document.getElementById('EmpresAquiOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -33,4 +35,8 @@ pPB.addEventListener('click', () => {
 
 pDP.addEventListener('click', () => {
     dDP.classList.toggle('hide')
+})
+
+pEA.addEventListener('click', () => {
+    dEA.classList.toggle('hide')
 })
