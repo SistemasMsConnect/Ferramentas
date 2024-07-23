@@ -1,10 +1,25 @@
 body {
     background-color: #242424;
     display: flex;
+    flex-direction: column;
     gap: 100px;
 }
 
+header {
+    height: max-content;
+    width: 100vw;
+    border-bottom: 1px solid #353535;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #242424;
+    z-index: 10;
+}
+
 aside {
+    position: absolute;
+    top: 100px;
+    left: 0;
     display: flex;
     flex-direction: column;
 }
@@ -88,6 +103,27 @@ label i {
 .active {
     background-color: aliceblue;
     color: #262749;
+}
+
+#loader {
+    border: 12px solid #f3f3f3;
+    /* Light grey */
+    border-top: 12px solid #a1119a;
+    /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #home {
