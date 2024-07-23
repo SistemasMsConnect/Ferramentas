@@ -1,3 +1,4 @@
+const loader = document.getElementById('loader')
 const btn = document.getElementById('btn')
 const fileName = document.getElementById('labelFileInput')
 const pProcessando = document.getElementById('pProcessando')
@@ -5,6 +6,8 @@ const pProcessando = document.getElementById('pProcessando')
 document.getElementById('fileInput').addEventListener('change', function (arquivo) {
     console.time('meu timer')
     var file = arquivo
+
+    loader.setAttribute('style', 'display: block')
 
     var reader = new FileReader();
     reader.onload = function (event) {
@@ -17,6 +20,8 @@ document.getElementById('fileInput').addEventListener('change', function (arquiv
 
         console.log(jsonMapa)
         processCSV(jsonMapa)
+
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsArrayBuffer(file);

@@ -1,3 +1,4 @@
+const loader = document.getElementById('loader')
 const p = document.getElementById('p')
 const span = document.getElementById('span')
 const btnExportar = document.getElementById('exportBtn')
@@ -10,6 +11,7 @@ let m2mData = []
 
 document.getElementById('fileInputMovel').addEventListener('change', function (event) {
     var file = event.target.files[0];
+    loader.setAttribute('style', 'display: block')
     p.setAttribute('style', 'display: block')
     span.innerHTML = 'Movel 01'
 
@@ -27,6 +29,7 @@ document.getElementById('fileInputMovel').addEventListener('change', function (e
         processMovelData(jsonMovel)
         p.setAttribute('style', 'display: none')
         span.innerHTML = ''
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsArrayBuffer(file);

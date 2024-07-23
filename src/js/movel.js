@@ -1,9 +1,11 @@
+const loader = document.getElementById('loader')
 let csvMovelData = [];
 let csvRecomendacaoData = [];
 let csvSuspensaoData = [];
 let resultado = [];
 
 function atualizar() {
+    loader.setAttribute('style', 'display: block')
     let newCSVContent = '';
 
     for (let i = 0; i < csvSuspensaoData.length; i++) {
@@ -59,6 +61,7 @@ function atualizar() {
     // Adicionar o link ao corpo do documento
     document.body.appendChild(downloadLink);
 
+    loader.setAttribute('style', 'display: none')
     pProcessando.setAttribute('style', 'display: none')
 
     downloadLink.click();
@@ -73,6 +76,8 @@ function atualizar() {
 function lerArquivoSuspensao(event) {
     const fileSuspensao = event.target.files[0];
 
+    loader.setAttribute('style', 'display: block')
+
     if (!fileSuspensao) {
         return;
     }
@@ -83,6 +88,7 @@ function lerArquivoSuspensao(event) {
         const content = e.target.result;
         // Processar o conteúdo do arquivo
         const suspensaoData = parseCSVSuspensao(content);
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsText(fileSuspensao, 'ISO-8859-1');
@@ -135,6 +141,8 @@ function parseCSVSuspensao(content) {
 function lerArquivoCSV(event) {
     const fileRecomendacao = event.target.files[0];
 
+    loader.setAttribute('style', 'display: block')
+
     if (!fileRecomendacao) {
         return;
     }
@@ -145,6 +153,7 @@ function lerArquivoCSV(event) {
         const content = e.target.result;
         // Processar o conteúdo do arquivo
         const recomendacaoData = parseCSVRecomendacao(content);
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsText(fileRecomendacao, 'ISO-8859-1');
@@ -211,6 +220,8 @@ const pProcessando = document.getElementById('pProcessando')
 document.getElementById('MovelFileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
 
+    loader.setAttribute('style', 'display: block')
+
     if (!file) {
         return;
     }
@@ -221,6 +232,7 @@ document.getElementById('MovelFileInput').addEventListener('change', function (e
         const content = e.target.result;
         // Processar o conteúdo do arquivo
         processCSV(content);
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsText(file, 'ISO-8859-1');

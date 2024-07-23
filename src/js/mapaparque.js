@@ -1,3 +1,4 @@
+const loader = document.getElementById('loader')
 const name = document.getElementById('fileName')
 const btn = document.getElementById('btn')
 const btnGerar = document.getElementById('btnGerar')
@@ -71,6 +72,7 @@ let filesArray = []
 
 // ===========  Arquivos  ===========
 document.getElementById('fileInput').addEventListener('change', async function (event) {
+    loader.setAttribute('style', 'display: block')
     document.getElementById('pProcessando').setAttribute('style', 'display: block')
     var files = event.target.files;
     console.log(files)
@@ -1144,6 +1146,7 @@ function verificar() {
     console.log('Terminou a verificação! Exporte o arquivo')
     btnExportar.removeAttribute('disabled')
     btnExportar.click()
+    loader.setAttribute('style', 'display: none')
     document.getElementById('pProcessando').setAttribute('style', 'display: none')
 }
 

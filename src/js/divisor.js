@@ -1,3 +1,4 @@
+const loader = document.getElementById('loader')
 const fileInput = document.getElementById('fileInput')
 const exportBtn = document.getElementById('exportBtn')
 const pProcessando = document.getElementById('p')
@@ -5,6 +6,7 @@ const pProcessando = document.getElementById('p')
 fileInput.addEventListener('change', (arquivo) => {
     var file = arquivo.target.files[0]
 
+    loader.setAttribute('style', 'display: block')
     pProcessando.classList.remove('hide')
 
     var reader = new FileReader();
@@ -98,6 +100,7 @@ fileInput.addEventListener('change', (arquivo) => {
         createFile(_56Um, _56Dois, _56Tres, _56Quatro, _56Cinco, _56Seis, "56")
         createFile(_57Um, _57Dois, _57Tres, _57Quatro, _57Cinco, _57Seis, "57")
 
+        loader.setAttribute('style', 'display: none')
         pProcessando.classList.add('hide')
 
         console.log(jsonData01)

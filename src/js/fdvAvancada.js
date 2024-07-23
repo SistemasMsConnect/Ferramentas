@@ -1,3 +1,4 @@
+const loader = document.getElementById('loader')
 const p = document.getElementById('p')
 const btnExportar = document.getElementById('exportBtn')
 let avancadaData = []
@@ -8,6 +9,8 @@ let tipoOperacaoData = []
 
 document.getElementById('fileInput').addEventListener('change', function (event) {
     var file = event.target.files[0];
+
+    loader.setAttribute('style', 'display: block')
     p.setAttribute('style', 'display: block')
 
     var reader = new FileReader();
@@ -23,6 +26,7 @@ document.getElementById('fileInput').addEventListener('change', function (event)
         console.log(jsonAvancada)
         processAvancadaData(jsonAvancada)
         p.setAttribute('style', 'display: none')
+        loader.setAttribute('style', 'display: none')
         btnExportar.click()
     };
 

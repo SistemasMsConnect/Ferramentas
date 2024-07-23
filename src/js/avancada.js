@@ -1,3 +1,4 @@
+const loader = document.getElementById('loader')
 const inputFileDados = document.getElementById('fileInputDados')
 const inputFileSip = document.getElementById('fileInputSip')
 const inputFileCep = document.getElementById('fileInputCep')
@@ -20,6 +21,7 @@ let faixaCep = [];
 inputFileDados.addEventListener('change', function (event) {
     const file = event.target.files[0];
     labelDados.textContent = file.name
+    loader.setAttribute('style', 'display: block')
 
     if (!file) {
         return;
@@ -31,6 +33,7 @@ inputFileDados.addEventListener('change', function (event) {
         const content = e.target.result;
         // Processar o conteúdo do arquivo
         processCSVDados(content);
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsText(file, 'ISO-8859-1');

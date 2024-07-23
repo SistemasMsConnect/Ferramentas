@@ -1,3 +1,4 @@
+const loader = document.getElementById('loader')
 const arquivo = document.getElementById('fileInput')
 const btn = document.getElementById('btn')
 const fileName = document.getElementById('labelFileInput')
@@ -9,6 +10,8 @@ document.getElementById('recomendadoFileInput').addEventListener('change', funct
     console.time('meu timer')
     const file = event.target.files[0];
 
+    loader.setAttribute('style', 'display: block')
+
     if (!file) {
         return;
     }
@@ -19,6 +22,7 @@ document.getElementById('recomendadoFileInput').addEventListener('change', funct
         const content = e.target.result;
         // Processar o conteúdo do arquivo
         processCSVRecomendado(content);
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsText(file, 'ISO-8859-1');
