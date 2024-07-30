@@ -67,9 +67,9 @@ function processar(content) {
     content.forEach(e => {
         const cnpj = e.CNPJ.replace(/[^0-9]/g, '')
         const cep = e.CEP.replace(/[^0-9]/g, '')
-        let numero = e.Número.replace(/[^0-9]/g, '')
-        const digito = e.Telefone_1.substring(2, 3)
-        const ddd = e.Telefone_1.substring(0, 2)
+        let numero = String(e.Número).replace(/[^0-9]/g, '')
+        const digito = String(e.Telefone_1).substring(2, 3)
+        const ddd = String(e.Telefone_1).substring(0, 2)
 
         if (numero == '') {
             numero = 0
