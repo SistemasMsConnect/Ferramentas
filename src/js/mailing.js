@@ -1,3 +1,6 @@
+const pProcess = document.getElementById('pProcessando')
+const loader = document.getElementById('loader')
+
 let csvData = []
 let callData = []
 
@@ -9,6 +12,9 @@ const mailing = []
 
 function handleCall(event) {
     const file = event.target.files[0];
+
+    loader.setAttribute('style', 'display: block')
+    pProcess.setAttribute('style', 'display: block')
 
     if (!file) {
         alert("Please select a CSV file first.");
@@ -75,6 +81,9 @@ function handleCall(event) {
 
             // Add any other manipulation here
         });
+
+        pProcess.setAttribute('style', 'display: none')
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsArrayBuffer(file);
@@ -82,6 +91,9 @@ function handleCall(event) {
 
 function handleFileSelect(event) {
     const file = event.target.files[0];
+
+    loader.setAttribute('style', 'display: block')
+    pProcess.setAttribute('style', 'display: block')
 
     if (!file) {
         alert("Please select a CSV file first.");
@@ -193,6 +205,9 @@ function handleFileSelect(event) {
             downloadManipulatedCsv(csvData, file.fileName)
             csvData = []
         });
+
+        pProcess.setAttribute('style', 'display: none')
+        loader.setAttribute('style', 'display: none')
     };
 
     reader.readAsArrayBuffer(file);
