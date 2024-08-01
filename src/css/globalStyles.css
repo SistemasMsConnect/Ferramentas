@@ -111,7 +111,12 @@ label i {
     color: #262749;
 }
 
+#pProcessando {
+    margin-top: 20px;
+}
+
 #loader {
+    margin-top: 10px;
     border: 12px solid #f3f3f3;
     /* Light grey */
     border-top: 12px solid #a1119a;
