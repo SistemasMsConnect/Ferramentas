@@ -8,6 +8,8 @@ let pDP = document.getElementById('DivisorDrop')
 let dDP = document.getElementById('DivisorOptions')
 let pEA = document.getElementById('EmpresAquiDrop')
 let dEA = document.getElementById('EmpresAquiOptions')
+let pRM = document.getElementById('MailingDrop')
+let dRM = document.getElementById('MailingOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -39,4 +41,8 @@ pDP.addEventListener('click', () => {
 
 pEA.addEventListener('click', () => {
     dEA.classList.toggle('hide')
+})
+
+pRM.addEventListener('click', () => {
+    dRM.classList.toggle('hide')
 })

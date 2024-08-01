@@ -24,6 +24,12 @@ aside {
     flex-direction: column;
 }
 
+aside h2 {
+    color: aliceblue;
+    margin: 15px 0 5px 25px;
+    text-shadow: 1px 1px 2px red, 0 0 1em rgb(78, 21, 73), 0 0 0.2em rgb(78, 21, 73);
+}
+
 i {
     margin-right: 15px;
 }
@@ -33,7 +39,7 @@ label i {
     margin-left: 5px;
 }
 
-#FDVDrop, #MapaParqueDrop, #ParqueBasicaDrop, #DivisorDrop, #EmpresAquiDrop {
+#FDVDrop, #MapaParqueDrop, #ParqueBasicaDrop, #DivisorDrop, #EmpresAquiDrop, #MailingDrop {
     width: 150px;
     border: none;
     background-color: #555675;
@@ -49,18 +55,18 @@ label i {
     border-radius: 0;
 }
 
-#FDVOptions a:last-child, #MapaParqueOptions a:last-child, #ParqueBasicaOptions a:last-child, #DivisorOptions a:last-child, #EmpresAquiOptions a:last-child {
+#FDVOptions a:last-child, #MapaParqueOptions a:last-child, #ParqueBasicaOptions a:last-child, #DivisorOptions a:last-child, #EmpresAquiOptions a:last-child, #MailingOptions a:last-child {
     border-bottom: 2px solid aliceblue;
 }
 
-#FDVOptions a, #MapaParqueOptions a, #ParqueBasicaOptions a, #DivisorOptions a, #EmpresAquiOptions a {
+#FDVOptions a, #MapaParqueOptions a, #ParqueBasicaOptions a, #DivisorOptions a, #EmpresAquiOptions a, #MailingOptions a {
     display: block;
     width: 150px;
     padding: 10px 0 10px 20px;
     transition: .4s;
 }
 
-#FDVOptions a:hover, #MapaParqueOptions a:hover, #ParqueBasicaOptions a:hover, #DivisorOptions a:hover, #EmpresAquiOptions a:hover {
+#FDVOptions a:hover, #MapaParqueOptions a:hover, #ParqueBasicaOptions a:hover, #DivisorOptions a:hover, #EmpresAquiOptions a:hover, #MailingOptions a:hover {
     background-color: aliceblue;
     color: #262749;
 }
