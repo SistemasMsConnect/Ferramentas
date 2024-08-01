@@ -11,10 +11,10 @@ document.getElementById('fileCallInput').addEventListener('change', handleCall, 
 const mailing = []
 
 function handleCall(event) {
-    const file = event.target.files[0];
-
     loader.setAttribute('style', 'display: block')
     pProcess.setAttribute('style', 'display: block')
+
+    const file = event.target.files[0];    
 
     if (!file) {
         alert("Please select a CSV file first.");
@@ -90,10 +90,10 @@ function handleCall(event) {
 }
 
 function handleFileSelect(event) {
-    const file = event.target.files[0];
-
     loader.setAttribute('style', 'display: block')
     pProcess.setAttribute('style', 'display: block')
+
+    const file = event.target.files[0];
 
     if (!file) {
         alert("Please select a CSV file first.");
