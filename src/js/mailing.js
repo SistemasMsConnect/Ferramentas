@@ -14,7 +14,7 @@ function handleCall(event) {
     loader.setAttribute('style', 'display: block')
     pProcess.setAttribute('style', 'display: block')
 
-    const file = event.target.files[0];    
+    const file = event.target.files[0];
 
     if (!file) {
         alert("Please select a CSV file first.");
@@ -155,10 +155,35 @@ function handleFileSelect(event) {
                     tipoAudiencia = 4
                 }
 
-                let dia = String(e.Data).substring(0, 2)
-                let mes = String(e.Data).substring(3, 5)
-                let ano = String(e.Data).substring(6, 10)
-                let dataCompleta = `${ano}/${mes}/${dia}`
+                let data
+                let dia
+                let mes
+                let ano
+                let dataCompleta
+
+                if (String(e.Data).includes('/')) {
+                    dia = String(e.Data).substring(0, 2)
+                    mes = String(e.Data).substring(3, 5)
+                    ano = String(e.Data).substring(6, 10)
+                    dataCompleta = `${ano}/${mes}/${dia}`
+                } else {
+                    let numero = e.Data + 1
+                    data = numeroInteiroParaData(numero)
+
+                    dia = data.getDate()
+                    mes = data.getMonth() + 1
+                    ano = data.getFullYear()
+
+                    if(String(dia).length == 1) {
+                        dia = `0${dia}`
+                    }
+    
+                    if(String(mes).length == 1) {
+                        mes = `0${mes}`
+                    }
+
+                    dataCompleta = `${ano}/${mes}/${dia}`
+                }
 
                 let totalSeconds = e.Hora * 24 * 3600
 
@@ -211,6 +236,14 @@ function handleFileSelect(event) {
     };
 
     reader.readAsArrayBuffer(file);
+}
+
+
+
+function numeroInteiroParaData(numero) {
+    var dataBase = new Date(1900, 0, -1); // Data base do Excel (1º de janeiro de 1900)
+    var data = new Date(dataBase.getTime() + (numero * 24 * 60 * 60 * 1000));
+    return data;
 }
 
 
