@@ -1,35 +1,29 @@
 const loader = document.getElementById('loader')
 const btn = document.getElementById('btn')
 const fileName = document.getElementById('labelFileInput')
-const pProcessando = document.getElementById('pProcessando')
+const pProcess = document.getElementById('pProcessando')
 
-document.getElementById('fileInput').addEventListener('change', function (arquivo) {
-    console.time('meu timer')
-    var file = arquivo
-
+document.getElementById('fileInput').addEventListener('change', function (event) {
     loader.setAttribute('style', 'display: block')
+    pProcess.setAttribute('style', 'display: block')
 
-    var reader = new FileReader();
-    reader.onload = function (event) {
-        var data = new Uint8Array(event.target.result);
-        var workbook = XLSX.read(data, { type: 'array' });
-        var sheetName = workbook.SheetNames[0]; // Assume que estamos lendo a primeira planilha
+    const file = event.target.files[0];
 
-        var sheet = workbook.Sheets[sheetName];
-        var jsonMapa = XLSX.utils.sheet_to_json(sheet, { defval: 0 });
+    if (!file) {
+        return;
+    }
 
-        console.log(jsonMapa)
-        processCSV(jsonMapa)
+    const reader = new FileReader();
 
+    reader.onload = function (e) {
+        const content = e.target.result;
+        // Processar o conteúdo do arquivo
+        processCSV(content);
+        pProcess.setAttribute('style', 'display: none')
         loader.setAttribute('style', 'display: none')
     };
 
-    reader.readAsArrayBuffer(file);
-
-    pProcessando.setAttribute('style', 'display: inline-block')
-    btn.setAttribute('style', 'display: none')
-    console.log(file.name)
-    fileName.textContent = file.name
+    reader.readAsText(file, 'ISO-8859-1');
 });
 
 function processCSV(content) {
@@ -42,9 +36,9 @@ function processCSV(content) {
     const firstLine = lines.shift();
     const splitFirstLine = firstLine.split(';')
 
-    splitFirstLine.splice(26, 9)
-    splitFirstLine.splice(24, 1)
-    splitFirstLine.splice(21, 2)
+    splitFirstLine.splice(27, 9)
+    splitFirstLine.splice(25, 1)
+    splitFirstLine.splice(21, 3)
     splitFirstLine.splice(19, 1)
     splitFirstLine.splice(7, 9)
     splitFirstLine.splice(4, 1)
@@ -75,76 +69,72 @@ function processCSV(content) {
         const columns = line.split(';');
 
         // 1. Ajustar linhas que foram empurradas erroniamente
-        if (columns[35] === '' || columns[35] === null || columns[35] === undefined) {
+        if (columns[36] === '' || columns[36] === null || columns[36] === undefined) {
 
         } else {
             columns.splice(10, 1)
         }
 
         // 2. Excluir colunas
-        columns.splice(26, 9)
-        columns.splice(24, 1)
-        columns.splice(21, 2)
-        columns.splice(19, 1)
-        columns.splice(7, 9)
-        columns.splice(4, 1)
-        columns.splice(1, 1)
+        // columns.splice(27, 9)
+        // columns.splice(25, 1)
+        // columns.splice(21, 3)
+        // columns.splice(19, 1)
+        // columns.splice(7, 9)
+        // columns.splice(4, 1)
+        // columns.splice(1, 1)
 
         // 3. Adicionar 0 nas células vazias
         if (columns[0].length < 5 || columns[0] === undefined) {
             columns[0] = '0'
         }
 
-        if (columns[1].length < 5 || columns[1] === undefined) {
-            columns[1] = '0'
-        }
-
         if (columns[2].length < 5 || columns[2] === undefined) {
             columns[2] = '0'
         }
 
-        if (columns[3].length <= 1) {
-            if (columns[3] === '0' || columns[3] === undefined || columns[3] === null || columns[3] === '') {
-                columns[3] = '0'
+        if (columns[3].length < 5 || columns[3] === undefined) {
+            columns[3] = '0'
+        }
+
+        if (columns[5].length <= 1) {
+            if (columns[5] === '0' || columns[5] === undefined || columns[5] === null || columns[5] === '') {
+                columns[5] = '0'
             }
-        }
-
-        if (columns[4].length <= 2 || columns[4] === undefined) {
-            columns[4] = '0'
-        }
-
-        if (columns[5].length <= 2 || columns[5] === undefined) {
-            columns[5] = '0'
         }
 
         if (columns[6].length <= 2 || columns[6] === undefined) {
             columns[6] = '0'
         }
 
-        if (columns[7].length <= 2 || columns[7] === undefined) {
-            columns[7] = '0'
+        if (columns[16].length <= 2 || columns[16] === undefined) {
+            columns[16] = '0'
         }
 
-        if (columns[8].length < 5 || columns[8] === undefined) {
-            columns[8] = 'zzz'
+        if (columns[17].length <= 2 || columns[17] === undefined) {
+            columns[17] = '0'
         }
 
-        if (columns[10].length <= 2 || columns[10] === undefined) {
-            columns[10] = '0'
+        if (columns[18].length <= 2 || columns[18] === undefined) {
+            columns[18] = '0'
+        }
+
+        if (columns[20].length < 5 || columns[20] === undefined) {
+            columns[20] = 'zzz'
         }
 
         csvData.push({
             col1: columns[0],
-            col2: columns[2],
-            col3: columns[3],
-            col4: columns[4],
-            col5: columns[1],
-            col6: columns[5],
-            col7: columns[6],
-            col8: columns[7],
-            col9: columns[8], // Coluna 9
-            col10: columns[9],
-            col11: columns[10],
+            col2: columns[3],
+            col3: columns[5],
+            col4: columns[6],
+            col5: columns[2],
+            col6: columns[16],
+            col7: columns[17],
+            col8: columns[18],
+            col9: columns[20], // Coluna 9
+            col10: columns[24],
+            col11: columns[26],
         });
     });
 
@@ -271,18 +261,17 @@ function processCSV(content) {
     // Criar um link de download para o novo arquivo
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(newCSVBlob);
-    
+
     downloadLink.download = 'newFile.csv';
 
     // Adicionar o link ao corpo do documento
     document.body.appendChild(downloadLink);
 
     console.log('Terminou')
-    console.timeEnd('meu timer')
 
-    pProcessando.setAttribute('style', 'display: none')
+    pProcess.setAttribute('style', 'display: none')
 
-    downloadLink.click();    
+    downloadLink.click();
 
     btn.setAttribute('style', 'display: block; border: none; background-color: cadetblue; border-radius: 5px; color: aliceblue; cursor: pointer; padding: 5px 10px; margin-top: 15px')
     btn.addEventListener('click', () => downloadLink.click())
