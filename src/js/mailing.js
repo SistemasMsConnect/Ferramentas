@@ -71,9 +71,11 @@ function handleCall(event) {
                 let segundos = Math.floor(totalSeconds % 60)
                 let horario = `${horas}:${minutos}:${segundos}`
 
+                ttt = parseInt(e.Tempo_total * 86400)
+
                 callData.push({
                     n: e.NÃºmero,
-                    t: e.Tempo_total
+                    t: ttt
                 })
             })
 
@@ -145,16 +147,6 @@ function handleFileSelect(event) {
             rows.forEach(e => {
                 // console.log(e)
 
-                let audiencia = ''
-                let tipoAudiencia = 0
-                if (e.Campanha == 'MIGRACAO_CAMP PARTE I' || e.Campanha == 'MIGRACAO_CAMP PARTE II') {
-                    audiencia = e.Telefone
-                    tipoAudiencia = 3
-                } else {
-                    audiencia = e.Field_2
-                    tipoAudiencia = 4
-                }
-
                 let data
                 let dia
                 let mes
@@ -198,6 +190,16 @@ function handleFileSelect(event) {
                 let telefone = e.Telefone
 
                 let telefoneCompleto = `${ddd}${telefone}`
+
+                let audiencia = ''
+                let tipoAudiencia = 0
+                if (e.Campanha == 'MIGRACAO_CAMP PARTE I' || e.Campanha == 'MIGRACAO_CAMP PARTE II') {
+                    audiencia = telefoneCompleto
+                    tipoAudiencia = 3
+                } else {
+                    audiencia = e.Field_2
+                    tipoAudiencia = 4
+                }
 
                 csvData.push({
                     ID_PLAY: e.ID_Cliente,
