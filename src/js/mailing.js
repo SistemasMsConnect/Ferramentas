@@ -55,13 +55,13 @@ function handleCall(event) {
             splitFileContents.push({ fileName: `${key}.csv`, content: csvContent });
         });
 
-        console.log(splitFileContents);
+        // console.log(splitFileContents);
 
         splitFileContents.forEach(file => {
-            console.log(`Processing file: ${file.fileName}`);
+            // console.log(`Processing file: ${file.fileName}`);
             const rows = XLSX.utils.sheet_to_json(XLSX.read(file.content, { type: 'string' }).Sheets.Sheet1);
 
-            console.log(rows);
+            // console.log(rows);
 
             rows.forEach(e => {
                 let totalSeconds = e.Tempo_total * 24 * 3600
@@ -79,7 +79,7 @@ function handleCall(event) {
                 })
             })
 
-            console.log(callData)
+            // console.log(callData)
 
             // Add any other manipulation here
         });
@@ -133,16 +133,16 @@ function handleFileSelect(event) {
             const csvContent = XLSX.write(newWorkbook, { bookType: 'csv', type: 'string' });
 
             // Store the content in the array
-            splitFileContents.push({ fileName: `${key}.csv`, content: csvContent });
+            splitFileContents.push({ fileName: `${key}`, content: csvContent });
         });
 
-        console.log(splitFileContents);
+        // console.log(splitFileContents);
 
         splitFileContents.forEach(file => {
-            console.log(`Processing file: ${file.fileName}`);
+            // console.log(`Processing file: ${file.fileName}`);
             const rows = XLSX.utils.sheet_to_json(XLSX.read(file.content, { type: 'string' }).Sheets.Sheet1);
 
-            console.log(rows);
+            // console.log(rows);
 
             let tipo = ''
             let dataSemBarra
@@ -161,6 +161,7 @@ function handleFileSelect(event) {
                     mes = String(e.Data).substring(3, 5)
                     ano = String(e.Data).substring(6, 10)
                     dataCompleta = `${ano}/${mes}/${dia}`
+                    dataSemBarra = `${ano}${mes}${dia}`
                 } else {
                     let numero = e.Data + 1
                     data = numeroInteiroParaData(numero)
@@ -241,10 +242,27 @@ function handleFileSelect(event) {
             let secondsNow = Date.now()
             let dataHoje = new Date(secondsNow)
 
-            let hora = `${dataHoje.getHours()}${dataHoje.getMinutes()}${dataHoje.getSeconds()}`
 
-            console.log(csvData)
-            downloadManipulatedCsv(csvData, `${file.fileName}_RET_${tipo}_MS_${dataSemBarra}${hora}`)
+            let horasHoje = dataHoje.getHours()
+            let minutosHoje = dataHoje.getMinutes()
+            let segundosHoje = dataHoje.getSeconds()
+
+            if(String(horasHoje).length == 1) {
+                horasHoje = `0${horasHoje}`
+            }
+
+            if(String(minutosHoje).length == 1) {
+                minutosHoje = `0${minutosHoje}`
+            }
+
+            if(String(segundosHoje).length == 1) {
+                segundosHoje = `0${segundosHoje}`
+            }
+
+            let horarioHoje = `${horasHoje}${minutosHoje}${segundosHoje}`
+
+            // console.log(csvData)
+            downloadManipulatedCsv(csvData, `${file.fileName}_RET_${tipo}_MS_${dataSemBarra}${horarioHoje}.csv`)
             csvData = []
         });
 
