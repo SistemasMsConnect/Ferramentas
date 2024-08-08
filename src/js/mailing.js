@@ -64,13 +64,6 @@ function handleCall(event) {
             // console.log(rows);
 
             rows.forEach(e => {
-                let totalSeconds = e.Tempo_total * 24 * 3600
-
-                let horas = Math.floor(totalSeconds / 3600)
-                let minutos = Math.floor((totalSeconds % 3600) / 60)
-                let segundos = Math.floor(totalSeconds % 60)
-                let horario = `${horas}:${minutos}:${segundos}`
-
                 ttt = parseInt(e.Tempo_total * 86400)
 
                 callData.push({
