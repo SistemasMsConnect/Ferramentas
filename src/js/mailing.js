@@ -36,7 +36,7 @@ function handleCall(event) {
         const splitFiles = {};
 
         json.forEach(row => {
-            const key = row['Mailing']; // Replace 'ColumnC' with the actual name of column C
+            const key = row['ID_Cliente']; // Replace 'ColumnC' with the actual name of column C
             if (!splitFiles[key]) {
                 splitFiles[key] = [];
             }
@@ -117,7 +117,7 @@ function handleFileSelect(event) {
         const splitFiles = {};
 
         json.forEach(row => {
-            const key = row['Mailing']; // Replace 'ColumnC' with the actual name of column C
+            const key = row['ID_Cliente']; // Replace 'ColumnC' with the actual name of column C
             if (!splitFiles[key]) {
                 splitFiles[key] = [];
             }
@@ -144,6 +144,9 @@ function handleFileSelect(event) {
 
             console.log(rows);
 
+            let tipo = ''
+            let dataSemBarra
+
             rows.forEach(e => {
                 // console.log(e)
 
@@ -166,15 +169,16 @@ function handleFileSelect(event) {
                     mes = data.getMonth() + 1
                     ano = data.getFullYear()
 
-                    if(String(dia).length == 1) {
+                    if (String(dia).length == 1) {
                         dia = `0${dia}`
                     }
-    
-                    if(String(mes).length == 1) {
+
+                    if (String(mes).length == 1) {
                         mes = `0${mes}`
                     }
 
-                    dataCompleta = `${ano}/${mes}/${dia}`
+                    dataCompleta = `${ano}/${dia}/${mes}`
+                    dataSemBarra = `${ano}${dia}${mes}`
                 }
 
                 let totalSeconds = e.Hora * 24 * 3600
@@ -199,6 +203,12 @@ function handleFileSelect(event) {
                 } else {
                     audiencia = e.Field_2
                     tipoAudiencia = 4
+                }
+
+                if (tipoAudiencia == 3) {
+                    tipo = 'MOV'
+                } else if (tipoAudiencia == 4) {
+                    tipo = 'FIX'
                 }
 
                 csvData.push({
@@ -228,8 +238,13 @@ function handleFileSelect(event) {
                 }
             })
 
+            let secondsNow = Date.now()
+            let dataHoje = new Date(secondsNow)
+
+            let hora = `${dataHoje.getHours()}${dataHoje.getMinutes()}${dataHoje.getSeconds()}`
+
             console.log(csvData)
-            downloadManipulatedCsv(csvData, file.fileName)
+            downloadManipulatedCsv(csvData, `${file.fileName}_RET_${tipo}_MS_${dataSemBarra}${hora}`)
             csvData = []
         });
 
