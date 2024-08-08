@@ -1,6 +1,9 @@
 const pProcess = document.getElementById('pProcessando')
 const loader = document.getElementById('loader')
 
+const labelCall = document.getElementById('labelCallFileInput')
+const labelDisc = document.getElementById('labelDiscFileInput')
+
 let csvData = []
 let callData = []
 
@@ -15,6 +18,7 @@ function handleCall(event) {
     pProcess.setAttribute('style', 'display: block')
 
     const file = event.target.files[0];
+    labelCall.textContent = file.name
 
     if (!file) {
         alert("Please select a CSV file first.");
@@ -89,6 +93,7 @@ function handleFileSelect(event) {
     pProcess.setAttribute('style', 'display: block')
 
     const file = event.target.files[0];
+    labelDisc.textContent = file.name
 
     if (!file) {
         alert("Please select a CSV file first.");
