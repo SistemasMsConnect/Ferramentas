@@ -3,12 +3,14 @@ const arquivo = document.getElementById('fileInput')
 const btn = document.getElementById('btn')
 const fileName = document.getElementById('labelFileInput')
 const pProcessando = document.getElementById('pProcessando')
+const fileLabel = document.getElementById('labelRecomendadoFileInput')
 
 let recomendadoCSV = []
 
 document.getElementById('recomendadoFileInput').addEventListener('change', function (event) {
     console.time('meu timer')
     const file = event.target.files[0];
+    fileLabel.textContent = file.name
 
     loader.setAttribute('style', 'display: block')
 

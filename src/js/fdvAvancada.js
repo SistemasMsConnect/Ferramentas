@@ -5,10 +5,12 @@ let avancadaData = []
 let ufData = []
 let tipoNegociacaoData = []
 let tipoOperacaoData = []
+const fileLabel = document.getElementById('labelFileInput')
 
 
 document.getElementById('fileInput').addEventListener('change', function (event) {
     var file = event.target.files[0];
+    fileLabel.textContent = file.name
 
     loader.setAttribute('style', 'display: block')
     p.setAttribute('style', 'display: block')

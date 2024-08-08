@@ -7,10 +7,13 @@ let movelData2 = []
 let dataFinal = []
 let filtroData = []
 let m2mData = []
+const fileMovel1Label = document.getElementById('labelFileInputMovel')
+const fileMovel2Label = document.getElementById('labelFileInputMovel2')
 
 
 document.getElementById('fileInputMovel').addEventListener('change', function (event) {
     var file = event.target.files[0];
+    fileMovel1Label.textContent = file.name
     loader.setAttribute('style', 'display: block')
     p.setAttribute('style', 'display: block')
     span.innerHTML = 'Movel 01'
@@ -281,6 +284,7 @@ function final() {
 // Ler arquivo Movel 2
 document.getElementById('fileInputMovel2').addEventListener('change', function (event) {
     var file = event.target.files[0];
+    fileMovel2Label.textContent = file.name
     p.setAttribute('style', 'display: block')
     span.innerHTML = 'Movel 02'
 

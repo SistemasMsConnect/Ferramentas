@@ -1,10 +1,12 @@
 const loader = document.getElementById('loader')
 const fileInput = document.getElementById('fileInput')
+const fileLabel = document.getElementById('labelFileInput')
 const exportBtn = document.getElementById('exportBtn')
 const pProcessando = document.getElementById('p')
 
 fileInput.addEventListener('change', (arquivo) => {
     var file = arquivo.target.files[0]
+    fileLabel.textContent = file.name
 
     loader.setAttribute('style', 'display: block')
     pProcessando.classList.remove('hide')

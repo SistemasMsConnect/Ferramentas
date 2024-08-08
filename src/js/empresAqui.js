@@ -1,5 +1,6 @@
 const pProcess = document.getElementById('pProcessando')
 const loader = document.getElementById('loader')
+const fileLabel = document.getElementById('labelFileInput')
 let generalData = []
 let arquivoModelo = []
 let telefones = []
@@ -10,6 +11,7 @@ const prospectChunkSize = 250000;
 
 fileInput.addEventListener('change', (arquivo) => {
     var file = arquivo.target.files[0]
+    fileLabel.textContent = file.name
 
     loader.setAttribute('style', 'display: block')
     pProcess.setAttribute('style', 'display: block')

@@ -3,6 +3,9 @@ let csvMovelData = [];
 let csvRecomendacaoData = [];
 let csvSuspensaoData = [];
 let resultado = [];
+const fileMovelLabel = document.getElementById('labelMovelFileInput')
+const fileRecomendacaoLabel = document.getElementById('labelRecomendacaoFileInput')
+const fileSuspensaoLabel = document.getElementById('labelSuspensaoFileInput')
 
 function atualizar() {
     loader.setAttribute('style', 'display: block')
@@ -75,6 +78,7 @@ function atualizar() {
 // Ler arquivo Suspensão
 function lerArquivoSuspensao(event) {
     const fileSuspensao = event.target.files[0];
+    fileSuspensaoLabel.textContent = fileSuspensao.name
 
     loader.setAttribute('style', 'display: block')
 
@@ -140,6 +144,7 @@ function parseCSVSuspensao(content) {
 // Ler arquivo Recomendação
 function lerArquivoCSV(event) {
     const fileRecomendacao = event.target.files[0];
+    fileRecomendacaoLabel.textContent = fileRecomendacao.name
 
     loader.setAttribute('style', 'display: block')
 
@@ -219,6 +224,7 @@ const pProcessando = document.getElementById('pProcessando')
 // Ler arquivo Movel
 document.getElementById('MovelFileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
+    fileMovelLabel.textContent = file.name
 
     loader.setAttribute('style', 'display: block')
 

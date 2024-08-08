@@ -8,6 +8,7 @@ document.getElementById('fileInput').addEventListener('change', function (event)
     pProcess.setAttribute('style', 'display: block')
 
     const file = event.target.files[0];
+    fileName.textContent = file.name
 
     if (!file) {
         return;
