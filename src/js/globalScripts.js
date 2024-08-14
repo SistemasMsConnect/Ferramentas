@@ -10,6 +10,8 @@ let pEA = document.getElementById('EmpresAquiDrop')
 let dEA = document.getElementById('EmpresAquiOptions')
 let pRM = document.getElementById('MailingDrop')
 let dRM = document.getElementById('MailingOptions')
+let pGF = document.getElementById('GerencialDrop')
+let dGF = document.getElementById('GerencialOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -45,4 +47,8 @@ pEA.addEventListener('click', () => {
 
 pRM.addEventListener('click', () => {
     dRM.classList.toggle('hide')
+})
+
+pGF.addEventListener('click', () => {
+    dGF.classList.toggle('hide')
 })

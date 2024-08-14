@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/empresAqui.css">
+    <link rel="stylesheet" href="../css/gerencialFixa.css">
 
-    <title>EmpresAqui</title>
+    <title>Gerencial - Fixa</title>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
 
         <button id="EmpresAquiDrop">EmpresAqui</button>
         <div class="options hide" id="EmpresAquiOptions">
-            <a>EmpresAqui</a>
+            <a href="./empresAqui.html">EmpresAqui</a>
         </div>
 
         <h2>B2C</h2>
@@ -68,26 +68,32 @@
 
         <button id="GerencialDrop">Gerencial</button>
         <div class="options hide" id="GerencialOptions">
-            <a href="./gerencialFixa.html">Fixa</a>
+            <a>Fixa</a>
             <a href="./gerencialMovel.html">Móvel</a>
         </div>
     </aside>
 
     <div class="delay" id="ferramenta">
-        <h1>EmpresAqui</h1>
+        <h1>Gerencial - Fixa</h1>
 
-        <label class="labelFileInput" id="labelFileInput" for="fileInput">Escolha
-            o arquivo .xlsb <i class="fa-solid fa-file-excel"></i></label>
-        <input type="file" id="fileInput" accept=".xlsb">
+        <label class="labelFileInput" id="labelCallFileInput" for="fileCallInput">Arquivo ligaçõesFixa <i class="fa-solid fa-file-csv"></i></label>
+
+        <label class="labelFileInput" id="labelFileInput" for="fileInput">Arquivos tabulaçãoFixa <i class="fa-solid fa-file-csv"></i></label>
+
+
+        <input type="file" class="fileCallInput" id="fileCallInput" accept=".csv" />
+        <input type="file" class="fileInput" id="fileInput" multiple accept=".csv" />
 
         <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
+
+        <button class="btns" id="processBtn">Processar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/empresAqui.js"></script>
+    <script src="../js/gerencialFixa.js"></script>
 </body>
 
 </html>
