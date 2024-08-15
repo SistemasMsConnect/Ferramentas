@@ -122,6 +122,7 @@ function manipulateData(data) {
     let naoAtende = 0
     let ocupado = 0
     let amd = 0
+    let drop = 0
 
     let ligacaoInterrompida = 0
     let linhaMuda = 0
@@ -148,6 +149,8 @@ function manipulateData(data) {
             ocupado++
         } else if (String(e[8]) == 'AMD') {
             amd++
+        } else if (String(e[8]) == 'Drop') {
+            drop++
         }
 
         if (String(e[10]).includes('INTERROMPIDA')) {
@@ -209,7 +212,7 @@ function manipulateData(data) {
         ligacoesAbandonadas: '-',
         _8: '',
         _9: '',
-        _10: '',
+        drop: drop,
         _11: '',
         caixaPostal: '-',
         chamadaRejeitada: '-',
