@@ -9,6 +9,9 @@ let dataExport = []
 let qntCall = 0
 let sumCall = 0
 let mediaCall = 0
+let qntCallVenda = 0
+let sumCallVenda = 0
+let mediaCallVenda = 0
 
 
 let filesProcessed = 0
@@ -45,6 +48,7 @@ document.getElementById('fileCallInput').addEventListener('change', (event) => {
 
 
 function manipulateCallData(data) {
+    console.log(data)
     data.forEach(e => {
         if (e[10] != 'Tempo_total') {
             const value = parseFloat(e[10]);
@@ -59,7 +63,23 @@ function manipulateCallData(data) {
         return sumCall
     })
 
+    data.forEach(e => {
+        if (e[5] == 'VENDA') {
+            if (e[10] != 'Tempo_total') {
+                const value = parseFloat(e[10]);
+
+                if (!isNaN(value)) {
+                    sumCallVenda += value;
+                    qntCallVenda++
+                }
+
+            }
+        }
+        return sumCallVenda
+    })
+
     mediaCall = sumCall / qntCall
+    mediaCallVenda = sumCallVenda / qntCallVenda
 }
 
 
@@ -140,7 +160,7 @@ function manipulateData(data) {
     let vivoInternetFibra = 0
 
     data.forEach(e => {
-        if (String(e[8]) == 'Falha da operadora') {
+        if (String(e[8]).includes('TimeOut')) {
             naoAtende++
         } else if (String(e[8]).includes('Ocupado')) {
             ocupado++
@@ -148,7 +168,7 @@ function manipulateData(data) {
             amd++
         }
 
-        if (String(e[10]).includes('INTERROMPIDA')) {
+        if (String(e[10]).includes('INTERROMPIDA') && !String(e[10]).includes('SEM CLIENTE')) {
             ligacaoInterrompida++
         } else if (String(e[10]).includes('MUDA')) {
             linhaMuda++
@@ -190,7 +210,7 @@ function manipulateData(data) {
         paLogadas: '-',
         ocupacao: '',
         TMO: mediaCall,
-        TMV: tempoMedio,
+        TMV: mediaCallVenda,
         _1: '',
         _2: '',
         _3: '',

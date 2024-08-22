@@ -158,7 +158,7 @@ function handleFileSelect(event) {
                     dia = String(e.Data).substring(0, 2)
                     mes = String(e.Data).substring(3, 5)
                     ano = String(e.Data).substring(6, 10)
-                    dataCompleta = `${ano}/${mes}/${dia}`
+                    dataCompleta = `${ano}-${mes}-${dia}`
                     dataSemBarra = `${ano}${mes}${dia}`
                 } else {
                     let numero = e.Data + 1
@@ -176,7 +176,7 @@ function handleFileSelect(event) {
                         mes = `0${mes}`
                     }
 
-                    dataCompleta = `${ano}/${dia}/${mes}`
+                    dataCompleta = `${ano}-${dia}-${mes}`
                     dataSemBarra = `${ano}${dia}${mes}`
                 }
 
@@ -217,16 +217,16 @@ function handleFileSelect(event) {
                     ID_MOTIVO_TABULACAO: e.ISDN_Code,
                     DT_TABULACAO: dataEHora,
                     NR_TLFN: telefoneCompleto,
-                    NOVO_CPF: '',
-                    CPF_OPERADOR: '',
-                    NR_TLFN_ADD1: '',
-                    NR_TLFN_ADD2: '',
-                    NR_TLFN_ADD3: '',
-                    EMAIL_ADD1: '',
-                    NR_DURACAO_CHAMADA: '',
+                    NOVO_CPF: '0',
+                    CPF_OPERADOR: '0',
+                    NR_TLFN_ADD1: '0',
+                    NR_TLFN_ADD2: '0',
+                    NR_TLFN_ADD3: '0',
+                    EMAIL_ADD1: '0',
+                    NR_DURACAO_CHAMADA: '0',
                     QTD_LIGACAO: 1,
-                    CORINGA1: '',
-                    CORINGA2: ''
+                    CORINGA1: '0',
+                    CORINGA2: '0'
                 })
             })
 

@@ -143,7 +143,7 @@ function manipulateData(data) {
     let falecimentoDoAssinante = 0
 
     data.forEach(e => {
-        if (String(e[8]) == 'Falha da operadora') {
+        if (String(e[8]).includes('TimeOut')) {
             naoAtende++
         } else if (String(e[8]).includes('Ocupado')) {
             ocupado++
@@ -153,7 +153,7 @@ function manipulateData(data) {
             drop++
         }
 
-        if (String(e[10]).includes('INTERROMPIDA')) {
+        if (String(e[10]).includes('INTERROMPIDA') && !String(e[10]).includes('SEM CLIENTE')) {
             ligacaoInterrompida++
         } else if (String(e[10]).includes('MUDA')) {
             linhaMuda++
