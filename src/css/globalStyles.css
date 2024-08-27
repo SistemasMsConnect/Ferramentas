@@ -85,7 +85,7 @@ label i {
     color: aliceblue;
     cursor: pointer;
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
     justify-content: center;
     align-items: center;
 }
