@@ -12,6 +12,8 @@ let pRM = document.getElementById('MailingDrop')
 let dRM = document.getElementById('MailingOptions')
 let pGF = document.getElementById('GerencialDrop')
 let dGF = document.getElementById('GerencialOptions')
+let pQL = document.getElementById('QuartilDrop')
+let dQL = document.getElementById('QuartilOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -51,4 +53,8 @@ pRM.addEventListener('click', () => {
 
 pGF.addEventListener('click', () => {
     dGF.classList.toggle('hide')
+})
+
+pQL.addEventListener('click', () => {
+    dQL.classList.toggle('hide')
 })

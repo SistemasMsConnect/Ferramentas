@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/fdvBasica.css">
+    <link rel="stylesheet" href="../css/quartil.css">
 
-    <title>FDV Básica</title>
+    <title>Quartil</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
         <button id="FDVDrop">FDV</button>
         <div class="options hide" id="FDVOptions">
             <a href="./fdvMovel.html">Móvel</a>
-            <a>Básica</a>
+            <a href="./fdvBasica.html">Básica</a>
             <a href="./fdvAvancada.html">Avançada</a>
         </div>
 
@@ -69,32 +69,42 @@
         <button id="GerencialDrop">Gerencial</button>
         <div class="options hide" id="GerencialOptions">
             <a href="./gerencialFixa.html">Fixa</a>
-            <a href="./gerencialMovel.html">Móvel</a>
+            <a>Móvel</a>
         </div>
 
         <button id="QuartilDrop">Quartil</button>
         <div class="options hide" id="QuartilOptions">
-            <a href="./quartil.html">Quartil</a>
+            <a>Quartil</a>
         </div>
     </aside>
 
     <div class="delay" id="ferramenta">
-        <h1>FDV Básica</h1>
+        <h1>Quartil</h1>
 
-        <label class="labelFileInput" id="labelFileInput" for="fileInput">Escolha
-            o arquivo Fixa Básica .xlsx <i class="fa-solid fa-file-excel"></i></label>
-        <input type="file" id="fileInput" accept=".xlsx">
+        <label class="labelFileInput" id="labelTabulacaoFileInput" for="fileTabulacaoInput">Arquivos Tabulações <i class="fa-solid fa-file-csv"></i></label>
 
-        <button class="btns" id="exportBtn">Exportar para XLSX</button>
+        <label class="labelFileInput" id="labelCallFileInput" for="fileCallInput">Arquivos Ligações <i class="fa-solid fa-file-csv"></i></label>
 
-        <p id="p">Processando..</p>
+        <label class="labelFileInput" id="labelLoginLogoutFileInput" for="fileLoginLogoutInput">Arquivos LoginLogouts <i class="fa-solid fa-file-csv"></i></label>
+
+        <label class="labelFileInput" id="labelPausasFileInput" for="filePausasInput">Arquivos Pausas <i class="fa-solid fa-file-csv"></i></label>
+
+
+        <input type="file" class="fileInput" id="fileTabulacaoInput" multiple accept=".csv" />
+        <input type="file" class="fileInput" id="fileCallInput" multiple accept=".csv" />
+        <input type="file" class="fileInput" id="fileLoginLogoutInput" multiple accept=".csv" />
+        <input type="file" class="fileInput" id="filePausasInput" multiple accept=".csv" />
+
+        <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
+
+        <button class="btns" id="processBtn">Processar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/fdvBasica.js"></script>
+    <script src="../js/quartil.js"></script>
 </body>
 
 </html>
