@@ -164,8 +164,8 @@ function handleFileSelect(event) {
                     let numero = e.Data + 1
                     data = numeroInteiroParaData(numero)
 
-                    dia = data.getUTCDate()
-                    mes = data.getUTCMonth()
+                    dia = data.getUTCDate() - 1
+                    mes = data.getUTCMonth() + 1
                     ano = data.getUTCFullYear()
 
                     if (String(dia).length == 1) {
