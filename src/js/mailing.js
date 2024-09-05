@@ -165,7 +165,7 @@ function handleFileSelect(event) {
                     data = numeroInteiroParaData(numero)
 
                     dia = data.getUTCDate()
-                    mes = data.getUTCMonth() + 1
+                    mes = data.getUTCMonth()
                     ano = data.getUTCFullYear()
 
                     if (String(dia).length == 1) {
