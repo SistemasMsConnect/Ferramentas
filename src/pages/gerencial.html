@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/gerencialMovel.css">
+    <link rel="stylesheet" href="../css/gerencial.css">
 
-    <title>Gerencial - Movel</title>
+    <title>Gerencial</title>
 </head>
 
 <body>
@@ -68,8 +68,7 @@
 
         <button id="GerencialDrop">Gerencial</button>
         <div class="options hide" id="GerencialOptions">
-            <a href="./gerencialFixa.html">Fixa</a>
-            <a>Movel</a>
+            <a>Gerencial</a>
         </div>
 
         <button id="QuartilDrop">Quartil</button>
@@ -79,15 +78,31 @@
     </aside>
 
     <div class="delay" id="ferramenta">
-        <h1>Gerencial - Móvel</h1>
-
-        <label class="labelFileInput" id="labelCallFileInput" for="fileCallInput">Arquivo ligaçõesMigracao <i class="fa-solid fa-file-csv"></i></label>
-
-        <label class="labelFileInput" id="labelFileInput" for="fileInput">Arquivos tabulaçãoMigracao <i class="fa-solid fa-file-csv"></i></label>
+        <h1>Gerencial</h1>
 
 
-        <input type="file" class="fileCallInput" id="fileCallInput" accept=".csv" />
-        <input type="file" class="fileInput" id="fileInput" multiple accept=".csv" />
+        <label class="labelFileInput" id="labelTxtFileInput" for="fileTxtInput">Arquivos Txt Mailing Móvel <i class="fa-solid fa-file-lines"></i></label>
+
+        <label class="labelFileInput" id="labelTxtFixaFileInput" for="fileTxtFixaInput">Arquivos Txt Mailing Fixa <i class="fa-solid fa-file-lines"></i></label>
+
+        <label class="labelFileInput" id="labelMovelFileInput" for="fileMovelInput">Arquivos tabulaçãoMigracao <i class="fa-solid fa-file-csv"></i></label>
+
+        <label class="labelFileInput" id="labelFixaFileInput" for="fileFixaInput">Arquivos tabulaçãoFixa <i class="fa-solid fa-file-csv"></i></label>
+
+
+        <label class="labelFileInput" id="labelMovelCallFileInput" for="fileMovelCallInput">Arquivo ligaçõesMigração <i class="fa-solid fa-file-csv"></i></label>
+
+        <label class="labelFileInput" id="labelFixaCallFileInput" for="fileFixaCallInput">Arquivo ligaçõesFixa <i class="fa-solid fa-file-csv"></i></label>
+
+
+        <input type="file" class="fileInput" id="fileTxtInput" accept=".txt" multiple>
+        <input type="file" class="fileInput" id="fileTxtFixaInput" accept=".txt" multiple>
+
+        <input type="file" class="fileInput" id="fileMovelInput" multiple accept=".csv" />
+        <input type="file" class="fileInput" id="fileFixaInput" multiple accept=".csv" />
+
+        <input type="file" class="fileInput" id="fileMovelCallInput" multiple accept=".csv" />
+        <input type="file" class="fileInput" id="fileFixaCallInput" multiple accept=".csv" />
 
         <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
@@ -98,7 +113,7 @@
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/gerencialMovel.js"></script>
+    <script src="../js/gerencial.js"></script>
 </body>
 
 </html>
