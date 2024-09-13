@@ -2094,7 +2094,7 @@ function manipulateFixaCallData(data) {
         aceites: aceitesFixa
     })
 
-    exportToCSV(dataMovelExport, dataFixaExport, dataCallExport, dataIdResultadoExport, dataIdMailingExport, dataTrabalhadoExport, dataAtendidasExport, dataAloExport, dataAloUnicoExport, dataAceiteExport, dataCpcEsforcoExport, dataCpcUnicoExport, 'data.xlsx');
+    exportToCSV(dataMovelExport, dataFixaExport, dataCallExport, dataIdResultadoExport, dataIdMailingExport, dataTrabalhadoExport, dataAtendidasExport, dataAloExport, dataAloUnicoExport, dataAceiteExport, dataCpcEsforcoExport, dataCpcUnicoExport, 'dataGerencial.xlsx');
 }
 
 
