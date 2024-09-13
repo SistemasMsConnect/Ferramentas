@@ -975,7 +975,7 @@ function manipulateMovelData(data) {
             utilizaPoucoCelularSP1++
         } else if (String(e[10]) == 'MENSALIDADE ALTA') {
             mensalidadeAltaSP1++
-        } else if (String(e[10]) == 'NÃƒO Ã‰ O TITULAR') {
+        } else if (String(e[10]) == 'NÃƒO Ã‰ O TITULAR' || String(e[10]) == 'NAO E O TITULAR') {
             naoTitularSP1++
         } else if (String(e[10]) == 'MENOR DE 18 ANOS') {
             menorDe18AnosSP1++
@@ -987,7 +987,7 @@ function manipulateMovelData(data) {
             clientePjSP1++
         } else if (String(e[10]) == 'FALECIMENTO DO ASSINANTE') {
             falecimentoDoAssinanteSP1++
-        } else if (String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRÃŠNCIA' || String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA') {
+        } else if (String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA' || String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRÃŠNCIA' || String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA') {
             possuiFidelidadeComConcorrenciaSP1++
         } else if (String(e[10]) == 'NAO QUER MAIS RECEBER LIGACOES DA VIVO') {
             naoQuerReceberLigacoesDaVivoSP1++
@@ -995,55 +995,55 @@ function manipulateMovelData(data) {
             insegurancaComExcedenteNaFaturaSP1++
         } else if (String(e[10]) == 'RESTRICAO INTERNA') {
             restricaoDeCreditoInternaSP1++
-        } else if (String(e[10]) == 'OS PLANOS OFERTADOS NAO ATENDEM') {
+        } else if (String(e[10]) == ' OS PLANOS OFERTADOS NAO ATENDEM ' || String(e[10]) == 'OS PLANOS OFERTADOS NAO ATENDEM') {
             planosOfertadosNaoAtendemSP1++
-        } else if (String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
+        } else if (String(e[10]) == ' CLIENTE SATISFEITO COM O PLANO ' ||String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
             clienteSatisfeitoComOPlanoSP1++
-        } else if (String(e[10]) == 'JA FOI CONTROLE E NAO QUER VOLTAR') {
+        } else if (String(e[10]) == ' JA FOI CONTROLE E NAO QUER VOLTAR ' || String(e[10]) == 'JA FOI CONTROLE E NAO QUER VOLTAR') {
             jaFoiControleSP1++
-        } else if (String(e[10]) == 'CLIENTE MIGRADO EM OUTRO CANAL') {
+        } else if (String(e[10]) == ' CLIENTE MIGRADO EM OUTRO CANAL ' || String(e[10]) == 'CLIENTE MIGRADO EM OUTRO CANAL') {
             clienteMigradoEmOutroCanalSP1++
-        } else if (String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
+        } else if (String(e[10]) == ' RECEBEU OFERTA DA CONCORRENCIA ' || String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
             recebeuOfertaDaConcorrenciaSP1++
-        } else if (String(e[10]) == 'NAO QUER FAZER MIGRACAO POR TELEFONE') {
+        } else if (String(e[10]) == ' NAO QUER FAZER MIGRACAO POR TELEFONE ' || String(e[10]) == 'NAO QUER FAZER MIGRACAO POR TELEFONE') {
             naoQuerFazerMigracaoPorTelefoneSP1++
-        } else if (String(e[10]) == 'NAO DESEJA PASSAR POR ANALISE DE CREDITO') {
+        } else if (String(e[10]) == ' NAO DESEJA PASSAR POR ANALISE DE CREDITO  ' || String(e[10]) == ' NÃƒO DESEJA PASSAR POR ANALISE DE CREDITO  ' || String(e[10]) == 'NAO DESEJA PASSAR POR ANALISE DE CREDITO') {
             naoDesejaPassarPorAnaliseDeCreditoSP1++
-        } else if (String(e[10]) == 'QUER OFERTA DE APARELHO') {
+        } else if (String(e[10]) == ' QUER OFERTA DE APARELHO ' || String(e[10]) == 'QUER OFERTA DE APARELHO') {
             querOfertaDeAparelhoSP1++
-        } else if (String(e[10]) == 'NAO QUER FAZER ATIVACAO POR TELEFONE') {
+        } else if (String(e[10]) == ' NAO QUER FAZER ATIVACAO POR TELEFONE ' || String(e[10]) == ' NÃƒO QUER FAZER ATIVAÃ‡ÃƒO POR TELEFONE ' || String(e[10]) == 'NAO QUER FAZER ATIVACAO POR TELEFONE') {
             naoQuerFazerAtivacaoPorTelefoneSP1++
-        } else if (String(e[10]) == 'NAO ACEITOU FAZER A RECARGA') {
+        } else if (String(e[10]) == ' NAO ACEITOU FAZER A RECARGA ' || String(e[10]) == ' NÃƒO ACEITOU FAZER A RECARGA ' || String(e[10]) == 'NAO ACEITOU FAZER A RECARGA') {
             naoAceitouFazerARecargaSP1++
-        } else if (String(e[10]) == 'JA FOI POS PAGO E NAO QUER VOLTAR') {
+        } else if (String(e[10]) == ' JA FOI POS PAGO E NAO QUER VOLTAR ' || String(e[10]) == 'JA FOI POS PAGO E NAO QUER VOLTAR') {
             jaFoiPosPagoSP1++
-        } else if (String(e[10]) == 'TEM UM POS PAGO CLARO E NAO DESEJA PORTAR') {
+        } else if (String(e[10]) == ' TEM UM POS PAGO CLARO E NAO DESEJA PORTAR  ' || String(e[10]) == ' TEM UM PÃ“S PAGOÂ  CLARO E NÃƒO DESEJA PORTAR  ' || String(e[10]) == 'TEM UM POS PAGO CLARO E NAO DESEJA PORTAR') {
             temUmPosClaroSP1++
-        } else if (String(e[10]) == 'TEM UM POS PAGO TIM E NAO DESEJA PORTAR') {
+        } else if (String(e[10]) == ' TEM UM POS PAGO TIM E NAO DESEJA PORTAR  ' || String(e[10]) == ' TEM UM PÃ“S PAGO TIM E NÃƒO DESEJA PORTAR  ' || String(e[10]) == 'TEM UM POS PAGO TIM E NAO DESEJA PORTAR') {
             temUmPosTimSP1++
-        } else if (String(e[10]) == 'TEM UM POS PAGO OUTRAS OPERADORAS E NAO DESEJA PORTAR') {
+        } else if (String(e[10]) == ' TEM UM POS PAGO OUTRAS OPERADORA E NAO DESEJA PORTAR  ' || String(e[10]) == ' TEM UM PÃ“S PAGO OUTRAS OPERADORA E NÃƒO DESEJA PORTAR  ' || String(e[10]) == 'TEM UM POS PAGO OUTRAS OPERADORAS E NAO DESEJA PORTAR') {
             temUmPosOutrasSP1++
-        } else if (String(e[10]) == 'JA POSSUI LINHA POS PAGO DA VIVO') {
+        } else if (String(e[10]) == ' JA POSSUI LINHA POS PAGO DA VIVO ' || String(e[10]) == 'JA POSSUI LINHA POS PAGO DA VIVO') {
             jaPossuiPosVivoSP1++
-        } else if (String(e[10]) == 'CLIENTE JA MIGRADO') {
+        } else if (String(e[10]) == ' CLIENTE JA MIGRADO ' || String(e[10]) == ' CLIENTE JÃ MIGRADO ' || String(e[10]) == 'CLIENTE JA MIGRADO') {
             clienteJaMigradoSP1++
-        } else if (String(e[10]) == 'RESTRICAO EXTERNA') {
+        } else if (String(e[10]) == ' RESTRICAO DE CREDITO (EXTERNA) ' || String(e[10]) == ' RESTRIÃ‡ÃƒO DE CRÃ‰DITO (EXTERNA) ' || String(e[10]) == 'RESTRICAO EXTERNA') {
             restricaoDeCreditoExternaSP1++
-        } else if (String(e[10]) == 'CLIENTE NAO ELEGIVEL A OFERTA') {
+        } else if (String(e[10]) == ' CLIENTE NAO ELEGIVEL A OFERTA ' || String(e[10]) == ' CLIENTE NÃƒO ELEGÃVEL A OFERTA ' || String(e[10]) == 'CLIENTE NAO ELEGIVEL A OFERTA') {
             clienteNaoElegivelOfertaSP1++
-        } else if (String(e[10]) == 'CPF INVALIDO') {
+        } else if (String(e[10]) == 'CPF INVALIDO' || String(e[10]) == 'CPF INVÃLIDO' || String(e[10]) == 'CPF INVALIDO') {
             cpfInvalidoSP1++
-        } else if (String(e[10]) == 'DADOS DA CONTA') {
+        } else if (String(e[10]) == ' DADOS DA CONTA ' || String(e[10]) == 'DADOS DA CONTA') {
             dadosDaContaSP1++
-        } else if (String(e[10]) == 'ERRO AO EMITIR A OS') {
+        } else if (String(e[10]) == ' ERRO AO EMITIR A OS  ' || String(e[10]) == 'ERRO AO EMITIR A OS') {
             erroAoEmitirOsSP1++
-        } else if (String(e[10]) == 'ERRO DIVERGENCIA DADOS GERAIS') {
+        } else if (String(e[10]) == ' ERRO DIVERGENCIA DADOS GERAIS ' || String(e[10]) == 'ERRO DIVERGENCIA DADOS GERAIS') {
             erroDivergenciaDadosGeraisSP1++
-        } else if (String(e[10]) == 'ERRO PID') {
+        } else if (String(e[10]) == ' ERRO PID (DADOS DIVERGENTES EX. NOME DA MAE, DATA DE NASC) ' || String(e[10]) == ' ERRO PID (DADOS DIVERGENTES EX. NOME DA MÃƒE, DATA DE NASC) ' || String(e[10]) == 'ERRO PID') {
             erroPidSP1++
-        } else if (String(e[10]) == 'INSERCAO DE ENDERECO') {
+        } else if (String(e[10]) == ' INSERCAO DE ENDERECO ' || String(e[10]) == 'INSERCAO DE ENDERECO') {
             insercaoDeEnderecoSP1++
-        } else if (String(e[10]) == 'SEM OFERTA') {
+        } else if (String(e[10]) == ' SEM OFERTA ' || String(e[10]) == 'SEM OFERTA') {
             semOfertaSP1++
         }
     })
@@ -1094,7 +1094,7 @@ function manipulateMovelData(data) {
             utilizaPoucoCelularSPI++
         } else if (String(e[10]) == 'MENSALIDADE ALTA') {
             mensalidadeAltaSPI++
-        } else if (String(e[10]) == 'NÃƒO Ã‰ O TITULAR') {
+        } else if (String(e[10]) == 'NAO E O TITULAR' || String(e[10]) == 'NÃƒO Ã‰ O TITULAR') {
             naoTitularSPI++
         } else if (String(e[10]) == 'MENOR DE 18 ANOS') {
             menorDe18AnosSPI++
@@ -1114,55 +1114,55 @@ function manipulateMovelData(data) {
             insegurancaComExcedenteNaFaturaSPI++
         } else if (String(e[10]) == 'RESTRICAO INTERNA') {
             restricaoDeCreditoInternaSPI++
-        } else if (String(e[10]) == 'OS PLANOS OFERTADOS NAO ATENDEM') {
+        } else if (String(e[10]) == ' OS PLANOS OFERTADOS NAO ATENDEM ' || String(e[10]) == 'OS PLANOS OFERTADOS NAO ATENDEM') {
             planosOfertadosNaoAtendemSPI++
-        } else if (String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
+        } else if (String(e[10]) == ' CLIENTE SATISFEITO COM O PLANO ' ||String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
             clienteSatisfeitoComOPlanoSPI++
-        } else if (String(e[10]) == 'JA FOI CONTROLE E NAO QUER VOLTAR') {
+        } else if (String(e[10]) == ' JA FOI CONTROLE E NAO QUER VOLTAR ' || String(e[10]) == 'JA FOI CONTROLE E NAO QUER VOLTAR') {
             jaFoiControleSPI++
-        } else if (String(e[10]) == 'CLIENTE MIGRADO EM OUTRO CANAL') {
+        } else if (String(e[10]) == ' CLIENTE MIGRADO EM OUTRO CANAL ' || String(e[10]) == 'CLIENTE MIGRADO EM OUTRO CANAL') {
             clienteMigradoEmOutroCanalSPI++
-        } else if (String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
+        } else if (String(e[10]) == ' RECEBEU OFERTA DA CONCORRENCIA ' || String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
             recebeuOfertaDaConcorrenciaSPI++
-        } else if (String(e[10]) == 'NAO QUER FAZER MIGRACAO POR TELEFONE') {
+        } else if (String(e[10]) == ' NAO QUER FAZER MIGRACAO POR TELEFONE ' || String(e[10]) == 'NAO QUER FAZER MIGRACAO POR TELEFONE') {
             naoQuerFazerMigracaoPorTelefoneSPI++
-        } else if (String(e[10]) == 'NAO DESEJA PASSAR POR ANALISE DE CREDITO') {
+        } else if (String(e[10]) == ' NAO DESEJA PASSAR POR ANALISE DE CREDITO  ' || String(e[10]) == ' NÃƒO DESEJA PASSAR POR ANALISE DE CREDITO  ' || String(e[10]) == 'NAO DESEJA PASSAR POR ANALISE DE CREDITO') {
             naoDesejaPassarPorAnaliseDeCreditoSPI++
-        } else if (String(e[10]) == 'QUER OFERTA DE APARELHO') {
+        } else if (String(e[10]) == ' QUER OFERTA DE APARELHO ' || String(e[10]) == 'QUER OFERTA DE APARELHO') {
             querOfertaDeAparelhoSPI++
-        } else if (String(e[10]) == 'NAO QUER FAZER ATIVACAO POR TELEFONE') {
+        } else if (String(e[10]) == ' NAO QUER FAZER ATIVACAO POR TELEFONE ' || String(e[10]) == ' NÃƒO QUER FAZER ATIVAÃ‡ÃƒO POR TELEFONE ' || String(e[10]) == 'NAO QUER FAZER ATIVACAO POR TELEFONE') {
             naoQuerFazerAtivacaoPorTelefoneSPI++
-        } else if (String(e[10]) == 'NAO ACEITOU FAZER A RECARGA') {
+        } else if (String(e[10]) == ' NAO ACEITOU FAZER A RECARGA ' || String(e[10]) == ' NÃƒO ACEITOU FAZER A RECARGA ' || String(e[10]) == 'NAO ACEITOU FAZER A RECARGA') {
             naoAceitouFazerARecargaSPI++
-        } else if (String(e[10]) == 'JA FOI POS PAGO E NAO QUER VOLTAR') {
+        } else if (String(e[10]) == ' JA FOI POS PAGO E NAO QUER VOLTAR ' || String(e[10]) == 'JA FOI POS PAGO E NAO QUER VOLTAR') {
             jaFoiPosPagoSPI++
-        } else if (String(e[10]) == 'TEM UM POS PAGO CLARO E NAO DESEJA PORTAR') {
+        } else if (String(e[10]) == ' TEM UM POS PAGO CLARO E NAO DESEJA PORTAR  ' || String(e[10]) == ' TEM UM PÃ“S PAGOÂ  CLARO E NÃƒO DESEJA PORTAR  ' || String(e[10]) == 'TEM UM POS PAGO CLARO E NAO DESEJA PORTAR') {
             temUmPosClaroSPI++
-        } else if (String(e[10]) == 'TEM UM POS PAGO TIM E NAO DESEJA PORTAR') {
+        } else if (String(e[10]) == ' TEM UM POS PAGO TIM E NAO DESEJA PORTAR  ' || String(e[10]) == ' TEM UM PÃ“S PAGO TIM E NÃƒO DESEJA PORTAR  ' || String(e[10]) == 'TEM UM POS PAGO TIM E NAO DESEJA PORTAR') {
             temUmPosTimSPI++
-        } else if (String(e[10]) == 'TEM UM POS PAGO OUTRAS OPERADORAS E NAO DESEJA PORTAR') {
+        } else if (String(e[10]) == ' TEM UM POS PAGO OUTRAS OPERADORA E NAO DESEJA PORTAR  ' || String(e[10]) == ' TEM UM PÃ“S PAGO OUTRAS OPERADORA E NÃƒO DESEJA PORTAR  ' || String(e[10]) == 'TEM UM POS PAGO OUTRAS OPERADORAS E NAO DESEJA PORTAR') {
             temUmPosOutrasSPI++
-        } else if (String(e[10]) == 'JA POSSUI LINHA POS PAGO DA VIVO') {
+        } else if (String(e[10]) == ' JA POSSUI LINHA POS PAGO DA VIVO ' || String(e[10]) == 'JA POSSUI LINHA POS PAGO DA VIVO') {
             jaPossuiPosVivoSPI++
-        } else if (String(e[10]) == 'CLIENTE JA MIGRADO') {
+        } else if (String(e[10]) == ' CLIENTE JA MIGRADO ' || String(e[10]) == ' CLIENTE JÃ MIGRADO ' || String(e[10]) == 'CLIENTE JA MIGRADO') {
             clienteJaMigradoSPI++
-        } else if (String(e[10]) == 'RESTRICAO EXTERNA') {
+        } else if (String(e[10]) == ' RESTRICAO DE CREDITO (EXTERNA) ' || String(e[10]) == ' RESTRIÃ‡ÃƒO DE CRÃ‰DITO (EXTERNA) ' || String(e[10]) == 'RESTRICAO EXTERNA') {
             restricaoDeCreditoExternaSPI++
-        } else if (String(e[10]) == 'CLIENTE NAO ELEGIVEL A OFERTA') {
+        } else if (String(e[10]) == ' CLIENTE NAO ELEGIVEL A OFERTA ' || String(e[10]) == ' CLIENTE NÃƒO ELEGÃVEL A OFERTA ' || String(e[10]) == 'CLIENTE NAO ELEGIVEL A OFERTA') {
             clienteNaoElegivelOfertaSPI++
-        } else if (String(e[10]) == 'CPF INVALIDO') {
+        } else if (String(e[10]) == 'CPF INVÃLIDO' || String(e[10]) == 'CPF INVALIDO') {
             cpfInvalidoSPI++
-        } else if (String(e[10]) == 'DADOS DA CONTA') {
+        } else if (String(e[10]) == ' DADOS DA CONTA ' || String(e[10]) == 'DADOS DA CONTA') {
             dadosDaContaSPI++
-        } else if (String(e[10]) == 'ERRO AO EMITIR A OS') {
+        } else if (String(e[10]) == ' ERRO AO EMITIR A OS  ' || String(e[10]) == 'ERRO AO EMITIR A OS') {
             erroAoEmitirOsSPI++
-        } else if (String(e[10]) == 'ERRO DIVERGENCIA DADOS GERAIS') {
+        } else if (String(e[10]) == ' ERRO DIVERGENCIA DADOS GERAIS ' || String(e[10]) == 'ERRO DIVERGENCIA DADOS GERAIS') {
             erroDivergenciaDadosGeraisSPI++
-        } else if (String(e[10]) == 'ERRO PID') {
+        } else if (String(e[10]) == ' ERRO PID (DADOS DIVERGENTES EX. NOME DA MAE, DATA DE NASC) ' || String(e[10]) == ' ERRO PID (DADOS DIVERGENTES EX. NOME DA MÃƒE, DATA DE NASC) ' || String(e[10]) == 'ERRO PID') {
             erroPidSPI++
-        } else if (String(e[10]) == 'INSERCAO DE ENDERECO') {
+        } else if (String(e[10]) == ' INSERCAO DE ENDERECO ' || String(e[10]) == 'INSERCAO DE ENDERECO') {
             insercaoDeEnderecoSPI++
-        } else if (String(e[10]) == 'SEM OFERTA') {
+        } else if (String(e[10]) == ' SEM OFERTA ' || String(e[10]) == 'SEM OFERTA') {
             semOfertaSPI++
         }
     })
@@ -1826,21 +1826,21 @@ function manipulateFixaData(data) {
             jaPosuiProdutoOsPendenteSP1++
         } else if (String(e[10]) == 'NAO VE BENEFICIOS NA OFERTA') {
             naoVeBeneficiosNaOfertaSP1++
-        } else if (String(e[10]) == 'TERMINAL INVALIDO') {
+        } else if (String(e[10]) == ' TERMINAL INVALIDO' || String(e[10]) == ' TERMINAL INVÃLIDO ' || String(e[10]) == 'TERMINAL INVALIDO') {
             terminalInvalidoSP1++
-        } else if (String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRENCIA') {
+        } else if (String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRENCIA' || String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRÃŠNCIA' || String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRENCIA') {
             clienteFidelizadoNaConcorrenciaSP1++
-        } else if (String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA') {
+        } else if (String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA' || String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRÃŠNCIA' || String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA') {
             possuiContratoDeFidelidadeComAConcorrenciaSP1++
-        } else if (String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
+        } else if (String(e[10]) == ' RECEBEU OFERTA DA CONCORRENCIA ' || String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
             recebeuOfertaDaConcorrenciaSP1++
-        } else if (String(e[10]) == 'SE RECUSA A FALAR') {
+        } else if (String(e[10]) == ' SE RECUSA A FALAR ' || String(e[10]) == 'SE RECUSA A FALAR') {
             seRecusaAFalarSP1++
-        } else if (String(e[10]) == 'CLIENTE ILEGIVEL A CAMPANHA') {
+        } else if (String(e[10]) == ' CLIENTE ILEGIVEL A CAMPANHA   ' || String(e[10]) == ' CLIENTE ILEGÃVEL A CAMPANHA   ' || String(e[10]) == 'CLIENTE ILEGIVEL A CAMPANHA') {
             clienteIlegivelACampanhaSP1++
-        } else if (String(e[10]) == 'CPF INVALIDO') {
+        } else if (String(e[10]) == 'CPF INVÃLIDO' || String(e[10]) == 'CPF INVALIDO') {
             cpfInvalidoSP1++
-        } else if (String(e[10]) == 'CREDITO NEGADO') {
+        } else if (String(e[10]) == 'CRÃ‰DITO NEGADO' || String(e[10]) == 'CREDITO NEGADO') {
             creditoNegadoSP1++
         }
     })
@@ -1907,21 +1907,21 @@ function manipulateFixaData(data) {
             jaPosuiProdutoOsPendenteSPI++
         } else if (String(e[10]) == 'NAO VE BENEFICIOS NA OFERTA') {
             naoVeBeneficiosNaOfertaSPI++
-        } else if (String(e[10]) == 'TERMINAL INVALIDO') {
+        } else if (String(e[10]) == ' TERMINAL INVALIDO' || String(e[10]) == ' TERMINAL INVÃLIDO ' || String(e[10]) == 'TERMINAL INVALIDO') {
             terminalInvalidoSPI++
-        } else if (String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRENCIA') {
+        } else if (String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRENCIA' || String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRÃŠNCIA' || String(e[10]) == 'CLIENTE FIDELIZADO NA CONCORRENCIA') {
             clienteFidelizadoNaConcorrenciaSPI++
-        } else if (String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA') {
+        } else if (String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA' || String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRÃŠNCIA' || String(e[10]) == 'POSSUI CONTRATO DE FIDELIDADE COM A CONCORRENCIA') {
             possuiContratoDeFidelidadeComAConcorrenciaSPI++
-        } else if (String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
+        } else if (String(e[10]) == ' RECEBEU OFERTA DA CONCORRENCIA ' || String(e[10]) == 'RECEBEU OFERTA DA CONCORRENCIA') {
             recebeuOfertaDaConcorrenciaSPI++
-        } else if (String(e[10]) == 'SE RECUSA A FALAR') {
+        } else if (String(e[10]) == ' SE RECUSA A FALAR ' || String(e[10]) == 'SE RECUSA A FALAR') {
             seRecusaAFalarSPI++
-        } else if (String(e[10]) == 'CLIENTE ILEGIVEL A CAMPANHA') {
+        } else if (String(e[10]) == ' CLIENTE ILEGIVEL A CAMPANHA   ' || String(e[10]) == ' CLIENTE ILEGÃVEL A CAMPANHA   ' || String(e[10]) == 'CLIENTE ILEGIVEL A CAMPANHA') {
             clienteIlegivelACampanhaSPI++
-        } else if (String(e[10]) == 'CPF INVALIDO') {
+        } else if (String(e[10]) == 'CPF INVÃLIDO' || String(e[10]) == 'CPF INVALIDO') {
             cpfInvalidoSPI++
-        } else if (String(e[10]) == 'CREDITO NEGADO') {
+        } else if (String(e[10]) == 'CRÃ‰DITO NEGADO' || String(e[10]) == 'CREDITO NEGADO') {
             creditoNegadoSPI++
         }
     })
