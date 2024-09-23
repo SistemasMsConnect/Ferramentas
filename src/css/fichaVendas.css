@@ -14,7 +14,7 @@
     color: aliceblue;
 }
 
-#fileInput, #fileCallInput,
+.fileInput,
 #pProcessando,
 #btn, #loader {
     display: none;

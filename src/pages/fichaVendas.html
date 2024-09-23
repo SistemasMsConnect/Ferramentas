@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/mapaparque.css">
+    <link rel="stylesheet" href="../css/fichaVendas.css">
 
-    <title>Mapa Parque</title>
+    <title>Ficha de Vendas</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 
         <button class="drop" id="MapaParqueDrop">Mapa Parque</button>
         <div class="options hide" id="MapaParqueOptions">
-            <a>Mapa Parque</a>
+            <a href="./mapaparque.html">Mapa Parque</a>
         </div>
 
         <button class="drop" id="ParqueBasicaDrop">Parque</button>
@@ -68,7 +68,7 @@
 
         <button class="drop" id="GerencialDrop">Gerencial</button>
         <div class="options hide" id="GerencialOptions">
-            <a href="./gerencial.html">Gerencial</a>
+            <a href="gerencial.html">Gerencial</a>
         </div>
 
         <button class="drop" id="QuartilDrop">Quartil</button>
@@ -83,29 +83,33 @@
 
         <button class="drop" id="FichaVendasDrop">Ficha de Vendas</button>
         <div class="options hide" id="FichaVendasOptions">
-            <a href="fichaVendas.html">Ficha de Vendas</a>
+            <a>Ficha de Vendas</a>
         </div>
     </aside>
 
     <div class="delay" id="ferramenta">
-        <h1>Mapa Parque</h1>
+        <h1>Ficha de Vendas</h1>
 
-        <label class="labelFileInput" id="labelFileInput" for="fileInput">Escolha
-            os arquivos <i class="fa-solid fa-file-excel"></i></label>
-        <input type="file" id="fileInput" multiple>
 
-        <button class="btns" id="estagio01" onclick="estanciar()">Estágio 01</button>
-        <button class="btns" id="estagio02" onclick="compilar()">Estágio 02</button>
-        <button class="btns" id="estagio03" onclick="verificar()">Estágio 03</button>
-        <button class="btns" disabled id="exportBtn">Exportar para XLSX</button>
+        <label class="labelFileInput" id="labelMovelFileInput" for="fileMovelInput">Arquivos tabulaçãoMigracao <i class="fa-solid fa-file-csv"></i></label>
+
+        <label class="labelFileInput" id="labelFixaFileInput" for="fileFixaInput">Arquivos tabulaçãoFixa <i class="fa-solid fa-file-csv"></i></label>
+
+
+        <input type="file" class="fileInput" id="fileMovelInput" multiple accept=".csv" />
+        <input type="file" class="fileInput" id="fileFixaInput" multiple accept=".csv" />
+
+
         <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
+
+        <button class="btns" id="processBtn">Processar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/mapaparque.js"></script>
+    <script src="../js/fichaVendas.js"></script>
 </body>
 
 </html>

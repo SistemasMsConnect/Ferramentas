@@ -14,6 +14,10 @@ let pGF = document.getElementById('GerencialDrop')
 let dGF = document.getElementById('GerencialOptions')
 let pQL = document.getElementById('QuartilDrop')
 let dQL = document.getElementById('QuartilOptions')
+let pTB = document.getElementById('TabulacaoDrop')
+let dTB = document.getElementById('TabulacaoOptions')
+let pFV = document.getElementById('FichaVendasDrop')
+let dFV = document.getElementById('FichaVendasOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -57,4 +61,12 @@ pGF.addEventListener('click', () => {
 
 pQL.addEventListener('click', () => {
     dQL.classList.toggle('hide')
+})
+
+pTB.addEventListener('click', () => {
+    dTB.classList.toggle('hide')
+})
+
+pFV.addEventListener('click', () => {
+    dFV.classList.toggle('hide')
 })
