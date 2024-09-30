@@ -7,8 +7,7 @@ const inputTabulacao = document.getElementById('fileTabulacaoInput');
 const labelInput = document.getElementById('labelInputFileInput')
 const labelTabulacao = document.getElementById('labelTabulacaoFileInput')
 
-let dataMovelExport = []
-let dataFixaExport = []
+let dataInputExport = []
 
 
 let filesInputProcessed = 0
@@ -105,6 +104,7 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
 
 
+
 function manipulateTabulacaoData(data) {
     console.log(data)
 
@@ -117,106 +117,34 @@ function manipulateInputData(data) {
     console.log(data)
 
     data.forEach(e => {
-        let index = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6])
-
-        let campanha = ''
-        let dataCompletaTabulacao = ''
-        let regiao = ''
-        let mailing = ''
-        let adicional = ''
-        let cod = ''
-        let dataCompleta = ''
-
-        if(typeof e[37] == 'number') {
-            dataEmissao = numeroInteiroParaData(String(e[37]).slice(0, 5))
-            dataCompleta = `${dataEmissao.getUTCMonth() + 1}/${dataEmissao.getUTCDate()}/${dataEmissao.getUTCFullYear()}`
-        } else if (typeof e[37] == 'string') {
-            dataEmissao = `${String(e[37]).slice(2, 2)}/${String(e[37]).slice(0, 1)}/${String(e[37]).slice(5, 4)}`
-            dataCompleta = dataEmissao
-        }
+        let index = combinedTabulacaoData.findIndex(element => element[6] == String(e[6]).slice(2))
+        let id = ''
 
         if(index != -1) {
-            campanha = combinedTabulacaoData[index][1]
-            mailing = combinedTabulacaoData[index][16]
-            if(combinedTabulacaoData[index][1] == 'FIXA_A' || combinedTabulacaoData[index][1] == 'FIXA_A+' || combinedTabulacaoData[index][1] == 'FIXA_B') {
-                adicional = ''
-            } else {
-                adicional = `${combinedTabulacaoData[index][30]} + 5`
-            }
-
-
-            if(String(combinedTabulacaoData[index][3]).length == 5) {
-                let dataFuncao = numeroInteiroParaData(combinedTabulacaoData[index][3])
-
-                dataCompletaTabulacao = `${dataFuncao.getUTCMonth() + 1}/${dataFuncao.getUTCDate()}/${dataFuncao.getUTCFullYear()}`
-            } else {
-                dataCompletaTabulacao = combinedTabulacaoData[index][3]
-            }
+            id = combinedTabulacaoData[index][16]
         }
 
-        if(String(e[6]).slice(0, 2) == '11' || String(e[6]).slice(0, 2) == '12' || String(e[6]).slice(0, 2) == '13') {
+        let ddd = String(e[6]).slice(0, 2)
+        let regiao = ''
+
+        if(ddd == '11' || ddd == '12' || ddd == '13') {
             regiao = 'SP1'
-        } else if(String(e[6]).slice(0, 2) == '14' || String(e[6]).slice(0, 2) == '15' || String(e[6]).slice(0, 2) == '16' || String(e[6]).slice(0, 2) == '17' || String(e[6]).slice(0, 2) == '18' || String(e[6]).slice(0, 2) == '19') {
+        } else if(ddd == '14' || ddd == '15' || ddd == '16' || ddd == '17' || ddd == '18' || ddd == '19'){
             regiao = 'SPI'
         }
 
-        if(String(e[15]).includes('MOVEL') || e[15] == 'Dados da venda') {
-            adicional = adicional
-        } else {
-            adicional = ''
-        }
-
-        if(e[24] == 'Fatura Digital ') {
-            cod = 'SIM'
-        }
-
-        dataMovelExport.push({
-            Campanha: campanha,
-            DataVenda: dataCompletaTabulacao,
-            Dataemissao: dataCompleta,
-            Eps: 'Ms Connect',
-            Regional: regiao,
-            Terminal: e[6],
-            CPFCliente: e[3],
-            Matricula: '',
-            Oferta: e[16],
-            Status: e[48],
-            SubStatus: '',
-            TrocaTitularidade: '',
-            Mailing: mailing,
-            Perfil: campanha,
-            Site: 'MS',
-            PlataformaEmissao: 'NEXT',
-            HomeOffice: 'NÃO',
-            Cod: cod,
-            EmailFatura: e[22],
-            PacoteAdicional: adicional
-        })
-
-        dataFixaExport.push({
-            Campanha: campanha,
-            DataVenda: dataCompletaTabulacao,
-            DataEmissao: dataCompleta,
-            Eps: "Ms Connect",
-            Regional: regiao,
-            Terminal: e[6],
-            Matricula: '',
-            Oferta: e[16],
-            Status: e[48],
-            SubStatus: '',
-            TrocaTitularidade: '',
-            Mailing: mailing,
-            Perfil: campanha,
-            ProtocoloVenda: e[35],
-            Site: 'MS',
-            Plataforma: 'NEXT',
-            HomeOffice: 'NÃO',
-            Cod: cod,
-            EmailFatura: e[22],
+        dataInputExport.push({
+            iD: id,
+            Fila: e[28],
+            Regiao: regiao,
+            DDD: ddd,
+            Telefone: e[6],
+            Agente: e[37],
+            Status: e[46]
         })
     })
 
-    exportToCSV(dataMovelExport, dataFixaExport, 'dataFichaVendas.xlsx');
+    exportToCSV(dataInputExport, 'dataInput.xlsx');
 
     loader.setAttribute('style', 'display: none')
     pProcess.setAttribute('style', 'display: none')
@@ -224,23 +152,13 @@ function manipulateInputData(data) {
 
 
 
-function numeroInteiroParaData(numero) {
-    var dataBase = new Date(1900, 0, -1); // Data base do Excel (1º de janeiro de 1900)
-    var data = new Date(dataBase.getTime() + numero * 24 * 60 * 60 * 1000);
-    return data;
-}
-
-
-
-function exportToCSV(dataMovel, dataFixa, filename) {
+function exportToCSV(dataInput, filename) {
     // Cria uma nova worksheet a partir dos dados filtrados
-    const worksheet1 = XLSX.utils.json_to_sheet(dataMovel);
-    const worksheet2 = XLSX.utils.json_to_sheet(dataFixa);
+    const worksheet1 = XLSX.utils.json_to_sheet(dataInput);
 
     // Cria um novo workbook e adiciona a worksheet a ele
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet1, 'Movel');
-    XLSX.utils.book_append_sheet(workbook, worksheet2, 'Fixa');
+    XLSX.utils.book_append_sheet(workbook, worksheet1, 'Input');
 
     // Exporta o workbook como um arquivo XLSX
     XLSX.writeFile(workbook, filename, { bookType: 'xlsx' });
