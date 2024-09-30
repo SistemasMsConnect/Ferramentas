@@ -18,8 +18,6 @@ let pTB = document.getElementById('TabulacaoDrop')
 let dTB = document.getElementById('TabulacaoOptions')
 let pFV = document.getElementById('FichaVendasDrop')
 let dFV = document.getElementById('FichaVendasOptions')
-let pEM = document.getElementById('EmissaoDrop')
-let dEM = document.getElementById('EmissaoOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -71,8 +69,4 @@ pTB.addEventListener('click', () => {
 
 pFV.addEventListener('click', () => {
     dFV.classList.toggle('hide')
-})
-
-pEM.addEventListener('click', () => {
-    dEM.classList.toggle('hide')
 })
