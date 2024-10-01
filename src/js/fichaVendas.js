@@ -125,15 +125,7 @@ function manipulateInputData(data) {
         let mailing = ''
         let adicional = ''
         let cod = ''
-        let dataCompleta = ''
 
-        if(typeof e[37] == 'number') {
-            dataEmissao = numeroInteiroParaData(String(e[37]).slice(0, 5))
-            dataCompleta = `${dataEmissao.getUTCDate()}/${dataEmissao.getUTCMonth() + 1}/${dataEmissao.getUTCFullYear()}`
-        } else if (typeof e[37] == 'string') {
-            dataEmissao = `${String(e[37]).slice(2, 2)}/${String(e[37]).slice(0, 1)}/${String(e[37]).slice(5, 4)}`
-            dataCompleta = dataEmissao
-        }
 
         if(index != -1) {
             campanha = combinedTabulacaoData[index][1]
@@ -173,7 +165,7 @@ function manipulateInputData(data) {
         dataMovelExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            Dataemissao: dataCompleta,
+            Dataemissao: e[37],
             Eps: 'Ms Connect',
             Regional: regiao,
             Terminal: e[6],
@@ -196,7 +188,7 @@ function manipulateInputData(data) {
         dataFixaExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            DataEmissao: dataCompleta,
+            DataEmissao: e[37],
             Eps: "Ms Connect",
             Regional: regiao,
             Terminal: e[6],
