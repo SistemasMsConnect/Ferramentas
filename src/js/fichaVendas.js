@@ -3,20 +3,25 @@ const loader = document.getElementById('loader')
 
 const inputInput = document.getElementById('fileInputInput');
 const inputTabulacao = document.getElementById('fileTabulacaoInput');
+const inputTabulacaoAceites = document.getElementById('fileTabulacaoAceitesInput');
 
 const labelInput = document.getElementById('labelInputFileInput')
 const labelTabulacao = document.getElementById('labelTabulacaoFileInput')
+const labelTabulacaoAceites = document.getElementById('labelTabulacaoAceitesFileInput')
 
 let dataMovelExport = []
 let dataFixaExport = []
+let dataAceitesExport = []
 
 
 let filesInputProcessed = 0
 let filesTabulacaoProcessed = 0
+let filesTabulacaoAceitesProcessed = 0
 
 
 let combinedInputData = []
 let combinedTabulacaoData = []
+let combinedTabulacaoAceitesData = []
 
 
 
@@ -36,6 +41,14 @@ inputTabulacao.addEventListener('change', (event) => {
     }
 })
 
+inputTabulacaoAceites.addEventListener('change', (event) => {
+    if (event.target.files.length > 1) {
+        labelTabulacaoAceites.textContent = `${event.target.files.length} arquivos`
+    } else if (event.target.files.length == 1) {
+        labelTabulacaoAceites.textContent = `${event.target.files.length} arquivo`
+    }
+})
+
 
 
 document.getElementById('processBtn').addEventListener('click', function () {
@@ -44,8 +57,9 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
     const filesInput = inputInput.files;
     const filesTabulacao = inputTabulacao.files;
+    const filesTabulacaoAceites = inputTabulacaoAceites.files;
 
-    if (filesInput.length === 0 || filesTabulacao.length === 0) {
+    if (filesInput.length === 0 || filesTabulacao.length === 0 || filesTabulacaoAceites.length === 0) {
         alert('Por favor, selecione pelo menos um arquivo CSV.');
         return;
     }
@@ -90,7 +104,32 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
                         // Se todos os arquivos foram processados, faça a manipulação dos dados
                         if (filesTabulacaoProcessed === filesTabulacao.length) {
-                            manipulateTabulacaoData(combinedTabulacaoData)
+                            Array.from(filesTabulacaoAceites).forEach(file => {
+                                const reader = new FileReader();
+
+                                reader.onload = function (event) {
+                                    const data = new Uint8Array(event.target.result);
+                                    const workbook = XLSX.read(data, { type: 'array' });
+
+                                    // Assume que o CSV tem apenas uma folha (sheet)
+                                    const sheetName = workbook.SheetNames[0];
+                                    const worksheet = workbook.Sheets[sheetName];
+
+                                    // Converte o sheet para JSON
+                                    const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                                    // Adiciona os dados ao array combinado
+                                    combinedTabulacaoAceitesData = combinedTabulacaoAceitesData.concat(csvData);
+                                    filesTabulacaoAceitesProcessed++;
+
+                                    // Se todos os arquivos foram processados, faça a manipulação dos dados
+                                    if (filesTabulacaoAceitesProcessed === filesTabulacaoAceites.length) {
+                                        manipulateTabulacaoData(combinedTabulacaoData)
+                                    }
+                                };
+
+                                reader.readAsArrayBuffer(file);
+                            });
                         }
                     };
 
@@ -108,7 +147,31 @@ document.getElementById('processBtn').addEventListener('click', function () {
 function manipulateTabulacaoData(data) {
     console.log(data)
 
-    manipulateInputData(combinedInputData);
+    manipulateTabulacaoAceitesData(combinedTabulacaoAceitesData)
+}
+
+function manipulateTabulacaoAceitesData(data) {
+    console.log(data)
+
+    let aceitesMovel = 0
+    let aceitesFixa = 0
+
+    data.forEach(e => {
+        if(e[10] == 'VENDA') {
+            if(e[1] == 'FIXA_A' || e[1] == 'FIXA_B' || e[1] == 'FIXA_A+') {
+                aceitesFixa++
+            } else if(e[1] == 'MIGRACAO_CAMP PARTE I' || e[1] == 'MIGRACAO_CAMP PARTE II') {
+                aceitesMovel++
+            }
+        }
+    })
+
+    dataAceitesExport.push({
+        aceitesMovel: aceitesMovel,
+        aceitesFixa: aceitesFixa
+    })
+
+    manipulateInputData(combinedInputData)
 }
 
 
@@ -127,17 +190,17 @@ function manipulateInputData(data) {
         let cod = ''
 
 
-        if(index != -1) {
+        if (index != -1) {
             campanha = combinedTabulacaoData[index][1]
             mailing = combinedTabulacaoData[index][16]
-            if(combinedTabulacaoData[index][1] == 'FIXA_A' || combinedTabulacaoData[index][1] == 'FIXA_A+' || combinedTabulacaoData[index][1] == 'FIXA_B') {
+            if (combinedTabulacaoData[index][1] == 'FIXA_A' || combinedTabulacaoData[index][1] == 'FIXA_A+' || combinedTabulacaoData[index][1] == 'FIXA_B') {
                 adicional = ''
             } else {
                 adicional = `${combinedTabulacaoData[index][30]} + 5`
             }
 
 
-            if(String(combinedTabulacaoData[index][3]).length == 5) {
+            if (String(combinedTabulacaoData[index][3]).length == 5) {
                 let dataFuncao = numeroInteiroParaData(combinedTabulacaoData[index][3])
 
                 dataCompletaTabulacao = `${dataFuncao.getUTCMonth() + 1}/${dataFuncao.getUTCDate()}/${dataFuncao.getUTCFullYear()}`
@@ -146,19 +209,19 @@ function manipulateInputData(data) {
             }
         }
 
-        if(String(e[6]).slice(0, 2) == '11' || String(e[6]).slice(0, 2) == '12' || String(e[6]).slice(0, 2) == '13') {
+        if (String(e[6]).slice(0, 2) == '11' || String(e[6]).slice(0, 2) == '12' || String(e[6]).slice(0, 2) == '13') {
             regiao = 'SP1'
-        } else if(String(e[6]).slice(0, 2) == '14' || String(e[6]).slice(0, 2) == '15' || String(e[6]).slice(0, 2) == '16' || String(e[6]).slice(0, 2) == '17' || String(e[6]).slice(0, 2) == '18' || String(e[6]).slice(0, 2) == '19') {
+        } else if (String(e[6]).slice(0, 2) == '14' || String(e[6]).slice(0, 2) == '15' || String(e[6]).slice(0, 2) == '16' || String(e[6]).slice(0, 2) == '17' || String(e[6]).slice(0, 2) == '18' || String(e[6]).slice(0, 2) == '19') {
             regiao = 'SPI'
         }
 
-        if(String(e[15]).includes('MOVEL') || e[15] == 'Dados da venda') {
+        if (String(e[15]).includes('MOVEL') || e[15] == 'Dados da venda') {
             adicional = adicional
         } else {
             adicional = ''
         }
 
-        if(e[24] == 'Fatura Digital ') {
+        if (e[24] == 'Fatura Digital ') {
             cod = 'SIM'
         }
 
@@ -208,7 +271,7 @@ function manipulateInputData(data) {
         })
     })
 
-    exportToCSV(dataMovelExport, dataFixaExport, 'dataFichaVendas.xlsx');
+    exportToCSV(dataMovelExport, dataFixaExport, dataAceitesExport, 'dataFichaVendas.xlsx');
 
     loader.setAttribute('style', 'display: none')
     pProcess.setAttribute('style', 'display: none')
@@ -224,15 +287,17 @@ function numeroInteiroParaData(numero) {
 
 
 
-function exportToCSV(dataMovel, dataFixa, filename) {
+function exportToCSV(dataMovel, dataFixa, dataAceites, filename) {
     // Cria uma nova worksheet a partir dos dados filtrados
     const worksheet1 = XLSX.utils.json_to_sheet(dataMovel);
     const worksheet2 = XLSX.utils.json_to_sheet(dataFixa);
+    const worksheet3 = XLSX.utils.json_to_sheet(dataAceites);
 
     // Cria um novo workbook e adiciona a worksheet a ele
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet1, 'Movel');
     XLSX.utils.book_append_sheet(workbook, worksheet2, 'Fixa');
+    XLSX.utils.book_append_sheet(workbook, worksheet3, 'Aceites');
 
     // Exporta o workbook como um arquivo XLSX
     XLSX.writeFile(workbook, filename, { bookType: 'xlsx' });
