@@ -180,7 +180,7 @@ function manipulateInputData(data) {
     console.log(data)
 
     data.forEach(e => {
-        let index = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6])
+        let index = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] && element[10] == 'VENDA')
 
         let campanha = ''
         let dataCompletaTabulacao = ''
