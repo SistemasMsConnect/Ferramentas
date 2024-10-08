@@ -224,18 +224,18 @@ function manipulateInputData(data) {
         if (e[24] == 'Fatura Digital ') {
             cod = 'SIM'
         }
-
+        // Modificado para o arquivo do modulo 89
         dataMovelExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            Dataemissao: e[37],
+            DataEmissao: e[33],
             Eps: 'Ms Connect',
             Regional: regiao,
             Terminal: e[6],
             CPFCliente: e[3],
             Matricula: '',
             Oferta: e[16],
-            Status: e[48],
+            Status: e[46],
             SubStatus: '',
             TrocaTitularidade: '',
             Mailing: mailing,
@@ -251,18 +251,18 @@ function manipulateInputData(data) {
         dataFixaExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            DataEmissao: e[37],
+            DataEmissao: e[33],
             Eps: "Ms Connect",
             Regional: regiao,
             Terminal: e[6],
             Matricula: '',
             Oferta: e[16],
-            Status: e[48],
+            Status: e[46],
             SubStatus: '',
             TrocaTitularidade: '',
             Mailing: mailing,
             Perfil: campanha,
-            ProtocoloVenda: e[35],
+            ProtocoloVenda: e[31],
             Site: 'MS',
             Plataforma: 'NEXT',
             HomeOffice: 'NÃO',
