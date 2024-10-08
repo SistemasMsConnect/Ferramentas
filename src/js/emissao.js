@@ -117,7 +117,7 @@ function manipulateInputData(data) {
     console.log(data)
 
     data.forEach(e => {
-        let index = combinedTabulacaoData.findIndex(element => element[6] == String(e[6]).slice(2))
+        let index = combinedTabulacaoData.findIndex(element => element[6] == String(e[6]).slice(2) && element[10] == 'VENDA')
         let id = ''
 
         if(index != -1) {
