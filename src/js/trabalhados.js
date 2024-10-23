@@ -222,11 +222,7 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
                         // Se todos os arquivos foram processados, faça a manipulação dos dados
                         if (filesFixaProcessed === filesFixa.length) {
-                            if (toggleBtn.checked) {
-                                manipulateMovelData(combinedMovelData);
-                            } else if (!toggleBtn.checked) {
-                                manipulateMovelDataCsv(combinedMovelData)
-                            }
+                            manipulateMovelData(combinedMovelData);
                         }
                     };
 
