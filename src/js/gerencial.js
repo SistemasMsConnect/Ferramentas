@@ -411,7 +411,7 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
 
 function manipulateMovelData(data) {
-    // console.log(data)
+    console.log(data)
 
     let dividedArrays = divideArrayByIndex(data, 16);
     // console.log(dividedArrays)

@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/avancada.css">
+    <link rel="stylesheet" href="../css/trabalhados.css">
 
-    <title>Parque Básica - Avançada</title>
+    <title>Trabalhados</title>
 </head>
 
 <body>
@@ -45,7 +45,7 @@
         <div class="options hide" id="ParqueBasicaOptions">
             <a href="./fixa.html">Fixa</a>
             <a href="./movel.html">Móvel</a>
-            <a>Avançada</a>
+            <a href="./avancada.html">Avançada</a>
             <a href="./fixaRecomendacao.html">Fixa Recomendação</a>
         </div>
 
@@ -68,9 +68,9 @@
 
         <button class="drop" id="GerencialDrop">Gerencial</button>
         <div class="options hide" id="GerencialOptions">
-            <a href="./gerencial.html">Gerencial</a>
-            <a href="./emissao.html">Emissão</a>
-            <a href="./trabalhados.html">Trabalhados</a>
+            <a href="gerencial.html">Gerencial</a>
+            <a href="emissao.html">Emissão</a>
+            <a>Trabalhados</a>
         </div>
 
         <button class="drop" id="QuartilDrop">Quartil</button>
@@ -90,32 +90,40 @@
     </aside>
 
     <div class="delay" id="ferramenta">
-        <h1>Parque Básica - Avançada</h1>
+        <h1>Trabalhados</h1>
 
-        <label class="labelFileInput" id="labelFileInputDados" for="fileInputDados">Escolha o arquivo DADOS .CSV <i
+        <label class="labelFileInput" id="labelTxtFileInput" for="fileTxtInput">Arquivos Txt Mailing Móvel <i
+                class="fa-solid fa-file-lines"></i></label>
+
+        <label class="labelFileInput" id="labelTxtFixaFileInput" for="fileTxtFixaInput">Arquivos Txt Mailing Fixa <i
+                class="fa-solid fa-file-lines"></i></label>
+
+
+        <label class="labelFileInput" id="labelMovelFileInput" for="fileMovelInput">Arquivos tabulaçãoMigracao <i
                 class="fa-solid fa-file-csv"></i></label>
-        <label class="labelFileInput" id="labelFileInputSip" for="fileInputSip">Escolha o arquivo SIP .CSV <i
+
+        <label class="labelFileInput" id="labelFixaFileInput" for="fileFixaInput">Arquivos tabulaçãoFixa <i
                 class="fa-solid fa-file-csv"></i></label>
-        <label class="labelFileInput" id="labelFileInputCep" for="fileInputCep">Escolha o arquivo CEP .CSV <i
-                class="fa-solid fa-file-csv"></i></label>
-        <label class="labelFileInput" id="labelFileInputVoz" for="fileInputVoz">Escolha o arquivo VOZ .CSV <i
-                class="fa-solid fa-file-csv"></i></label>
-        <input type="file" id="fileInputDados" accept=".csv">
-        <input type="file" id="fileInputSip" accept=".csv">
-        <input type="file" id="fileInputCep" accept=".csv">
-        <input type="file" id="fileInputVoz" accept=".csv">
-        <p id="pProcessandoDados">Processando..</p>
+
+
+
+        <input type="file" class="fileInput" id="fileTxtInput" accept=".txt" multiple>
+        <input type="file" class="fileInput" id="fileTxtFixaInput" accept=".txt" multiple>
+
+        <input type="file" class="fileInput" id="fileMovelInput" multiple accept=".csv" />
+        <input type="file" class="fileInput" id="fileFixaInput" multiple accept=".csv" />
+
+
+        <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
-        <button class="btns" id="btnAtualizarCep" onclick="atualizarCep()">Atualizar Cep</button>
-        <button class="btns" id="btnCriarPorcentagem" onclick="dataDiff()">Atualizar %</button>
-        <button class="btns" id="btnCriarArquivo" onclick="criarArquivo()">Gerar Arquivo</button>
-        <button class="btns" id="btnDados">Baixar</button>
+
+        <button class="btns" id="processBtn">Processar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/avancada.js"></script>
+    <script src="../js/trabalhados.js"></script>
 </body>
 
 </html>
