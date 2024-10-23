@@ -2,21 +2,15 @@ const pProcess = document.getElementById('pProcessando')
 const loader = document.getElementById('loader')
 
 
-const toggleBtn = document.getElementById('toggle');
-
 const inputMovel = document.getElementById('fileMovelInput');
 const inputFixa = document.getElementById('fileFixaInput');
 const inputTxt = document.getElementById('fileTxtInput');
 const inputTxtFixa = document.getElementById('fileTxtFixaInput');
-const inputCsv = document.getElementById('fileCsvInput');
-const inputCsvFixa = document.getElementById('fileCsvFixaInput');
 
 const labelMovel = document.getElementById('labelMovelFileInput')
 const labelFixa = document.getElementById('labelFixaFileInput')
 const labelTxt = document.getElementById('labelTxtFileInput')
 const labelTxtFixa = document.getElementById('labelTxtFixaFileInput')
-const labelCsv = document.getElementById('labelCsvFileInput')
-const labelCsvFixa = document.getElementById('labelCsvFixaFileInput')
 
 let dataMovelExport = []
 let dataFixaExport = []
@@ -52,20 +46,6 @@ let trabalhadosF = {}
 let filesDataMovel = {}; // Objeto para armazenar os dados dos arquivos
 let filesDataFixa = {}; // Objeto para armazenar os dados dos arquivos
 
-
-toggleBtn.addEventListener('change', () => {
-    if (toggleBtn.checked) {
-        labelTxt.removeAttribute('style')
-        labelTxtFixa.removeAttribute('style')
-        labelCsv.setAttribute('style', 'display: none')
-        labelCsvFixa.setAttribute('style', 'display: none')
-    } else if (!toggleBtn.checked) {
-        labelTxt.setAttribute('style', 'display: none')
-        labelTxtFixa.setAttribute('style', 'display: none')
-        labelCsv.removeAttribute('style')
-        labelCsvFixa.removeAttribute('style')
-    }
-})
 
 
 
@@ -186,79 +166,11 @@ inputTxtFixa.addEventListener('change', (event) => {
     }
 })
 
-inputCsv.addEventListener('change', (event) => {
-    if (event.target.files.length > 1) {
-        labelCsv.textContent = `${event.target.files.length} arquivos`
-    } else if (event.target.files.length == 1) {
-        labelCsv.textContent = `${event.target.files.length} arquivo`
-    }
-})
-
-inputCsvFixa.addEventListener('change', (event) => {
-    if (event.target.files.length > 1) {
-        labelCsvFixa.textContent = `${event.target.files.length} arquivos`
-    } else if (event.target.files.length == 1) {
-        labelCsvFixa.textContent = `${event.target.files.length} arquivo`
-    }
-})
-
 
 
 document.getElementById('processBtn').addEventListener('click', function () {
     loader.setAttribute('style', 'display: block')
     pProcess.setAttribute('style', 'display: block')
-
-    if (!toggleBtn.checked) {
-        const filesMailingMovel = inputCsv.files
-        const filesMailingFixa = inputCsvFixa.files
-
-
-        Array.from(filesMailingMovel).forEach(file => {
-            const reader = new FileReader();
-
-            reader.onload = function (event) {
-                const data = new Uint8Array(event.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-
-                // Assume que o CSV tem apenas uma folha (sheet)
-                const sheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[sheetName];
-
-                // Converte o sheet para JSON
-                const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-                // Adiciona os dados ao array combinado
-                combinedMailingMovelData = combinedMailingMovelData.concat(csvData);
-                filesMailingMovelProcessed++;
-
-                // Se todos os arquivos foram processados, faça a manipulação dos dados
-                if (filesMailingMovelProcessed === filesMailingMovel.length) {
-                    Array.from(filesMailingFixa).forEach(file => {
-                        const reader = new FileReader();
-
-                        reader.onload = function (event) {
-                            const data = new Uint8Array(event.target.result);
-                            const workbook = XLSX.read(data, { type: 'array' });
-
-                            // Assume que o CSV tem apenas uma folha (sheet)
-                            const sheetName = workbook.SheetNames[0];
-                            const worksheet = workbook.Sheets[sheetName];
-
-                            // Converte o sheet para JSON
-                            const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-                            // Adiciona os dados ao array combinado
-                            combinedMailingFixaData = combinedMailingFixaData.concat(csvData);
-                        };
-
-                        reader.readAsArrayBuffer(file);
-                    });
-                }
-            };
-
-            reader.readAsArrayBuffer(file);
-        });
-    }
 
     const filesMovel = inputMovel.files;
     const filesFixa = inputFixa.files;
