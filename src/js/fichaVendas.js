@@ -318,10 +318,10 @@ function manipulateInputData(data) {
             }
         }
 
-        let indexBko = combinedBkoData.findIndex(element => element[8] == e[6])
+        let indexBko = combinedBkoData.findIndex(element => element[9] == e[6] || element[9] == e[7])
         if (indexBko != -1) {
             if (status == 'RESTRIÇÃO') {
-                subStatus = combinedBkoData[indexBko][10]
+                subStatus = combinedBkoData[indexBko][8]
             }
             trocaTitularidade = combinedBkoData[indexBko][11]
             oferta = combinedBkoData[indexBko][4]
