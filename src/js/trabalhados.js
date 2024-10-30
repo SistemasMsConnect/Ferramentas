@@ -271,7 +271,8 @@ async function manipulateMovelData(data) {
     // console.log(trabalhadosM)
 
     let arrayMovel = Object.keys(filesDataMovel).map(key => filesDataMovel[key])
-    arrayMovel.forEach((e, i) => {
+    arrayMovel.forEach(e => {
+        let trabalhados = 0
         let fileName = ''
         let indexName = e.findIndex(element => element[element.length - 1] != 'ID_PLAY\r' && element[element.length - 1] != element.length - 1)
 
@@ -316,9 +317,12 @@ async function manipulateMovelData(data) {
             })
         }
 
+        trabalhados++
+        console.log('Contou: ' + trabalhados + 'arquivo(s)')
+
         exportMovelToCSV(e, `Movel_${fileName}.csv`)
 
-        if (i == arrayMovel.length - 1) {
+        if (trabalhados == arrayMovel.length) {
             exportToXLSX(dataMovelExport, 'Movel_Trabalhados.xlsx')
         }
 
@@ -397,7 +401,8 @@ async function manipulateFixaData(data) {
     // console.log(trabalhadosF)
 
     let arrayFixa = Object.keys(filesDataFixa).map(key => filesDataFixa[key])
-    arrayFixa.forEach((e, i) => {
+    arrayFixa.forEach(e => {
+        let trabalhados = 0
         let fileName = ''
         let indexName = e.findIndex(element => element[0] != 'ID_PLAY' && element[0] != 0)
 
@@ -442,9 +447,12 @@ async function manipulateFixaData(data) {
             })
         }
 
+        trabalhados++
+        console.log('Contou: ' + trabalhados + 'arquivo(s)')
+
 
         exportFixaToCSV(e, `${fileName}_Fixa.csv`)
-        if (i == arrayFixa.length - 1) {
+        if (trabalhados == arrayFixa.length) {
             exportToXLSX(dataFixaExport, 'Fixa_Trabalhados.xlsx')
         }
 
