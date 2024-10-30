@@ -270,9 +270,9 @@ async function manipulateMovelData(data) {
     // console.log(filesDataMovel)
     // console.log(trabalhadosM)
 
+    let trabalhados = 0
     let arrayMovel = Object.keys(filesDataMovel).map(key => filesDataMovel[key])
     arrayMovel.forEach(e => {
-        let trabalhados = 0
         let fileName = ''
         let indexName = e.findIndex(element => element[element.length - 1] != 'ID_PLAY\r' && element[element.length - 1] != element.length - 1)
 
@@ -319,6 +319,7 @@ async function manipulateMovelData(data) {
 
         trabalhados++
         console.log('Contou: ' + trabalhados + 'arquivo(s)')
+        console.log('Contou: ' + arrayMovel.length)
 
         exportMovelToCSV(e, `Movel_${fileName}.csv`)
 
@@ -400,9 +401,9 @@ async function manipulateFixaData(data) {
     // console.log(filesDataFixa)
     // console.log(trabalhadosF)
 
+    let trabalhados = 0
     let arrayFixa = Object.keys(filesDataFixa).map(key => filesDataFixa[key])
     arrayFixa.forEach(e => {
-        let trabalhados = 0
         let fileName = ''
         let indexName = e.findIndex(element => element[0] != 'ID_PLAY' && element[0] != 0)
 
@@ -449,6 +450,7 @@ async function manipulateFixaData(data) {
 
         trabalhados++
         console.log('Contou: ' + trabalhados + 'arquivo(s)')
+        console.log('Contou: ' + arrayFixa.length)
 
 
         exportFixaToCSV(e, `${fileName}_Fixa.csv`)
