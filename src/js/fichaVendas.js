@@ -297,7 +297,7 @@ function manipulateInputData(data) {
         let trocaTitularidade = ''
         let oitenta = ''
 
-        let indexTabulacao = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] && element[10] == 'VENDA')
+        let indexTabulacao = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] || `${element[5]}${element[6]}` == e[7] || String(element[19]).replace(/[^0-9]/g, '') == String(e[3]).replace(/[^0-9]/g, '') && element[10] == 'VENDA')
         if (indexTabulacao != -1) {
             campanha = combinedTabulacaoData[indexTabulacao][1]
             mailing = combinedTabulacaoData[indexTabulacao][16]
@@ -318,7 +318,7 @@ function manipulateInputData(data) {
             }
         }
 
-        let indexBko = combinedBkoData.findIndex(element => element[9] == e[6] || element[9] == e[7])
+        let indexBko = combinedBkoData.findIndex(element => element[9] == e[6] || element[9] == e[7] || element[3] == String(e[3]).replace(/[^0-9]/g, ''))
         if (indexBko != -1) {
             if (status == 'RESTRIÇÃO') {
                 subStatus = combinedBkoData[indexBko][8]
