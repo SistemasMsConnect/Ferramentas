@@ -70,6 +70,7 @@
         <div class="options hide" id="GerencialOptions">
             <a href="gerencial.html">Gerencial</a>
             <a href="emissao.html">Emissão</a>
+            <a href="./trabalhados.html">Trabalhados</a>
         </div>
 
         <button class="drop" id="QuartilDrop">Quartil</button>
@@ -91,15 +92,28 @@
     <div class="delay" id="ferramenta">
         <h1>Ficha de Vendas</h1>
 
-        <label class="labelFileInput" id="labelInputFileInput" for="fileInputInput">Arquivos Input <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelOitentaFileInput" for="fileOitentaInput">Arquivo Ativos (80) <i
+                class="fa-solid fa-file"></i></label>
 
-        <label class="labelFileInput" id="labelTabulacaoFileInput" for="fileTabulacaoInput">Arquivos tabulação <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelInputFileInput" for="fileInputInput">Arquivos Input <i
+                class="fa-solid fa-file"></i></i></label>
+
+        <label class="labelFileInput" id="labelTabulacaoFileInput" for="fileTabulacaoInput">Arquivos tabulação <i
+                class="fa-solid fa-file-csv"></i></label>
+
+        <label class="labelFileInput" id="labelBkoFileInput" for="fileBkoInput">Arquivo Online BKO <i
+                class="fa-solid fa-file"></i></label>
 
 
-        <label class="labelFileInput" id="labelTabulacaoAceitesFileInput" for="fileTabulacaoAceitesInput">Arquivo tabulação dia vigente <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelTabulacaoAceitesFileInput" for="fileTabulacaoAceitesInput">Arquivo
+            tabulação dia vigente <i class="fa-solid fa-file-csv"></i></label>
 
 
-        <input type="file" class="fileInput" id="fileInputInput" accept=".xlsx" multiple>
+        <input type="file" class="fileInput" id="fileInputInput" multiple>
+
+        <input type="file" class="fileInput" id="fileBkoInput" multiple>
+
+        <input type="file" class="fileInput" id="fileOitentaInput" multiple>
 
         <input type="file" class="fileInput" id="fileTabulacaoInput" accept=".csv" multiple>
 

@@ -3,15 +3,86 @@ const loader = document.getElementById('loader')
 
 const labelCall = document.getElementById('labelCallFileInput')
 const labelDisc = document.getElementById('labelDiscFileInput')
+const labelInput = document.getElementById('labelInputFileInput')
 
 let csvData = []
 let callData = []
+let inputData = []
+
+document.getElementById('fileInputInput').addEventListener('change', handleInput, false)
 
 document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
 
 document.getElementById('fileCallInput').addEventListener('change', handleCall, false);
 
 const mailing = []
+
+function handleInput() {
+    loader.setAttribute('style', 'display: block')
+    pProcess.setAttribute('style', 'display: block')
+
+    const filesInput = document.getElementById('fileInputInput').files
+
+    if (filesInput.length > 1) {
+        labelInput.textContent = `${filesInput.length} arquivos`
+    } else {
+        labelInput.textContent = `${filesInput.length} arquivo`
+    }
+
+    Array.from(filesInput).forEach(file => {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const data = new Uint8Array(event.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            // Assume que o CSV tem apenas uma folha (sheet)
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+
+            // Converte o sheet para JSON
+            const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+            // Adiciona os dados ao array combinado
+            inputData = inputData.concat(csvData);
+            console.log(inputData)
+        };
+
+        pProcess.setAttribute('style', 'display: none')
+        loader.setAttribute('style', 'display: none')
+
+        reader.readAsArrayBuffer(file);
+    });
+
+    // const file = event.target.files[0];
+    // labelInput.textContent = file.name
+
+    // if (!file) {
+    //     alert("Por favor, selecione um arquivo.");
+    //     return;
+    // }
+
+    // const reader = new FileReader();
+
+    // reader.onload = function (e) {
+    //     const data = new Uint8Array(e.target.result);
+    //     const workbook = XLSX.read(data, { type: 'array' });
+
+    //     // Assume the CSV is the first sheet
+    //     const sheetName = workbook.SheetNames[0];
+    //     const worksheet = workbook.Sheets[sheetName];
+    //     const json = XLSX.utils.sheet_to_json(worksheet);
+
+    //     inputData = json
+
+    //     console.log(inputData)
+
+    //     pProcess.setAttribute('style', 'display: none')
+    //     loader.setAttribute('style', 'display: none')
+    // };
+
+    // reader.readAsArrayBuffer(file);
+}
 
 function handleCall(event) {
     loader.setAttribute('style', 'display: block')
@@ -21,7 +92,7 @@ function handleCall(event) {
     labelCall.textContent = file.name
 
     if (!file) {
-        alert("Please select a CSV file first.");
+        alert("Por favor, selecione um arquivo.");
         return;
     }
 
@@ -96,7 +167,7 @@ function handleFileSelect(event) {
     labelDisc.textContent = file.name
 
     if (!file) {
-        alert("Please select a CSV file first.");
+        alert("Por favor, selecione um arquivo.");
         return;
     }
 
@@ -196,13 +267,26 @@ function handleFileSelect(event) {
 
                 let audiencia = ''
                 let tipoAudiencia = 0
+                let terminais = ''
                 if (e.Campanha == 'MIGRACAO_CAMP PARTE I' || e.Campanha == 'MIGRACAO_CAMP PARTE II') {
                     audiencia = telefoneCompleto
                     tipoAudiencia = 3
                 } else {
                     audiencia = e.Field_2
                     tipoAudiencia = 4
+
+                    let index = inputData.findIndex(element => element[19] == telefoneCompleto)
+
+                    if (index != -1) {
+                        if (String(inputData[index][16]).includes('TOTAL')) {
+                            terminais = 2
+                        } else if (String(inputData[index][16]).includes('SOLO')) {
+                            terminais = 1
+                        }
+                    }
                 }
+
+
 
                 if (tipoAudiencia == 3) {
                     tipo = 'MOV'
@@ -210,24 +294,45 @@ function handleFileSelect(event) {
                     tipo = 'FIX'
                 }
 
-                csvData.push({
-                    ID_PLAY: e.ID_Cliente,
-                    ID_AUDIENCIA: audiencia,
-                    ID_TIPO_AUDIENCIA: tipoAudiencia,
-                    ID_MOTIVO_TABULACAO: e.ISDN_Code,
-                    DT_TABULACAO: dataEHora,
-                    NR_TLFN: telefoneCompleto,
-                    NOVO_CPF: '0',
-                    CPF_OPERADOR: '0',
-                    NR_TLFN_ADD1: '0',
-                    NR_TLFN_ADD2: '0',
-                    NR_TLFN_ADD3: '0',
-                    EMAIL_ADD1: '0',
-                    NR_DURACAO_CHAMADA: '0',
-                    QTD_LIGACAO: 1,
-                    CORINGA1: '0',
-                    CORINGA2: '0'
-                })
+                if (tipoAudiencia == 3) {
+                    csvData.push({
+                        ID_PLAY: e.ID_Cliente,
+                        ID_AUDIENCIA: audiencia,
+                        ID_TIPO_AUDIENCIA: tipoAudiencia,
+                        ID_MOTIVO_TABULACAO: e.ISDN_Code,
+                        DT_TABULACAO: dataEHora,
+                        NR_TLFN: telefoneCompleto,
+                        NOVO_CPF: '0',
+                        CPF_OPERADOR: '0',
+                        NR_TLFN_ADD1: '0',
+                        NR_TLFN_ADD2: '0',
+                        NR_TLFN_ADD3: '0',
+                        EMAIL_ADD1: '0',
+                        NR_DURACAO_CHAMADA: '0',
+                        QTD_LIGACAO: 1,
+                        CORINGA1: '0',
+                        CORINGA2: '0'
+                    })
+                } else if (tipoAudiencia == 4) {
+                    csvData.push({
+                        ID_CAMPANHA: e.ID_Cliente,
+                        ID_AUDIENCIA: audiencia,
+                        ID_TIPO_AUDIENCIA: tipoAudiencia,
+                        ID_RETORNO: e.ISDN_Code,
+                        DT_TABULACAO: dataEHora,
+                        NR_TLFN: telefoneCompleto,
+                        NOVO_CPF: '0',
+                        CPF_OPERADOR: '0',
+                        NR_TLFN_ADD1: '0',
+                        NR_TLFN_ADD2: '0',
+                        NR_TLFN_ADD3: '0',
+                        EMAIL_ADD1: '0',
+                        NR_DURACAO_CHAMADA: '0',
+                        QD_CHAMADAS: 1,
+                        ID_OFERTA: '0',
+                        QT_TERMINAIS: terminais
+                    })
+                }
             })
 
             csvData.forEach(e => {
@@ -245,15 +350,15 @@ function handleFileSelect(event) {
             let minutosHoje = dataHoje.getMinutes()
             let segundosHoje = dataHoje.getSeconds()
 
-            if(String(horasHoje).length == 1) {
+            if (String(horasHoje).length == 1) {
                 horasHoje = `0${horasHoje}`
             }
 
-            if(String(minutosHoje).length == 1) {
+            if (String(minutosHoje).length == 1) {
                 minutosHoje = `0${minutosHoje}`
             }
 
-            if(String(segundosHoje).length == 1) {
+            if (String(segundosHoje).length == 1) {
                 segundosHoje = `0${segundosHoje}`
             }
 
@@ -285,7 +390,7 @@ function downloadManipulatedCsv(data, name) {
     const newWorksheet = XLSX.utils.json_to_sheet(data);
     const newWorkbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, 'Sheet1');
-    const csvContent = XLSX.write(newWorkbook, { bookType: 'csv', type: 'string' });
+    const csvContent = XLSX.write(newWorkbook, { bookType: 'csv', type: 'string', FS: '|' });
 
     downloadCSV(csvContent, name);
 }

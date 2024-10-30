@@ -3,11 +3,15 @@ const loader = document.getElementById('loader')
 
 const inputInput = document.getElementById('fileInputInput');
 const inputTabulacao = document.getElementById('fileTabulacaoInput');
+const inputBko = document.getElementById('fileBkoInput');
 const inputTabulacaoAceites = document.getElementById('fileTabulacaoAceitesInput');
+const inputOitenta = document.getElementById('fileOitentaInput');
 
 const labelInput = document.getElementById('labelInputFileInput')
 const labelTabulacao = document.getElementById('labelTabulacaoFileInput')
+const labelBko = document.getElementById('labelBkoFileInput')
 const labelTabulacaoAceites = document.getElementById('labelTabulacaoAceitesFileInput')
+const labelOitenta = document.getElementById('labelOitentaFileInput')
 
 let dataMovelExport = []
 let dataFixaExport = []
@@ -16,12 +20,18 @@ let dataAceitesExport = []
 
 let filesInputProcessed = 0
 let filesTabulacaoProcessed = 0
+let filesBkoProcessed = 0
 let filesTabulacaoAceitesProcessed = 0
+let filesOitentaProcessed = 0
 
 
 let combinedInputData = []
 let combinedTabulacaoData = []
+let combinedBkoData = []
 let combinedTabulacaoAceitesData = []
+let combinedOitentaData = []
+
+let agentes = []
 
 
 
@@ -49,6 +59,22 @@ inputTabulacaoAceites.addEventListener('change', (event) => {
     }
 })
 
+inputBko.addEventListener('change', (event) => {
+    if (event.target.files.length > 1) {
+        labelBko.textContent = `${event.target.files.length} arquivos`
+    } else if (event.target.files.length == 1) {
+        labelBko.textContent = `${event.target.files.length} arquivo`
+    }
+})
+
+inputOitenta.addEventListener('change', (event) => {
+    if (event.target.files.length > 1) {
+        labelOitenta.textContent = `${event.target.files.length} arquivos`
+    } else if (event.target.files.length == 1) {
+        labelOitenta.textContent = `${event.target.files.length} arquivo`
+    }
+})
+
 
 
 document.getElementById('processBtn').addEventListener('click', function () {
@@ -57,10 +83,12 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
     const filesInput = inputInput.files;
     const filesTabulacao = inputTabulacao.files;
+    const filesBko = inputBko.files;
     const filesTabulacaoAceites = inputTabulacaoAceites.files;
+    const filesOitenta = inputOitenta.files;
 
-    if (filesInput.length === 0 || filesTabulacao.length === 0 || filesTabulacaoAceites.length === 0) {
-        alert('Por favor, selecione pelo menos um arquivo CSV.');
+    if (filesInput.length === 0 || filesTabulacao.length === 0 || filesTabulacaoAceites.length === 0 || filesBko.length === 0 || filesOitenta.length === 0) {
+        alert('Por favor, selecione pelo menos um arquivo em cada campo.');
         return;
     }
 
@@ -124,7 +152,58 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
                                     // Se todos os arquivos foram processados, faça a manipulação dos dados
                                     if (filesTabulacaoAceitesProcessed === filesTabulacaoAceites.length) {
-                                        manipulateTabulacaoData(combinedTabulacaoData)
+                                        Array.from(filesBko).forEach(file => {
+                                            const reader = new FileReader();
+
+                                            reader.onload = function (event) {
+                                                const data = new Uint8Array(event.target.result);
+                                                const workbook = XLSX.read(data, { type: 'array' });
+
+                                                // Assume que o CSV tem apenas uma folha (sheet)
+                                                const sheetName = workbook.SheetNames[0];
+                                                const worksheet = workbook.Sheets[sheetName];
+
+                                                // Converte o sheet para JSON
+                                                const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                                                // Adiciona os dados ao array combinado
+                                                combinedBkoData = combinedBkoData.concat(csvData);
+                                                filesBkoProcessed++;
+
+                                                // Se todos os arquivos foram processados, faça a manipulação dos dados
+                                                if (filesBkoProcessed === filesBko.length) {
+
+                                                    Array.from(filesOitenta).forEach(file => {
+                                                        const reader = new FileReader();
+
+                                                        reader.onload = function (event) {
+                                                            const data = new Uint8Array(event.target.result);
+                                                            const workbook = XLSX.read(data, { type: 'array' });
+
+                                                            // Assume que o CSV tem apenas uma folha (sheet)
+                                                            const sheetName = workbook.SheetNames[0];
+                                                            const worksheet = workbook.Sheets[sheetName];
+
+                                                            // Converte o sheet para JSON
+                                                            const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                                                            // Adiciona os dados ao array combinado
+                                                            combinedOitentaData = combinedOitentaData.concat(csvData);
+                                                            filesOitentaProcessed++;
+
+                                                            // Se todos os arquivos foram processados, faça a manipulação dos dados
+                                                            if (filesOitentaProcessed === filesOitenta.length) {
+                                                                manipulateOitentaData(combinedOitentaData)
+                                                            }
+                                                        };
+
+                                                        reader.readAsArrayBuffer(file);
+                                                    });
+                                                }
+                                            };
+
+                                            reader.readAsArrayBuffer(file);
+                                        });
                                     }
                                 };
 
@@ -143,9 +222,34 @@ document.getElementById('processBtn').addEventListener('click', function () {
 })
 
 
+function manipulateOitentaData(data) {
+    console.log(data)
+
+    manipulateBkoData(combinedBkoData)
+}
+
+function manipulateBkoData(data) {
+    console.log(data)
+
+    manipulateTabulacaoData(combinedTabulacaoData)
+}
+
+
 
 function manipulateTabulacaoData(data) {
     console.log(data)
+
+    data.forEach(e => {
+        let index80 = combinedOitentaData.findIndex(element => element[8] == e[14])
+        if (index80 !== -1) {
+            agentes.push({
+                CpfOperador: String(combinedOitentaData[index80][5]).replace(/[^0-9]/g, ''),
+                Oitenta: combinedOitentaData[index80][7],
+                Telefone: `${e[5]}${e[6]}`,
+                CpfCliente: e[19]
+            })
+        }
+    })
 
     manipulateTabulacaoAceitesData(combinedTabulacaoAceitesData)
 }
@@ -157,10 +261,10 @@ function manipulateTabulacaoAceitesData(data) {
     let aceitesFixa = 0
 
     data.forEach(e => {
-        if(e[10] == 'VENDA') {
-            if(e[1] == 'FIXA_A' || e[1] == 'FIXA_B' || e[1] == 'FIXA_A+') {
+        if (e[10] == 'VENDA') {
+            if (e[1] == 'FIXA_A' || e[1] == 'FIXA_B' || e[1] == 'FIXA_A+') {
                 aceitesFixa++
-            } else if(e[1] == 'MIGRACAO_CAMP PARTE I' || e[1] == 'MIGRACAO_CAMP PARTE II') {
+            } else if (e[1] == 'MIGRACAO_CAMP PARTE I' || e[1] == 'MIGRACAO_CAMP PARTE II') {
                 aceitesMovel++
             }
         }
@@ -178,35 +282,49 @@ function manipulateTabulacaoAceitesData(data) {
 
 function manipulateInputData(data) {
     console.log(data)
+    console.log(agentes)
 
     data.forEach(e => {
-        let index = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] && element[10] == 'VENDA')
-
         let campanha = ''
         let dataCompletaTabulacao = ''
         let regiao = ''
         let mailing = ''
         let adicional = ''
         let cod = ''
+        let oferta = ''
+        let status = ''
+        let subStatus = ''
+        let trocaTitularidade = ''
+        let oitenta = ''
 
-
-        if (index != -1) {
-            campanha = combinedTabulacaoData[index][1]
-            mailing = combinedTabulacaoData[index][16]
-            if (combinedTabulacaoData[index][1] == 'FIXA_A' || combinedTabulacaoData[index][1] == 'FIXA_A+' || combinedTabulacaoData[index][1] == 'FIXA_B') {
-                adicional = ''
+        let indexTabulacao = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] && element[10] == 'VENDA')
+        if (indexTabulacao != -1) {
+            campanha = combinedTabulacaoData[indexTabulacao][1]
+            mailing = combinedTabulacaoData[indexTabulacao][16]
+            if (combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A+' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_B') {
+                campanha = 'FIXA FTTH'
             } else {
-                adicional = `${combinedTabulacaoData[index][30]} + 5`
+                adicional = `${combinedTabulacaoData[indexTabulacao][30]} + 5`
+                campanha = 'MIGRAÇÃO PRE CTRL'
             }
 
 
-            if (String(combinedTabulacaoData[index][3]).length == 5) {
-                let dataFuncao = numeroInteiroParaData(combinedTabulacaoData[index][3])
+            if (String(combinedTabulacaoData[indexTabulacao][3]).length == 5) {
+                let dataFuncao = numeroInteiroParaData(combinedTabulacaoData[indexTabulacao][3])
 
                 dataCompletaTabulacao = `${dataFuncao.getUTCMonth() + 1}/${dataFuncao.getUTCDate()}/${dataFuncao.getUTCFullYear()}`
             } else {
-                dataCompletaTabulacao = combinedTabulacaoData[index][3]
+                dataCompletaTabulacao = combinedTabulacaoData[indexTabulacao][3]
             }
+        }
+
+        let indexBko = combinedBkoData.findIndex(element => element[8] == e[6])
+        if (indexBko != -1) {
+            if (status == 'RESTRIÇÃO') {
+                subStatus = combinedBkoData[indexBko][10]
+            }
+            trocaTitularidade = combinedBkoData[indexBko][11]
+            oferta = combinedBkoData[indexBko][4]
         }
 
         if (String(e[6]).slice(0, 2) == '11' || String(e[6]).slice(0, 2) == '12' || String(e[6]).slice(0, 2) == '13') {
@@ -223,23 +341,37 @@ function manipulateInputData(data) {
 
         if (e[24] == 'Fatura Digital ') {
             cod = 'SIM'
+        } else {
+            cod = 'NÃO'
         }
+
+        if (e[46] == 'Instalado' || e[46] == 'Agendado') {
+            status = 'EMITIDO'
+        } else {
+            status = 'RESTRIÇÃO'
+        }
+
+        let index80 = agentes.findIndex(element => element.Telefone == e[19] || element.CpfCliente == String(e[3]).replace(/[^0-9]/g, ''))
+        if (index80 !== -1) {
+            oitenta = agentes[index80].Oitenta
+        }
+
         // Modificado para o arquivo do modulo 89
         dataMovelExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
             DataEmissao: e[33],
-            Eps: 'Ms Connect',
+            Eps: 'MS CONNECT',
             Regional: regiao,
             Terminal: e[6],
-            CPFCliente: e[3],
-            Matricula: '',
-            Oferta: e[16],
-            Status: e[46],
-            SubStatus: '',
-            TrocaTitularidade: '',
+            CPFCliente: String(e[3]).replace(/[^0-9]/g, ''),
+            Matricula: oitenta,
+            Oferta: oferta,
+            Status: status,
+            SubStatus: subStatus,
+            TrocaTitularidade: trocaTitularidade,
             Mailing: mailing,
-            Perfil: campanha,
+            Perfil: '',
             Site: 'MS',
             PlataformaEmissao: 'NEXT',
             HomeOffice: 'NÃO',
@@ -252,17 +384,17 @@ function manipulateInputData(data) {
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
             DataEmissao: e[33],
-            Eps: "Ms Connect",
+            Eps: "MS CONNECT",
             Regional: regiao,
             Terminal: e[6],
-            Matricula: '',
-            Oferta: e[16],
-            Status: e[46],
-            SubStatus: '',
-            TrocaTitularidade: '',
+            Matricula: oitenta,
+            Oferta: oferta,
+            Status: status,
+            SubStatus: subStatus,
+            TrocaTitularidade: trocaTitularidade,
             Mailing: mailing,
-            Perfil: campanha,
-            ProtocoloVenda: e[31],
+            Perfil: '',
+            ProtocoloVenda: e[30],
             Site: 'MS',
             Plataforma: 'NEXT',
             HomeOffice: 'NÃO',

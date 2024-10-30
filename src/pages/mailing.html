@@ -92,15 +92,20 @@
     <div class="delay" id="ferramenta">
         <h1>Retorno Mailing</h1>
 
-        <label class="labelFileInput" id="labelCallFileInput" for="fileCallInput">Arquivo Ligações<i
-                class="fa-solid fa-file-csv"></i></label>
 
-        <input type="file" id="fileCallInput" accept=".csv">
+        <label class="labelFileInput" id="labelInputFileInput" for="fileInputInput">Arquivo Input <i class="fa-solid fa-file-excel"></i></label>
 
-        <label class="labelFileInput" id="labelDiscFileInput" for="fileInput">Arquivo Discagem<i
-                class="fa-solid fa-file-csv"></i></label>
+        <input class="fileInput" type="file" id="fileInputInput" accept=".xls" multiple>
 
-        <input type="file" id="fileInput" accept=".csv">
+
+        <label class="labelFileInput" id="labelCallFileInput" for="fileCallInput">Arquivo Ligações <i class="fa-solid fa-file-csv"></i></label>
+
+        <input class="fileInput" type="file" id="fileCallInput" accept=".csv">
+
+
+        <label class="labelFileInput" id="labelDiscFileInput" for="fileInput">Arquivo Discagem <i class="fa-solid fa-file-csv"></i></label>
+
+        <input class="fileInput" type="file" id="fileInput" accept=".csv">
 
         <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
