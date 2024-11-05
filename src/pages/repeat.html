@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/empresAqui.css">
+    <link rel="stylesheet" href="../css/repeat.css">
 
-    <title>EmpresAqui</title>
+    <title>Quantidade de Ligações</title>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
 
         <button class="drop" id="EmpresAquiDrop">EmpresAqui</button>
         <div class="options hide" id="EmpresAquiOptions">
-            <a>EmpresAqui</a>
+            <a href="./empresAqui.html">EmpresAqui</a>
         </div>
 
         <h2>B2C</h2>
@@ -80,7 +80,7 @@
 
         <button class="drop" id="TabulacaoDrop">Tabulação</button>
         <div class="options hide" id="TabulacaoOptions">
-            <a href="tabulacao.html">Tabulação</a>
+            <a>Tabulação</a>
         </div>
 
         <button class="drop" id="FichaVendasDrop">Ficha de Vendas</button>
@@ -90,25 +90,32 @@
 
         <button class="drop" id="QuantidadeLigacoesDrop">Ligações</button>
         <div class="options hide" id="QuantidadeLigacoesOptions">
-            <a href="repeat.html">Quantidade</a>
+            <a>Quantidade</a>
         </div>
     </aside>
 
     <div class="delay" id="ferramenta">
-        <h1>EmpresAqui</h1>
+        <h1>Quantidade de Ligações</h1>
 
-        <label class="labelFileInput" id="labelFileInput" for="fileInput">Escolha
-            o arquivo .xlsb <i class="fa-solid fa-file-excel"></i></label>
-        <input type="file" id="fileInput" accept=".xlsb">
+
+        <label class="labelFileInput" id="labelMovelFileInput" for="fileMovelInput">Tabulações <i class="fa-solid fa-file-csv"></i></label>
+
+        <input type="file" class="fileInput" id="fileMovelInput" multiple accept=".csv" />
+
+
+        <input type="date" id="dateInput">
+
 
         <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
+
+        <button class="btns" id="processBtn">Processar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/empresAqui.js"></script>
+    <script src="../js/repeat.js"></script>
 </body>
 
 </html>

@@ -12,12 +12,14 @@ let pRM = document.getElementById('MailingDrop')
 let dRM = document.getElementById('MailingOptions')
 let pGF = document.getElementById('GerencialDrop')
 let dGF = document.getElementById('GerencialOptions')
-let pQL = document.getElementById('QuartilDrop')
-let dQL = document.getElementById('QuartilOptions')
+let pQR = document.getElementById('QuartilDrop')
+let dQR = document.getElementById('QuartilOptions')
 let pTB = document.getElementById('TabulacaoDrop')
 let dTB = document.getElementById('TabulacaoOptions')
 let pFV = document.getElementById('FichaVendasDrop')
 let dFV = document.getElementById('FichaVendasOptions')
+let pQL = document.getElementById('QuantidadeLigacoesDrop')
+let dQL = document.getElementById('QuantidadeLigacoesOptions')
 
 let as = document.querySelectorAll('a')
 
@@ -59,8 +61,8 @@ pGF.addEventListener('click', () => {
     dGF.classList.toggle('hide')
 })
 
-pQL.addEventListener('click', () => {
-    dQL.classList.toggle('hide')
+pQR.addEventListener('click', () => {
+    dQR.classList.toggle('hide')
 })
 
 pTB.addEventListener('click', () => {
@@ -69,4 +71,8 @@ pTB.addEventListener('click', () => {
 
 pFV.addEventListener('click', () => {
     dFV.classList.toggle('hide')
+})
+
+pQL.addEventListener('click', () => {
+    dQL.classList.toggle('hide')
 })
