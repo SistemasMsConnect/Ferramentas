@@ -19,3 +19,15 @@
 #btn, #loader {
     display: none;
 }
+
+#dropdown {
+    margin-top: 15px;
+    width: 75px;
+    height: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: #883397;
+    color: aliceblue;
+    padding: 5px;
+}

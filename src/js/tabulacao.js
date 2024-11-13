@@ -4,6 +4,7 @@ const loader = document.getElementById('loader')
 const inputMovel = document.getElementById('fileMovelInput');
 const inputFixa = document.getElementById('fileFixaInput');
 const inputAtivos = document.getElementById('fileAtivosInput');
+const dropdown = document.getElementById('dropdown');
 
 const labelMovel = document.getElementById('labelMovelFileInput')
 const labelFixa = document.getElementById('labelFixaFileInput')
@@ -121,12 +122,8 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
                                     // Adiciona os dados ao array combinado
                                     combinedAtivosData = combinedAtivosData.concat(csvData);
-                                    filesAtivosProcessed++;
 
-                                    // Se todos os arquivos foram processados, faça a manipulação dos dados
-                                    if (filesAtivosProcessed === filesAtivos.length) {
-                                        manipulateMovelData(combinedMovelData);
-                                    }
+                                    manipulateMovelData(combinedMovelData);
                                 };
 
                                 reader.readAsArrayBuffer(file);
@@ -147,9 +144,9 @@ document.getElementById('processBtn').addEventListener('click', function () {
 function manipulateMovelData(data) {
     data.forEach(e => {
         let funcional = ''
-        let index = combinedAtivosData.findIndex(element => element[0] == e[14])
+        let index = combinedAtivosData.findIndex(element => element[0] == e[14] || String(element[5]).replace(/[^0-9]/g, '') == e[15])
         if (index != -1) {
-            funcional = combinedAtivosData[index][1]
+            funcional = combinedAtivosData[index][7]
         }
 
         if (e[8] == 'AlÃ´') {
@@ -162,7 +159,7 @@ function manipulateMovelData(data) {
                 PRODUTO: 'Movel',
                 TABULACAO: e[10],
                 DATA: e[3],
-                SEMANA: `=CONCAT("S";NÚMSEMANA(H${dataMovelExport.length+2})-NÚMSEMANA(FIMMÊS(H${dataMovelExport.length+2};-1)+1)+1)`,
+                SEMANA: dropdown.value,
                 ID_PLAY: e[16]
             })
         }
@@ -180,9 +177,9 @@ function manipulateMovelData(data) {
 function manipulateFixaData(data) {
     data.forEach(e => {
         let funcional = ''
-        let index = combinedAtivosData.findIndex(element => element[0] == e[14])
+        let index = combinedAtivosData.findIndex(element => element[0] == e[14] || String(element[5]).replace(/[^0-9]/g, '') == e[15])
         if (index != -1) {
-            funcional = combinedAtivosData[index][1]
+            funcional = combinedAtivosData[index][7]
         }
 
         if (e[8] == 'AlÃ´') {
@@ -195,7 +192,7 @@ function manipulateFixaData(data) {
                 PRODUTO: 'Fixa',
                 TABULACAO: e[10],
                 DATA: e[3],
-                SEMANA: `=CONCAT("S";NÚMSEMANA(H${dataFixaExport.length+2})-NÚMSEMANA(FIMMÊS(H${dataFixaExport.length+2};-1)+1)+1)`,
+                SEMANA: dropdown.value,
                 ID_PLAY: e[16]
             })
         }
