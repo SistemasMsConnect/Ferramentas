@@ -486,7 +486,7 @@ function manipulateMovelData(data) {
                 _11++
                 if (eE[8] == "AlÃ´") {
                     atendida11++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco11++
                         if (!aloUnico11.includes(eE[19])) {
                             aloUnico11.push(eE[19])
@@ -503,7 +503,7 @@ function manipulateMovelData(data) {
                 _12++
                 if (eE[8] == "AlÃ´") {
                     atendida12++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco12++
                         if (!aloUnico12.includes(eE[19])) {
                             aloUnico12.push(eE[19])
@@ -520,7 +520,7 @@ function manipulateMovelData(data) {
                 _13++
                 if (eE[8] == "AlÃ´") {
                     atendida13++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco13++
                         if (!aloUnico13.includes(eE[19])) {
                             aloUnico13.push(eE[19])
@@ -537,7 +537,7 @@ function manipulateMovelData(data) {
                 _14++
                 if (eE[8] == "AlÃ´") {
                     atendida14++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco14++
                         if (!aloUnico14.includes(eE[19])) {
                             aloUnico14.push(eE[19])
@@ -554,7 +554,7 @@ function manipulateMovelData(data) {
                 _15++
                 if (eE[8] == "AlÃ´") {
                     atendida15++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco15++
                         if (!aloUnico15.includes(eE[19])) {
                             aloUnico15.push(eE[19])
@@ -571,7 +571,7 @@ function manipulateMovelData(data) {
                 _16++
                 if (eE[8] == "AlÃ´") {
                     atendida16++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco16++
                         if (!aloUnico16.includes(eE[19])) {
                             aloUnico16.push(eE[19])
@@ -588,7 +588,7 @@ function manipulateMovelData(data) {
                 _17++
                 if (eE[8] == "AlÃ´") {
                     atendida17++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco17++
                         if (!aloUnico17.includes(eE[19])) {
                             aloUnico17.push(eE[19])
@@ -605,7 +605,7 @@ function manipulateMovelData(data) {
                 _18++
                 if (eE[8] == "AlÃ´") {
                     atendida18++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco18++
                         if (!aloUnico18.includes(eE[19])) {
                             aloUnico18.push(eE[19])
@@ -622,7 +622,7 @@ function manipulateMovelData(data) {
                 _19++
                 if (eE[8] == "AlÃ´") {
                     atendida19++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco19++
                         if (!aloUnico19.includes(eE[19])) {
                             aloUnico19.push(eE[19])
@@ -942,7 +942,7 @@ function manipulateMovelData(data) {
             falhaDaOperadoraSP1++
         }
 
-        if (String(e[10]).includes('LIGAÃ‡AO INTERROMPIDA') || String(e[10]).includes('LIGACAO INTERROMPIDA')) {
+        if (String(e[10]).includes('LIGACAO INTERROMPIDA') || String(e[10]).includes('LIGACAO INTERROMPIDA')) {
             ligacaoInterrompidaSP1++
         } else if (String(e[10]) == 'LINHA MUDA') {
             linhaMudaSP1++
@@ -1061,7 +1061,7 @@ function manipulateMovelData(data) {
             falhaDaOperadoraSPI++
         }
 
-        if (String(e[10]).includes('LIGAÃ‡AO INTERROMPIDA') || String(e[10]).includes('LIGACAO INTERROMPIDA')) {
+        if (String(e[10]).includes('LIGACAO INTERROMPIDA') || String(e[10]).includes('LIGACAO INTERROMPIDA')) {
             ligacaoInterrompidaSPI++
         } else if (String(e[10]) == 'LINHA MUDA') {
             linhaMudaSPI++
@@ -1392,7 +1392,7 @@ function manipulateFixaData(data) {
                 _11++
                 if (eE[8] == "AlÃ´") {
                     atendida11++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco11++
                         if (!aloUnico11.includes(eE[19])) {
                             aloUnico11.push(eE[19])
@@ -1409,7 +1409,7 @@ function manipulateFixaData(data) {
                 _12++
                 if (eE[8] == "AlÃ´") {
                     atendida12++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco12++
                         if (!aloUnico12.includes(eE[19])) {
                             aloUnico12.push(eE[19])
@@ -1426,7 +1426,7 @@ function manipulateFixaData(data) {
                 _13++
                 if (eE[8] == "AlÃ´") {
                     atendida13++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco13++
                         if (!aloUnico13.includes(eE[19])) {
                             aloUnico13.push(eE[19])
@@ -1443,7 +1443,7 @@ function manipulateFixaData(data) {
                 _14++
                 if (eE[8] == "AlÃ´") {
                     atendida14++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco14++
                         if (!aloUnico14.includes(eE[19])) {
                             aloUnico14.push(eE[19])
@@ -1460,7 +1460,7 @@ function manipulateFixaData(data) {
                 _15++
                 if (eE[8] == "AlÃ´") {
                     atendida15++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco15++
                         if (!aloUnico15.includes(eE[19])) {
                             aloUnico15.push(eE[19])
@@ -1477,7 +1477,7 @@ function manipulateFixaData(data) {
                 _16++
                 if (eE[8] == "AlÃ´") {
                     atendida16++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco16++
                         if (!aloUnico16.includes(eE[19])) {
                             aloUnico16.push(eE[19])
@@ -1494,7 +1494,7 @@ function manipulateFixaData(data) {
                 _17++
                 if (eE[8] == "AlÃ´") {
                     atendida17++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco17++
                         if (!aloUnico17.includes(eE[19])) {
                             aloUnico17.push(eE[19])
@@ -1511,7 +1511,7 @@ function manipulateFixaData(data) {
                 _18++
                 if (eE[8] == "AlÃ´") {
                     atendida18++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco18++
                         if (!aloUnico18.includes(eE[19])) {
                             aloUnico18.push(eE[19])
@@ -1528,7 +1528,7 @@ function manipulateFixaData(data) {
                 _19++
                 if (eE[8] == "AlÃ´") {
                     atendida19++
-                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGAÃ‡AO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULAÃ‡ÃƒO AUTOMÃTICA' && eE[10] != 'LIGAÃ‡ÃƒO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
+                    if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco19++
                         if (!aloUnico19.includes(eE[19])) {
                             aloUnico19.push(eE[19])
