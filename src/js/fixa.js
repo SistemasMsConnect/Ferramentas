@@ -2,217 +2,161 @@ const loader = document.getElementById('loader')
 const btn = document.getElementById('btn')
 const fileName = document.getElementById('labelFileInput')
 const pProcess = document.getElementById('pProcessando')
+const input = document.getElementById('fileInput')
+
 
 document.getElementById('fileInput').addEventListener('change', function (event) {
     loader.setAttribute('style', 'display: block')
     pProcess.setAttribute('style', 'display: block')
 
-    const file = event.target.files[0];
-    fileName.textContent = file.name
+    var files = input.files
 
-    if (!file) {
-        return;
-    }
+    Array.from(files).forEach(file => {
+        const reader = new FileReader();
 
-    const reader = new FileReader();
+        reader.onload = function (event) {
+            const data = new Uint8Array(event.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
 
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSV(content);
-        pProcess.setAttribute('style', 'display: none')
-        loader.setAttribute('style', 'display: none')
-    };
+            // Assume que o CSV tem apenas uma folha (sheet)
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
 
-    reader.readAsText(file, 'ISO-8859-1');
+            // Converte o sheet para JSON
+            const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+            const headers = csvData[0]
+            const rows = csvData.slice(1)
+
+            const indexedData = rows.map(row => {
+                let obj = {}
+                row.forEach((value, index) => {
+                    obj[headers[index]] = value
+                })
+                return obj
+            })
+
+            const content = indexedData.map(item => {
+                item.REDE = item.CONTA_COBRANCA
+                delete item.CONTA_COBRANCA
+                return item
+            })
+
+            const colunasDesejadas = ["DOCUMENTO", "DESIGNADOR", "VL_FAT_BRUTO", "DS_PRODUTO", "REDE", "DT_INI_FDLZ", "DT_FIM_FDLZ", "TECNOLOGIA_ORIGEM", "DEPARA", "M", "DS_PRODUTO_TECNOLOGIA"];
+
+            const filteredData = content.map(item => {
+                return colunasDesejadas.reduce((obj, key) => {
+                    if (item[key] !== undefined) {
+                        obj[key] = item[key];
+                    }
+                    return obj;
+                }, {});
+            });
+
+            console.log(filteredData);
+            processCSV(filteredData)
+        };
+
+        reader.readAsArrayBuffer(file);
+    });
 });
 
 function processCSV(content) {
-    // Divida o conteúdo em linhas
-    const lines = content.split('\n');
-
-    let newCSVContent = '';
-
-    // Pegar a primeira linha (cabeçalho)
-    const firstLine = lines.shift();
-    const splitFirstLine = firstLine.split(';')
-
-    splitFirstLine.splice(27, 9)
-    splitFirstLine.splice(25, 1)
-    splitFirstLine.splice(21, 3)
-    splitFirstLine.splice(19, 1)
-    splitFirstLine.splice(7, 9)
-    splitFirstLine.splice(4, 1)
-    splitFirstLine.splice(1, 1)
-
-    splitFirstLine[1] = 'REDE'
-
-    const firstLineIndexTwo = splitFirstLine.slice(1, 2)
-    const string = firstLineIndexTwo[0]
-
-    splitFirstLine.splice(5, 0, string)
-    splitFirstLine.splice(1, 1)
-    const joinFirstLine = splitFirstLine.join(',') + '\n'
-
-
-    // Remove a ultima linha em branco
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
-
-    // Crie uma variável para armazenar o conteúdo do novo arquivo CSV
-    let csvData = [];
-
-    // Processar cada linha
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
-
-        // 1. Ajustar linhas que foram empurradas erroniamente
-        if (columns[36] === '' || columns[36] === null || columns[36] === undefined) {
-
-        } else {
-            columns.splice(10, 1)
+    content.forEach(function (line) {
+        if (line["DEPARA"] === '' || line["DEPARA"] === null || line["DEPARA"] === undefined) {
+            line["DEPARA"] = 'zzz'
         }
 
-        // 2. Excluir colunas
-        // columns.splice(27, 9)
-        // columns.splice(25, 1)
-        // columns.splice(21, 3)
-        // columns.splice(19, 1)
-        // columns.splice(7, 9)
-        // columns.splice(4, 1)
-        // columns.splice(1, 1)
-
-        // 3. Adicionar 0 nas células vazias
-        if (columns[0].length < 5 || columns[0] === undefined) {
-            columns[0] = '0'
+        if (line["M"] === '' || line["M"] === null || line["M"] === undefined) {
+            line["M"] = '0'
         }
 
-        if (columns[2].length < 5 || columns[2] === undefined) {
-            columns[2] = '0'
+        if (line["DOCUMENTO"] === '' || line["DOCUMENTO"] === null || line["DOCUMENTO"] === undefined) {
+            line["DOCUMENTO"] = '0'
         }
-
-        if (columns[3].length < 5 || columns[3] === undefined) {
-            columns[3] = '0'
-        }
-
-        if (columns[5].length <= 1) {
-            if (columns[5] === '0' || columns[5] === undefined || columns[5] === null || columns[5] === '') {
-                columns[5] = '0'
-            }
-        }
-
-        if (columns[6].length <= 2 || columns[6] === undefined) {
-            columns[6] = '0'
-        }
-
-        if (columns[16].length <= 2 || columns[16] === undefined) {
-            columns[16] = '0'
-        }
-
-        if (columns[17].length <= 2 || columns[17] === undefined) {
-            columns[17] = '0'
-        }
-
-        if (columns[18].length <= 2 || columns[18] === undefined) {
-            columns[18] = '0'
-        }
-
-        if (columns[20].length < 5 || columns[20] === undefined) {
-            columns[20] = 'zzz'
-        }
-
-        csvData.push({
-            col1: columns[0],
-            col2: columns[3],
-            col3: columns[5],
-            col4: columns[6],
-            col5: columns[2],
-            col6: columns[16],
-            col7: columns[17],
-            col8: columns[18],
-            col9: columns[20], // Coluna 9
-            col10: columns[24],
-            col11: columns[26],
-        });
     });
 
-    csvData.sort((a, b) => {
-        return a.col9.localeCompare(b.col9);
+    content.sort((a, b) => {
+        return a["DEPARA"].localeCompare(b["DEPARA"]);
     });
+    let contador = 0
 
-    csvData.forEach((e) => {
-        if (e.col9 === 'zzz') {
-            e.col9 = '0'
+    content.forEach((e, index) => {
+        if (e["DEPARA"] === 'zzz') {
+            e["DEPARA"] = '0'
         }
 
         let dados = Object.values(e)
         dados.forEach((e) => {
-            if (e.endsWith(' ')) {
-                e = e.trim()
+            if (String(e).endsWith(' ')) {
+                contador++
+                e = String(e).replace(' ', '')
             }
+            e = String(e).replace(/\s+$/, '');
+            console.log(contador)
         })
 
-        if (e.col9 === 'BDL_IP_FIXO') {
-            e.col2 += ' ' + e.col9
+
+        // Verificava espaco vazio no final do texto!
+
+        if (e["DEPARA"] === 'BDL_IP_FIXO') {
+            e["DESIGNADOR"] += ' ' + e["DEPARA"]
         }
 
-        if (e.col8 === 'FTTH') {
-            e.col11 = 'BANDA LARGA - FIBRA'
-        } else if (e.col8 === 'VoIP FTTH') {
-            e.col11 = 'TERMINAL - FIBRA'
-        } else if (e.col8 === 'FTTC' || e.col8 === 'aDSL') {
-            e.col11 = 'BANDA LARGA - METALICO'
-        } else if (e.col8 === 'COBRE' || e.col8 === 'WLL') {
-            e.col11 = 'TERMINAL - METALICO'
-        } else if (e.col8 === 'IPTV') {
-            e.col11 = 'TV'
+        if (e["TECNOLOGIA_ORIGEM"] === 'FTTH') {
+            e["DS_PRODUTO_TECNOLOGIA"] = 'BANDA LARGA - FIBRA'
+        } else if (e["TECNOLOGIA_ORIGEM"] === 'VoIP FTTH') {
+            e["DS_PRODUTO_TECNOLOGIA"] = 'TERMINAL - FIBRA'
+        } else if (e["TECNOLOGIA_ORIGEM"] === 'FTTC' || e["TECNOLOGIA_ORIGEM"] === 'aDSL') {
+            e["DS_PRODUTO_TECNOLOGIA"] = 'BANDA LARGA - METALICO'
+        } else if (e["TECNOLOGIA_ORIGEM"] === 'COBRE' || e["TECNOLOGIA_ORIGEM"] === 'WLL') {
+            e["DS_PRODUTO_TECNOLOGIA"] = 'TERMINAL - METALICO'
+        } else if (e["TECNOLOGIA_ORIGEM"] === 'IPTV') {
+            e["DS_PRODUTO_TECNOLOGIA"] = 'TV'
         } else {
-            e.col11 = 'OUTROS'
+            e["DS_PRODUTO_TECNOLOGIA"] = 'OUTROS'
         }
 
-        e.col3 = parseFloat(e.col3)
+        e["VL_FAT_BRUTO"] = parseFloat(e["VL_FAT_BRUTO"])
     })
 
     // Ordenar
-    csvData.sort((b, a) => {
-        return a.col10.localeCompare(b.col10);
+    content.sort((b, a) => {
+        return String(a["M"]).localeCompare(String(b["M"]));
     });
 
-    csvData.sort((a, b) => {
-        return a.col1.localeCompare(b.col1);
+    content.sort((a, b) => {
+        return String(a["DOCUMENTO"]).localeCompare(String(b["DOCUMENTO"]));
     });
 
     // Função para unificar os objetos e somar a chave 4 quando a chave 3 for igual
-    const resultado = csvData.reduce((acc, obj) => {
-        const chave = obj.col2;
+    const resultado = content.reduce((acc, obj) => {
+        const chave = obj["DESIGNADOR"];
         if (!acc[chave]) {
             acc[chave] = { ...obj }; // Cria uma cópia do objeto
         } else {
-            acc[chave].col3 += parseFloat(obj.col3); // Soma a chave 4
+            acc[chave]["VL_FAT_BRUTO"] += parseFloat(obj["VL_FAT_BRUTO"]); // Soma a chave 4
         }
         return acc;
     }, {});
 
     // Funções de comparação para ordenar
     const compare = (b, a) => {
-        if (a.col10 < b.col10) {
+        if (a["M"] < b["M"]) {
             return -1
         }
 
-        if (a.col10 > b.col10) {
+        if (a["M"] > b["M"]) {
             return 1
         }
         return 0
     }
 
     const compare2 = (a, b) => {
-        if (a.col1 < b.col1) {
+        if (a["DOCUMENTO"] < b["DOCUMENTO"]) {
             return -1
         }
-        if (a.col1 > b.col1) {
+        if (a["DOCUMENTO"] > b["DOCUMENTO"]) {
             return 1
         }
         return 0
@@ -222,58 +166,34 @@ function processCSV(content) {
     const certo1 = Object.values(resultado).sort(compare)
     const certo2 = certo1.sort(compare2)
 
+    console.log(certo2)
+
     // Mantêm apenas duas casas decimais
-    certo2.forEach((e) => {
-        e.col3 = e.col3.toFixed(2)
+    certo2.forEach(e => {
+        e["VL_FAT_BRUTO"] = e["VL_FAT_BRUTO"].toFixed(2)
     })
-
-    // Removendo acentuações
-    certo2.forEach((e) => {
-        if (e.col4.includes('Móvel')) {
-            e.col4 = e.col4.replace('Móvel', 'Movel')
-        }
-
-        if (e.col4.includes('Básico')) {
-            e.col4 = e.col4.replace('Básico', 'Basico')
-        }
-
-        if (e.col4.includes('Escrit¢rio')) {
-            e.col4 = e.col4.replace('Escrit¢rio', 'Escritorio')
-        }
-
-        if (e.col4.includes('EscritÂ¢rio')) {
-            e.col4 = e.col4.replace('EscritÂ¢rio', 'Escritorio')
-        }
-
-        if (e.col4.includes('B sico')) {
-            e.col4 = e.col4.replace('B sico', 'Basico')
-        }
-    })
-
-    newCSVContent += joinFirstLine
-
-    certo2.forEach(function (row) {
-        newCSVContent += Object.values(row).join(',') + '\n';
-    });
-
-    // Criar um novo arquivo Blob
-    const newCSVBlob = new Blob([newCSVContent], { type: 'text/csv' });
-
-    // Criar um link de download para o novo arquivo
-    const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(newCSVBlob);
-
-    downloadLink.download = 'newFile.csv';
-
-    // Adicionar o link ao corpo do documento
-    document.body.appendChild(downloadLink);
 
     console.log('Terminou')
 
+    // Suponha que processedData seja o array de objetos que você quer salvar
+    const workbook = XLSX.utils.book_new(); // Cria um novo workbook
+    const worksheet = XLSX.utils.json_to_sheet(certo2); // Converte o array de objetos para uma worksheet
+
+    // Adiciona a worksheet ao workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Dados Processados");
+
+    // Gera o arquivo XLSX em um formato adequado para download
+    const xlsxBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+
+    // Cria um blob a partir do buffer
+    const blob = new Blob([xlsxBuffer], { type: "application/octet-stream" });
+
+    // Cria um link de download e dispara o download automaticamente
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "meu_arquivo.xlsx"; // Nome do arquivo
+    document.body.appendChild(link);
+    link.click();
+    loader.setAttribute('style', 'display: none')
     pProcess.setAttribute('style', 'display: none')
-
-    downloadLink.click();
-
-    btn.setAttribute('style', 'display: block; border: none; background-color: cadetblue; border-radius: 5px; color: aliceblue; cursor: pointer; padding: 5px 10px; margin-top: 15px')
-    btn.addEventListener('click', () => downloadLink.click())
 }
