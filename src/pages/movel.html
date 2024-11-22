@@ -97,24 +97,20 @@
     <div class="delay" id="ferramenta">
         <h1>Parque Básica - Móvel</h1>
 
-        <label class="labelFileInput" id="labelMovelFileInput" for="MovelFileInput">Arquivo CSV Móvel <i
-                class="fa-solid fa-file-csv"></i></label>
-        <label class="labelFileInput" id="labelRecomendacaoFileInput" for="RecomendacaoFileInput">Arquivo CSV
-            Recomendação <i class="fa-solid fa-file-csv"></i></label>
-        <label class="labelFileInput" id="labelSuspensaoFileInput" for="SuspensaoFileInput">Arquivo CSV
-            Suspensão <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelMovelFileInput" for="movelFileInput">Arquivo XLSX Móvel <i class="fa-solid fa-file-lines"></i></label>
+        <label class="labelFileInput" id="labelRecomendacaoFileInput" for="recomendacaoFileInput">Arquivo XLSX
+            Recomendação <i class="fa-solid fa-file-lines"></i></label>
+        <label class="labelFileInput" id="labelSuspensaoFileInput" for="suspensaoFileInput">Arquivo XLSX
+            Suspensão <i class="fa-solid fa-file-lines"></i></label>
 
-        <input type="file" id="MovelFileInput" accept=".csv">
-        <input type="file" name="RecomendacaoFileInput" id="RecomendacaoFileInput" accept=".csv"
-            onchange="lerArquivoCSV(event)">
-        <input type="file" accept=".csv" name="SuspensaoFileInput" id="SuspensaoFileInput"
-            onchange="lerArquivoSuspensao(event)">
+        <input class="filesInput" type="file" name="movelFileInput" id="movelFileInput" accept=".xlsx">
+        <input class="filesInput" type="file" name="recomendacaoFileInput" id="recomendacaoFileInput" accept=".xlsx">
+        <input class="filesInput" type="file" accept=".xlsx" name="suspensaoFileInput" id="suspensaoFileInput">
 
         <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
 
-        <button class="btns btnProcessarMovel" onclick="atualizar()">Atualizar</button>
-        <button class="btns btnDownloadMovel hide" id="btnMovel">Baixar</button>
+        <button class="btns" id="processBtn">Processar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>

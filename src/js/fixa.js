@@ -63,6 +63,10 @@ document.getElementById('fileInput').addEventListener('change', function (event)
 
 function processCSV(content) {
     content.forEach(function (line) {
+        if (line["DEPARA"] != undefined) {
+            line["DEPARA"] = line["DEPARA"].trim()
+        }
+
         if (line["DEPARA"] === '' || line["DEPARA"] === null || line["DEPARA"] === undefined) {
             line["DEPARA"] = 'zzz'
         }
@@ -79,22 +83,11 @@ function processCSV(content) {
     content.sort((a, b) => {
         return a["DEPARA"].localeCompare(b["DEPARA"]);
     });
-    let contador = 0
 
     content.forEach((e, index) => {
         if (e["DEPARA"] === 'zzz') {
             e["DEPARA"] = '0'
         }
-
-        let dados = Object.values(e)
-        dados.forEach((e) => {
-            if (String(e).endsWith(' ')) {
-                contador++
-                e = String(e).replace(' ', '')
-            }
-            e = String(e).replace(/\s+$/, '');
-            console.log(contador)
-        })
 
 
         // Verificava espaco vazio no final do texto!

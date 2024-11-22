@@ -1,394 +1,252 @@
 const loader = document.getElementById('loader')
-let csvMovelData = [];
-let csvRecomendacaoData = [];
-let csvSuspensaoData = [];
-let resultado = [];
-const fileMovelLabel = document.getElementById('labelMovelFileInput')
-const fileRecomendacaoLabel = document.getElementById('labelRecomendacaoFileInput')
-const fileSuspensaoLabel = document.getElementById('labelSuspensaoFileInput')
+const pProcess = document.getElementById('pProcessando')
 
-function atualizar() {
+const labelMovel = document.getElementById('labelMovelFileInput')
+const labelRecomendacao = document.getElementById('labelRecomendacaoFileInput')
+const labelSuspensao = document.getElementById('labelSuspensaoFileInput')
+
+const inputMovel = document.getElementById('movelFileInput')
+const inputRecomendacao = document.getElementById('recomendacaoFileInput')
+const inputSuspensao = document.getElementById('suspensaoFileInput')
+
+let filesMovelProcessed = 0
+let filesRecomendacaoProcessed = 0
+let filesSuspensaoProcessed = 0
+
+let combinedMovelData = []
+let combinedRecomendacaoData = []
+let combinedSuspensaoData = []
+
+let resultadoExport = []
+
+inputMovel.addEventListener('change', (event) => {
+    if (event.target.files.length > 1) {
+        labelMovel.textContent = `${event.target.files.length} arquivos`
+    } else if (event.target.files.length == 1) {
+        labelMovel.textContent = `${event.target.files.length} arquivo`
+    }
+})
+
+inputRecomendacao.addEventListener('change', (event) => {
+    if (event.target.files.length > 1) {
+        labelRecomendacao.textContent = `${event.target.files.length} arquivos`
+    } else if (event.target.files.length == 1) {
+        labelRecomendacao.textContent = `${event.target.files.length} arquivo`
+    }
+})
+
+inputSuspensao.addEventListener('change', (event) => {
+    if (event.target.files.length > 1) {
+        labelSuspensao.textContent = `${event.target.files.length} arquivos`
+    } else if (event.target.files.length == 1) {
+        labelSuspensao.textContent = `${event.target.files.length} arquivo`
+    }
+})
+
+
+document.getElementById('processBtn').addEventListener('click', function () {
     loader.setAttribute('style', 'display: block')
-    let newCSVContent = '';
+    pProcess.setAttribute('style', 'display: block')
 
-    for (let i = 0; i < csvSuspensaoData.length; i++) {
-        csvMovelData[i].col16 = csvSuspensaoData[i].col2
-        csvMovelData[i].col17 = csvSuspensaoData[i].col1
+    const filesMovel = inputMovel.files;
+    const filesRecomendacao = inputRecomendacao.files;
+    const filesSuspensao = inputSuspensao.files;
+
+
+    if (filesMovel.length === 0 || filesRecomendacao.length === 0 || filesSuspensao.length === 0) {
+        alert('Por favor, selecione pelo menos um arquivo CSV.');
+        return;
     }
 
-    for (let i = 0; i < csvSuspensaoData.length; i++) {
-        csvMovelData.forEach(e => {
-            if (csvMovelData[i].col16 === e.col3) {
-                e.col12 = csvMovelData[i].col17
+
+    Array.from(filesMovel).forEach(file => {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const data = new Uint8Array(event.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            // Assume que o CSV tem apenas uma folha (sheet)
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+
+            // Converte o sheet para JSON
+            const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+            // Adiciona os dados ao array combinado
+            combinedMovelData = combinedMovelData.concat(csvData);
+            filesMovelProcessed++;
+
+            // Se todos os arquivos foram processados, faça a manipulação dos dados
+            if (filesMovelProcessed === filesMovel.length) {
+                Array.from(filesRecomendacao).forEach(file => {
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        const data = new Uint8Array(event.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+
+                        // Assume que o CSV tem apenas uma folha (sheet)
+                        const sheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[sheetName];
+
+                        // Converte o sheet para JSON
+                        const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                        // Adiciona os dados ao array combinado
+                        combinedRecomendacaoData = combinedRecomendacaoData.concat(csvData);
+                        filesRecomendacaoProcessed++;
+
+                        // Se todos os arquivos foram processados, faça a manipulação dos dados
+                        if (filesRecomendacaoProcessed === filesRecomendacao.length) {
+                            Array.from(filesSuspensao).forEach(file => {
+                                const reader = new FileReader();
+
+                                reader.onload = function (event) {
+                                    const data = new Uint8Array(event.target.result);
+                                    const workbook = XLSX.read(data, { type: 'array' });
+
+                                    // Assume que o CSV tem apenas uma folha (sheet)
+                                    const sheetName = workbook.SheetNames[0];
+                                    const worksheet = workbook.Sheets[sheetName];
+
+                                    // Converte o sheet para JSON
+                                    const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                                    // Adiciona os dados ao array combinado
+                                    combinedSuspensaoData = combinedSuspensaoData.concat(csvData);
+                                    filesSuspensaoProcessed++;
+
+                                    // Se todos os arquivos foram processados, faça a manipulação dos dados
+                                    if (filesSuspensaoProcessed === filesSuspensao.length) {
+                                        manipulateSuspensaoData(combinedSuspensaoData)
+                                    }
+                                };
+
+                                reader.readAsArrayBuffer(file);
+                            });
+                        }
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                });
             }
-        })
-    }
+        };
 
-    csvMovelData.forEach(e => {
-        if (e.col12 !== 'LINHA_SUSPENSA_STATUS') {
-            if (e.col12 === '0') {
-                e.col11 = 'Nao'
-            } else {
-                e.col11 = 'Sim'
-            }
-        }
-    })
-
-    csvMovelData.forEach(eA => {
-        csvRecomendacaoData.forEach(eB => {
-            if (eA.col3 === eB.col1) {
-                eA.col9 = eB.col2
-                eA.col10 = eB.col3
-            }
-        })
-    })
-
-    csvMovelData.forEach(e => {
-        delete e.col16
-        delete e.col17
-    })
-
-    csvMovelData.forEach(function (row) {
-        newCSVContent += Object.values(row).join(',') + '\n';
+        reader.readAsArrayBuffer(file);
     });
-
-    // Criar um novo arquivo Blob
-    const newCSVBlob = new Blob([newCSVContent], { type: 'text/csv' });
-
-    // Criar um link de download para o novo arquivo
-    const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(newCSVBlob);
-    
-    downloadLink.download = 'newFile.csv';    
-
-    // Adicionar o link ao corpo do documento
-    document.body.appendChild(downloadLink);
-
-    loader.setAttribute('style', 'display: none')
-    pProcessando.setAttribute('style', 'display: none')
-
-    downloadLink.click();
-
-    btnMovel.classList.toggle('hide')
-    btnMovel.addEventListener('click', () => downloadLink.click())
-}
-
-
-
-// Ler arquivo Suspensão
-function lerArquivoSuspensao(event) {
-    const fileSuspensao = event.target.files[0];
-    fileSuspensaoLabel.textContent = fileSuspensao.name
-
-    loader.setAttribute('style', 'display: block')
-
-    if (!fileSuspensao) {
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        const suspensaoData = parseCSVSuspensao(content);
-        loader.setAttribute('style', 'display: none')
-    };
-
-    reader.readAsText(fileSuspensao, 'ISO-8859-1');
-};
-
-// Processar arquivo Suspensao
-function parseCSVSuspensao(content) {
-    const lines = content.split('\n');
-
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
-
-    // let csvSuspensaoData = [];
-
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
-
-        columns.splice(12, 6)
-        columns.splice(10, 1)
-        columns.splice(0, 9)
-
-        if (columns[0] === '' || columns[0] === '\u0000' || columns[0] === ' ' || columns[0] === undefined) {
-            columns[0] = '0'
-        } else {
-            columns[0] = columns[0].trim()
-        }
-        if (columns[1] === '' || columns[1] === '\u0000' || columns[1] === ' ' || columns[1] === undefined) {
-            columns[1] = '0'
-        } else {
-            columns[1] = columns[1].trim()
-        }
-
-        csvSuspensaoData.push({
-            col1: columns[0],
-            col2: columns[1],
-        })
-    })
-
-    return csvSuspensaoData
-}
-
-
-
-
-
-// Ler arquivo Recomendação
-function lerArquivoCSV(event) {
-    const fileRecomendacao = event.target.files[0];
-    fileRecomendacaoLabel.textContent = fileRecomendacao.name
-
-    loader.setAttribute('style', 'display: block')
-
-    if (!fileRecomendacao) {
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        const recomendacaoData = parseCSVRecomendacao(content);
-        loader.setAttribute('style', 'display: none')
-    };
-
-    reader.readAsText(fileRecomendacao, 'ISO-8859-1');
-};
-
-
-// Processar arquivo Recomendação
-function parseCSVRecomendacao(content) {
-    const lines = content.split('\n');
-
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
-
-    // let csvRecomendacaoData = [];
-
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
-
-        columns.splice(12, 8)
-        columns.splice(6, 4)
-        columns.splice(0, 5)
-
-        if (columns[0] === '' || columns[0] === '\u0000' || columns[0] === ' ' || columns[0] === undefined) {
-            columns[0] = '0'
-        } else {
-            columns[0] = columns[0].trim()
-        }
-        if (columns[1] === '' || columns[1] === '\u0000' || columns[1] === ' ' || columns[1] === undefined) {
-            columns[1] = '0'
-        } else {
-            columns[1] = columns[1].trim()
-        }
-        if (columns[2] === '' || columns[2] === '\u0000' || columns[2] === ' ' || columns[2] === undefined) {
-            columns[2] = '0'
-        } else {
-            columns[2] = columns[2].trim()
-        }
-
-        csvRecomendacaoData.push({
-            col1: columns[0],
-            col2: columns[1],
-            col3: columns[2],
-        })
-    })
-
-    return csvRecomendacaoData
-}
-
-
-
-
-
-
-const arquivo = document.getElementById('MovelFileInput')
-const btnMovel = document.getElementById('btnMovel')
-const fileName = document.getElementById('labelMovelFileInput')
-const pProcessando = document.getElementById('pProcessando')
-
-
-// Ler arquivo Movel
-document.getElementById('MovelFileInput').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    fileMovelLabel.textContent = file.name
-
-    loader.setAttribute('style', 'display: block')
-
-    if (!file) {
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSV(content);
-        loader.setAttribute('style', 'display: none')
-    };
-
-    reader.readAsText(file, 'ISO-8859-1');
-
-    pProcessando.setAttribute('style', 'display: inline-block')
-    fileName.textContent = file.name
 });
 
-// Processar arquivo Movel
-function processCSV(content) {
-    // Divida o conteúdo em linhas
-    const lines = content.split('\n');
 
-    let newCSVContent = '';
+function manipulateSuspensaoData(data) {
+    console.log(data)
 
-    // Remove a ultima linha em branco
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
+    manipulateRecomendacaoData(combinedRecomendacaoData)
+}
 
-    // Processar cada linha
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
+function manipulateRecomendacaoData(data) {
+    console.log(data)
+    data.forEach(e => {
+        if (e[10] != undefined) {
+            e[10] = e[10].trim()
+        }
+        if (e[11] != undefined) {
+            e[11] = e[11].trim()
+        }
+    })
 
-        if (columns[12] == '' || columns[12] == '0' || columns[12] == 0 || columns[12] == undefined) {
-            columns[12] = columns[11]
+    manipulateMovelData(combinedMovelData)
+}
+
+function manipulateMovelData(data) {
+    console.log(data)
+
+    // const headers = data[0]
+    // const dataObject = data.slice(1).map(linha => Object.fromEntries(headers.map((key, index) => [key, linha[index]])))
+
+    // dataObject.forEach(subObj => {
+    //     if (subObj['M'] == 'M') {
+    //         subObj['M'] = 'mInutilizado'
+    //     }
+
+    //     if (subObj['M_RECOMENDACAO'] == 'M_RECOMENDACAO') {
+    //         subObj['M_RECOMENDACAO'] = 'M'
+    //     } else if (subObj['M_RECOMENDACAO'] < 17) {
+    //         subObj['FIDELIZADO'] = 'Fidelizado'
+    //     } else if (subObj['M_RECOMENDACAO']) {
+    //         subObj['FIDELIZADO'] = 'Não Fidelizado'
+    //     }
+
+    //     let indexS = combinedSuspensaoData.findIndex(el => el[11] == subObj['NR_TELEFONE'])
+    // })
+
+    data.forEach(subAr => {
+        if (subAr[12] == 'M_RECOMENDACAO') {
+            subAr[12] = 'M'
+        } else if (subAr[12] < 17) {
+            subAr[16] = 'Fidelizado'
+        } else if (subAr[12] > 16) {
+            subAr[16] = 'Não Fidelizado'
         }
 
-        // 2. Excluir colunas
-        columns.splice(21, 18)
-        columns.splice(18, 1)
-        columns.splice(14, 1)
-        columns.splice(11, 1)
-        columns.splice(6, 1)
-        columns.splice(0, 4)
+        let indexS = combinedSuspensaoData.findIndex(el => el[11] == subAr[7])
+        let indexR = combinedRecomendacaoData.findIndex(el => el[5] == subAr[7])
 
-        if (columns[6].includes('M_RECOMENDACAO')) {
-            columns[6] = columns[6].replace('M_RECOMENDACAO', 'M')
-        }
+        let linhaSuspensa = ''
+        let linhaSuspensaStatus = ''
 
-
-        if (columns[0] == '' || columns[0] === undefined || columns[0] === "\u0000" || columns[0] === ' ') {
-            columns[0] = '0'
+        if (indexS != -1) {
+            linhaSuspensaStatus = combinedSuspensaoData[indexS][9]
+            linhaSuspensa = 'Sim'
         } else {
-            columns[0] = columns[0].trim()
+            linhaSuspensaStatus = '0'
+            linhaSuspensa = 'Não'
         }
 
-        if (columns[1] == '' || columns[1] === undefined || columns[1] === "\u0000" || columns[1] === ' ') {
-            columns[1] = '0'
+        if (indexR != -1) {
+            subAr[19] = combinedRecomendacaoData[indexR][10]
+            subAr[20] = combinedRecomendacaoData[indexR][11]
         } else {
-            columns[1] = columns[1].trim()
+            subAr[19] = '0'
+            subAr[20] = '0'
         }
 
-        if (columns[2] == '' || columns[2] === undefined || columns[2] === "\u0000" || columns[2] === ' ') {
-            columns[2] = '0'
-        } else {
-            columns[2] = columns[2].trim()
-        }
+        resultadoExport.push({
+            CODCLI: subAr[4],
+            CNPJ_CLIENTE: subAr[5],
+            NR_TELEFONE: subAr[7],
+            UF: subAr[8],
+            PLANO: subAr[9],
+            M: subAr[12],
+            FIDELIZADO: subAr[16],
+            DT_PRIMEITA_ATIVACAO: subAr[17],
+            PLANO_CONTA: subAr[19],
+            PLANO_LINHA: subAr[20],
+            LINHA_SUSPENSA: linhaSuspensa,
+            LINHA_SUSPENSA_STATUS: linhaSuspensaStatus,
+            FAT_MEDIO_03_MESES: subAr[10],
+            QT_DIAS_TRAF_DADOS: subAr[13],
+            QT_MB_TRAF_DADOS: subAr[15],
+        })
+    })
 
-        if (columns[3] == '' || columns[3] === undefined || columns[3] === "\u0000" || columns[3] === ' ') {
-            columns[3] = '0'
-        } else {
-            columns[3] = columns[3].trim()
-        }
+    exportToXLSX(resultadoExport.slice(1), 'movel_Data.xlsx')
 
-        if (columns[4] == '' || columns[4] === undefined || columns[4] === "\u0000" || columns[4] === ' ') {
-            columns[4] = '0'
-        } else {
-            columns[4] = columns[4].trim()
-        }
 
-        if (columns[5] == '' || columns[5] === undefined || columns[5] === "\u0000" || columns[5] === ' ') {
-            columns[5] = '0'
-        } else {
-            columns[5] = columns[5].trim()
-        }
-
-        if (columns[6] == '' || columns[6] === undefined || columns[6] === "\u0000" || columns[6] === ' ') {
-            columns[6] = '0'
-        } else {
-            columns[6] = columns[6].trim()
-        }
-
-        if (columns[7] == '' || columns[7] === undefined || columns[7] === "\u0000" || columns[7] === ' ') {
-            columns[7] = '0'
-        } else {
-            columns[7] = columns[7].trim()
-        }
-
-        if (columns[8] == '' || columns[8] === undefined || columns[8] === "\u0000" || columns[8] === ' ') {
-            columns[8] = '0'
-        } else {
-            columns[8] = columns[8].trim()
-        }
-
-        if (columns[9] == '' || columns[9] == undefined || columns[9] === "\u0000" || columns[9] === ' ') {
-            columns[9] = '0'
-        } else {
-            columns[9] = columns[9].trim()
-        }
-
-        if (columns[10] == '' || columns[10] === undefined || columns[10] === "\u0000" || columns[10] === ' ') {
-            columns[10] = '0'
-        } else {
-            columns[10] = columns[10].trim()
-        }
-
-        if (columns[11] == '' || columns[11] === undefined || columns[11] === "\u0000" || columns[11] === ' ' || columns[11] !== 'PLANO_CONTA') {
-            columns[11] = '0'
-        } else {
-            columns[11] = columns[11].trim()
-        }
-
-        if (columns[12] == '' || columns[12] === undefined || columns[12] === "\u0000" || columns[12] === ' ' || columns[12] !== 'PLANO_LINHA') {
-            columns[12] = '0'
-        } else {
-            columns[12] = columns[12].trim()
-        }
+    loader.setAttribute('style', 'display: none')
+    pProcess.setAttribute('style', 'display: none')
+}
 
 
 
-        if (columns[6] == 'M') {
-            console.log(columns[6])
-        } else if (parseInt(columns[6]) >= 17) {
-            columns[9] = 'Nao Fidelizado'
-        } else if (parseInt(columns[6]) < 17) {
-            columns[9] = 'Fidelizado'
-        }
+function exportToXLSX(data, filename) {
+    // Cria uma nova worksheet a partir dos dados filtrados
+    const worksheet1 = XLSX.utils.json_to_sheet(data);
 
-        csvMovelData.push({
-            col1: columns[0],
-            col2: columns[1],
-            col3: columns[2],
-            col4: columns[3],
-            col5: columns[4],
-            col6: columns[6],
-            col7: columns[9],
-            col8: columns[10],
-            col9: columns[11],
-            col10: columns[12],
-            col11: '0',
-            col12: '0',
-            col13: columns[5],
-            col14: columns[7],
-            col15: columns[8],
-        });
+    // Cria um novo workbook e adiciona a worksheet a ele
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet1, 'Movel');
 
-        csvMovelData[0].col11 = 'LINHA_SUSPENSA'
-        csvMovelData[0].col12 = 'LINHA_SUSPENSA_STATUS'
-    });
+    // Exporta o workbook como um arquivo XLSX
+    XLSX.writeFile(workbook, filename, { bookType: 'xlsx' });
 }
