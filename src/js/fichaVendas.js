@@ -264,7 +264,7 @@ function manipulateTabulacaoAceitesData(data) {
         if (e[10] == 'VENDA') {
             if (e[1] == 'FIXA_A' || e[1] == 'FIXA_B' || e[1] == 'FIXA_A+' || e[1] == 'FIXA AGV') {
                 aceitesFixa++
-            } else if (e[1] == 'MIGRACAO_CAMP PARTE I' || e[1] == 'MIGRACAO_CAMP PARTE II' || e[1] == 'MIGRACAO OUT') {
+            } else if (e[1] == 'MIGRACAO_CAMP PARTE I' || e[1] == 'MIGRACAO_CAMP PARTE II' || e[1] == 'MIGRACAO OUT' || e[1] == 'MIGRACAO_CAMP PARTE III') {
                 aceitesMovel++
             }
         }
