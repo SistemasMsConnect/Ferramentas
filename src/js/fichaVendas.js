@@ -3,13 +3,11 @@ const loader = document.getElementById('loader')
 
 const inputInput = document.getElementById('fileInputInput');
 const inputTabulacao = document.getElementById('fileTabulacaoInput');
-const inputBko = document.getElementById('fileBkoInput');
 const inputTabulacaoAceites = document.getElementById('fileTabulacaoAceitesInput');
 const inputOitenta = document.getElementById('fileOitentaInput');
 
 const labelInput = document.getElementById('labelInputFileInput')
 const labelTabulacao = document.getElementById('labelTabulacaoFileInput')
-const labelBko = document.getElementById('labelBkoFileInput')
 const labelTabulacaoAceites = document.getElementById('labelTabulacaoAceitesFileInput')
 const labelOitenta = document.getElementById('labelOitentaFileInput')
 
@@ -20,14 +18,12 @@ let dataAceitesExport = []
 
 let filesInputProcessed = 0
 let filesTabulacaoProcessed = 0
-let filesBkoProcessed = 0
 let filesTabulacaoAceitesProcessed = 0
 let filesOitentaProcessed = 0
 
 
 let combinedInputData = []
 let combinedTabulacaoData = []
-let combinedBkoData = []
 let combinedTabulacaoAceitesData = []
 let combinedOitentaData = []
 
@@ -59,14 +55,6 @@ inputTabulacaoAceites.addEventListener('change', (event) => {
     }
 })
 
-inputBko.addEventListener('change', (event) => {
-    if (event.target.files.length > 1) {
-        labelBko.textContent = `${event.target.files.length} arquivos`
-    } else if (event.target.files.length == 1) {
-        labelBko.textContent = `${event.target.files.length} arquivo`
-    }
-})
-
 inputOitenta.addEventListener('change', (event) => {
     if (event.target.files.length > 1) {
         labelOitenta.textContent = `${event.target.files.length} arquivos`
@@ -83,11 +71,10 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
     const filesInput = inputInput.files;
     const filesTabulacao = inputTabulacao.files;
-    const filesBko = inputBko.files;
     const filesTabulacaoAceites = inputTabulacaoAceites.files;
     const filesOitenta = inputOitenta.files;
 
-    if (filesInput.length === 0 || filesTabulacao.length === 0 || filesTabulacaoAceites.length === 0 || filesBko.length === 0 || filesOitenta.length === 0) {
+    if (filesInput.length === 0 || filesTabulacao.length === 0 || filesTabulacaoAceites.length === 0 || filesOitenta.length === 0) {
         alert('Por favor, selecione pelo menos um arquivo em cada campo.');
         return;
     }
@@ -152,7 +139,7 @@ document.getElementById('processBtn').addEventListener('click', function () {
 
                                     // Se todos os arquivos foram processados, faça a manipulação dos dados
                                     if (filesTabulacaoAceitesProcessed === filesTabulacaoAceites.length) {
-                                        Array.from(filesBko).forEach(file => {
+                                        Array.from(filesOitenta).forEach(file => {
                                             const reader = new FileReader();
 
                                             reader.onload = function (event) {
@@ -167,38 +154,12 @@ document.getElementById('processBtn').addEventListener('click', function () {
                                                 const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
                                                 // Adiciona os dados ao array combinado
-                                                combinedBkoData = combinedBkoData.concat(csvData);
-                                                filesBkoProcessed++;
+                                                combinedOitentaData = combinedOitentaData.concat(csvData);
+                                                filesOitentaProcessed++;
 
                                                 // Se todos os arquivos foram processados, faça a manipulação dos dados
-                                                if (filesBkoProcessed === filesBko.length) {
-
-                                                    Array.from(filesOitenta).forEach(file => {
-                                                        const reader = new FileReader();
-
-                                                        reader.onload = function (event) {
-                                                            const data = new Uint8Array(event.target.result);
-                                                            const workbook = XLSX.read(data, { type: 'array' });
-
-                                                            // Assume que o CSV tem apenas uma folha (sheet)
-                                                            const sheetName = workbook.SheetNames[0];
-                                                            const worksheet = workbook.Sheets[sheetName];
-
-                                                            // Converte o sheet para JSON
-                                                            const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-                                                            // Adiciona os dados ao array combinado
-                                                            combinedOitentaData = combinedOitentaData.concat(csvData);
-                                                            filesOitentaProcessed++;
-
-                                                            // Se todos os arquivos foram processados, faça a manipulação dos dados
-                                                            if (filesOitentaProcessed === filesOitenta.length) {
-                                                                manipulateOitentaData(combinedOitentaData)
-                                                            }
-                                                        };
-
-                                                        reader.readAsArrayBuffer(file);
-                                                    });
+                                                if (filesOitentaProcessed === filesOitenta.length) {
+                                                    manipulateOitentaData(combinedOitentaData)
                                                 }
                                             };
 
@@ -225,15 +186,8 @@ document.getElementById('processBtn').addEventListener('click', function () {
 function manipulateOitentaData(data) {
     console.log(data)
 
-    manipulateBkoData(combinedBkoData)
-}
-
-function manipulateBkoData(data) {
-    console.log(data)
-
     manipulateTabulacaoData(combinedTabulacaoData)
 }
-
 
 
 function manipulateTabulacaoData(data) {
@@ -292,9 +246,9 @@ function manipulateInputData(data) {
         let adicional = ''
         let cod = ''
         let oferta = ''
-        let status = ''
-        let subStatus = ''
-        let trocaTitularidade = ''
+        let status = e[47]
+        let subStatus = e[48]
+        let trocaTitularidade = e[46]
         let oitenta = ''
 
         let indexTabulacao = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] || `${element[5]}${element[6]}` == e[7] || String(element[19]).replace(/[^0-9]/g, '') == String(e[3]).replace(/[^0-9]/g, '') && element[10] == 'VENDA')
@@ -318,14 +272,14 @@ function manipulateInputData(data) {
             }
         }
 
-        let indexBko = combinedBkoData.findIndex(element => element[9] == e[6] || element[9] == e[7] || element[3] == String(e[3]).replace(/[^0-9]/g, ''))
-        if (indexBko != -1) {
-            if (status == 'RESTRIÇÃO') {
-                subStatus = combinedBkoData[indexBko][8]
-            }
-            trocaTitularidade = combinedBkoData[indexBko][11]
-            oferta = combinedBkoData[indexBko][4]
-        }
+        // let indexBko = combinedBkoData.findIndex(element => element[9] == e[6] || element[9] == e[7] || element[3] == String(e[3]).replace(/[^0-9]/g, ''))
+        // if (indexBko != -1) {
+        //     if (status == 'RESTRIÇÃO') {
+        //         subStatus = combinedBkoData[indexBko][8]
+        //     }
+        //     trocaTitularidade = combinedBkoData[indexBko][11]
+        //     oferta = combinedBkoData[indexBko][4]
+        // }
 
         if (String(e[6]).slice(0, 2) == '11' || String(e[6]).slice(0, 2) == '12' || String(e[6]).slice(0, 2) == '13') {
             regiao = 'SP1'
@@ -343,14 +297,6 @@ function manipulateInputData(data) {
             cod = 'SIM'
         } else {
             cod = 'NÃO'
-        }
-
-        if (e[45] == 'Instalado' || e[45] == 'Agendado') {
-            status = 'EMITIDO'
-        } else if (e[45] == 'Restrição') {
-            status = 'RESTRIÇÃO'
-        } else {
-            status = ''
         }
 
         let index80 = agentes.findIndex(element => element.Telefone == e[19] || element.CpfCliente == String(e[3]).replace(/[^0-9]/g, ''))
