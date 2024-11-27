@@ -117,7 +117,7 @@ function manipulateInputData(data) {
     console.log(data)
 
     data.forEach(e => {
-        let index = combinedTabulacaoData.findIndex(element => element[6] == String(e[6]).slice(2) && element[10] == 'VENDA')
+        let index = combinedTabulacaoData.findIndex(element => (`${element[5]}${element[6]}` == e[6] || `${element[5]}${element[6]}` == e[7] || `${element[5]}${element[6]}` == e[19]) && element[10] == 'VENDA')
         let id = ''
 
         if(index != -1) {
@@ -133,14 +133,23 @@ function manipulateInputData(data) {
             regiao = 'SPI'
         }
 
+        let status = ''
+        if (e[45] == 'Instalado' || e[45] == 'Agendado') {
+            status = 'Emitido'
+        } else if (e[45] == 'Restrição') {
+            status = 'Restrição'
+        } else {
+            status = ''
+        }
+
         dataInputExport.push({
             iD: id,
             Fila: e[28],
             Regiao: regiao,
             DDD: ddd,
             Telefone: e[6],
-            Agente: e[37],
-            Status: e[46]
+            Agente: e[36],
+            Status: status
         })
     })
 

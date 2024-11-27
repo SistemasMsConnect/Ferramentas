@@ -247,7 +247,7 @@ async function manipulateMovelData(data) {
         let id = ''
         let found = false;
 
-        if (e[8] == 'AlÃ´') {
+        if (e[8] == 'AlÃ´' || e[8] == 'Alo') {
             telefone = `${e[5]}${e[6]}`
 
 
@@ -379,7 +379,7 @@ async function manipulateFixaData(data) {
         let id = ''
         let found = false;
 
-        if (e[8] == 'AlÃ´') {
+        if (e[8] == 'AlÃ´' || e[8] == 'Alo') {
             telefone = `${e[5]}${e[6]}`
 
             for (let key in filesDataFixa) {

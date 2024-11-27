@@ -262,9 +262,9 @@ function manipulateTabulacaoAceitesData(data) {
 
     data.forEach(e => {
         if (e[10] == 'VENDA') {
-            if (e[1] == 'FIXA_A' || e[1] == 'FIXA_B' || e[1] == 'FIXA_A+') {
+            if (e[1] == 'FIXA_A' || e[1] == 'FIXA_B' || e[1] == 'FIXA_A+' || e[1] == 'FIXA AGV') {
                 aceitesFixa++
-            } else if (e[1] == 'MIGRACAO_CAMP PARTE I' || e[1] == 'MIGRACAO_CAMP PARTE II') {
+            } else if (e[1] == 'MIGRACAO_CAMP PARTE I' || e[1] == 'MIGRACAO_CAMP PARTE II' || e[1] == 'MIGRACAO OUT') {
                 aceitesMovel++
             }
         }
@@ -301,7 +301,7 @@ function manipulateInputData(data) {
         if (indexTabulacao != -1) {
             campanha = combinedTabulacaoData[indexTabulacao][1]
             mailing = combinedTabulacaoData[indexTabulacao][16]
-            if (combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A+' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_B') {
+            if (combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A+' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_B' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA AGV') {
                 campanha = 'FIXA FTTH'
             } else {
                 adicional = `${combinedTabulacaoData[indexTabulacao][30]} + 5`
@@ -345,10 +345,12 @@ function manipulateInputData(data) {
             cod = 'NÃO'
         }
 
-        if (e[46] == 'Instalado' || e[46] == 'Agendado') {
+        if (e[45] == 'Instalado' || e[45] == 'Agendado') {
             status = 'EMITIDO'
-        } else {
+        } else if (e[45] == 'Restrição') {
             status = 'RESTRIÇÃO'
+        } else {
+            status = ''
         }
 
         let index80 = agentes.findIndex(element => element.Telefone == e[19] || element.CpfCliente == String(e[3]).replace(/[^0-9]/g, ''))
@@ -360,7 +362,7 @@ function manipulateInputData(data) {
         dataMovelExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            DataEmissao: e[33],
+            DataEmissao: e[32],
             Eps: 'MS CONNECT',
             Regional: regiao,
             Terminal: e[6],
@@ -383,7 +385,7 @@ function manipulateInputData(data) {
         dataFixaExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            DataEmissao: e[33],
+            DataEmissao: e[32],
             Eps: "MS CONNECT",
             Regional: regiao,
             Terminal: e[6],
@@ -394,7 +396,7 @@ function manipulateInputData(data) {
             TrocaTitularidade: trocaTitularidade,
             Mailing: mailing,
             Perfil: '',
-            ProtocoloVenda: e[30],
+            ProtocoloVenda: e[29],
             Site: 'MS',
             Plataforma: 'NEXT',
             HomeOffice: 'NÃO',

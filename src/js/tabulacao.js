@@ -149,7 +149,7 @@ function manipulateMovelData(data) {
             funcional = combinedAtivosData[index][7]
         }
 
-        if (e[8] == 'AlÃ´') {
+        if (e[8] == 'AlÃ´' || e[8] == 'Alo') {
             dataMovelExport.push({
                 TERMINAL: `${e[5]}${e[6]}`,
                 NOME_CLIENTE: e[17],

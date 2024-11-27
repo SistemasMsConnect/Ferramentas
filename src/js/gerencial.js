@@ -21,7 +21,6 @@ let dataCallExport = []
 let dataIdMovelExport = []
 let dataIdFixaExport = []
 let dataIdResultadoExport = []
-let dataTrabalhadoExport = []
 let dataAtendidasExport = []
 let dataAloExport = []
 let dataAloUnicoExport = []
@@ -156,7 +155,7 @@ document.getElementById('fileTxtFixaInput').addEventListener('change', function 
             });
 
             // Identifica o arquivo pelos últimos 7 caracteres do nome (excluindo a extensão)
-            const fileNameKey = file.name.slice(0, 7); 
+            const fileNameKey = file.name.slice(0, 7);
 
             const separatedData = {
                 group11: [],  // Grupo 1: Exemplo para dados que começam com certos caracteres
@@ -483,8 +482,10 @@ function manipulateMovelData(data) {
         dividedArrays[e].forEach(eE => {
             // console.log(eE)
             if (eE[5] == 11) {
-                _11++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _11++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida11++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco11++
@@ -500,8 +501,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 12) {
-                _12++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _12++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida12++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco12++
@@ -517,8 +520,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 13) {
-                _13++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _13++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida13++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco13++
@@ -534,8 +539,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 14) {
-                _14++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _14++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida14++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco14++
@@ -551,8 +558,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 15) {
-                _15++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _15++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida15++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco15++
@@ -568,8 +577,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 16) {
-                _16++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _16++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida16++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco16++
@@ -585,8 +596,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 17) {
-                _17++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _17++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida17++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco17++
@@ -602,8 +615,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 18) {
-                _18++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _18++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida18++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco18++
@@ -619,8 +634,10 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 19) {
-                _19++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _19++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida19++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco19++
@@ -742,66 +759,16 @@ function manipulateMovelData(data) {
             uniqueData.forEach((eB, index) => {
                 if (eB[10] != 'TELEFONE NAO PERTENCE AO CONTATO' && eB[10] != undefined) {
                     cpcUnico++
-                    // if (eB[5] == 11) {
-                    //     cpcUnico11++
-                    // } else if (eB[5] == 12) {
-                    //     cpcUnico12++
-                    // } else if (eB[5] == 13) {
-                    //     cpcUnico13++
-                    // } else if (eB[5] == 14) {
-                    //     cpcUnico14++
-                    // } else if (eB[5] == 15) {
-                    //     cpcUnico15++
-                    // } else if (eB[5] == 16) {
-                    //     cpcUnico16++
-                    // } else if (eB[5] == 17) {
-                    //     cpcUnico17++
-                    // } else if (eB[5] == 18) {
-                    //     cpcUnico18++
-                    // } else if (eB[5] == 19) {
-                    //     cpcUnico19++
-                    // }
                 }
                 if (index + 1 == uniqueData.length) {
-                    dataTrabalhadoExport.push({
-                        idPlay: eB[16],
-                        ddd: eB[5],
-                        target: `${eB[16]}${eB[5]}`,
-                        quantidade: uniqueData.length
-                    })
                     dataCpcUnicoExport.push({
                         idPlay: eB[16],
                         target: `${eB[16]}${eB[5]}`,
                         cpc: cpcUnico
-                        // _11: cpcUnico11,
-                        // _12: cpcUnico12,
-                        // _13: cpcUnico13,
-                        // _14: cpcUnico14,
-                        // _15: cpcUnico15,
-                        // _16: cpcUnico16,
-                        // _17: cpcUnico17,
-                        // _18: cpcUnico18,
-                        // _19: cpcUnico19,
                     })
                 }
             })
         })
-
-
-
-
-        // e.forEach(eB => {
-        //     dataIdMovelExport.push({
-        //         idPlay: eB[16],
-        //         movimento: eB[1],
-        //         ddd: eB[5],
-        //         telefone: eB[6],
-        //         isdnClass: eB[8],
-        //         classificacao: eB[10],
-        //         mailing: eB[2],
-        //         codCliente: eB[19]
-        //     })
-        // })
     })
 
 
@@ -938,9 +905,10 @@ function manipulateMovelData(data) {
             amdSP1++
         } else if (String(e[8]).includes('Drop')) {
             dropSP1++
-        } else if (String(e[8]) == 'Falha da operadora') {
-            falhaDaOperadoraSP1++
         }
+        //  else if (String(e[8]) == 'Falha da operadora') {
+        //     falhaDaOperadoraSP1++
+        // }
 
         if (String(e[10]).includes('LIGACAO INTERROMPIDA') || String(e[10]).includes('LIGACAO INTERROMPIDA')) {
             ligacaoInterrompidaSP1++
@@ -997,7 +965,7 @@ function manipulateMovelData(data) {
             restricaoDeCreditoInternaSP1++
         } else if (String(e[10]) == ' OS PLANOS OFERTADOS NAO ATENDEM ' || String(e[10]) == 'OS PLANOS OFERTADOS NAO ATENDEM') {
             planosOfertadosNaoAtendemSP1++
-        } else if (String(e[10]) == ' CLIENTE SATISFEITO COM O PLANO ' ||String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
+        } else if (String(e[10]) == ' CLIENTE SATISFEITO COM O PLANO ' || String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
             clienteSatisfeitoComOPlanoSP1++
         } else if (String(e[10]) == ' JA FOI CONTROLE E NAO QUER VOLTAR ' || String(e[10]) == 'JA FOI CONTROLE E NAO QUER VOLTAR') {
             jaFoiControleSP1++
@@ -1057,9 +1025,10 @@ function manipulateMovelData(data) {
             amdSPI++
         } else if (String(e[8]).includes('Drop')) {
             dropSPI++
-        } else if (String(e[8]) == 'Falha da operadora') {
-            falhaDaOperadoraSPI++
         }
+        // else if (String(e[8]) == 'Falha da operadora') {
+        //     falhaDaOperadoraSPI++
+        // }
 
         if (String(e[10]).includes('LIGACAO INTERROMPIDA') || String(e[10]).includes('LIGACAO INTERROMPIDA')) {
             ligacaoInterrompidaSPI++
@@ -1116,7 +1085,7 @@ function manipulateMovelData(data) {
             restricaoDeCreditoInternaSPI++
         } else if (String(e[10]) == ' OS PLANOS OFERTADOS NAO ATENDEM ' || String(e[10]) == 'OS PLANOS OFERTADOS NAO ATENDEM') {
             planosOfertadosNaoAtendemSPI++
-        } else if (String(e[10]) == ' CLIENTE SATISFEITO COM O PLANO ' ||String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
+        } else if (String(e[10]) == ' CLIENTE SATISFEITO COM O PLANO ' || String(e[10]) == 'CLIENTE SATISFEITO COM O PLANO') {
             clienteSatisfeitoComOPlanoSPI++
         } else if (String(e[10]) == ' JA FOI CONTROLE E NAO QUER VOLTAR ' || String(e[10]) == 'JA FOI CONTROLE E NAO QUER VOLTAR') {
             jaFoiControleSPI++
@@ -1389,8 +1358,10 @@ function manipulateFixaData(data) {
         dividedArrays[e].forEach(eE => {
             // console.log(eE)
             if (eE[5] == 11) {
-                _11++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _11++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida11++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco11++
@@ -1406,8 +1377,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 12) {
-                _12++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _12++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida12++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco12++
@@ -1423,8 +1396,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 13) {
-                _13++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _13++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida13++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco13++
@@ -1440,8 +1415,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 14) {
-                _14++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _14++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida14++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco14++
@@ -1457,8 +1434,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 15) {
-                _15++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _15++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida15++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco15++
@@ -1474,8 +1453,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 16) {
-                _16++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _16++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida16++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco16++
@@ -1491,8 +1472,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 17) {
-                _17++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _17++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida17++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco17++
@@ -1508,8 +1491,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 18) {
-                _18++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _18++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida18++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco18++
@@ -1525,8 +1510,10 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 19) {
-                _19++
-                if (eE[8] == "AlÃ´") {
+                if (eE[8] != 'Falha da operadora') {
+                    _19++
+                }
+                if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
                     atendida19++
                     if (eE[10] != 'LINHA MUDA' && eE[10] != 'LIGACAO INTERROMPIDA' && eE[10] != 'MENSAGEM OPERADORA' && eE[10] != 'TABULACAO AUTOMATICA' && eE[10] != 'LIGACAO INTERROMPIDA - SEM CLIENTE' && eE[10] != 'LOGOFF IMEDIATO' && eE[10] != 'REDISCAGEM' && eE[10] != 'OCUPADO') {
                         aloEsforco19++
@@ -1647,12 +1634,6 @@ function manipulateFixaData(data) {
                     cpcUnico++
                 }
                 if (index + 1 == uniqueData.length) {
-                    dataTrabalhadoExport.push({
-                        idPlay: eB[16],
-                        ddd: eB[5],
-                        target: `${eB[16]}${eB[5]}`,
-                        quantidade: uniqueData.length
-                    })
                     dataCpcUnicoExport.push({
                         idPlay: eB[16],
                         target: `${eB[16]}${eB[5]}`,
@@ -1662,22 +1643,6 @@ function manipulateFixaData(data) {
             })
         })
     })
-
-    // arrayDivididoFixa.forEach(e => {
-    //     e.forEach(eB => {
-    //         dataIdFixaExport.push({
-    //             idPlay: eB[16],
-    //             movimento: eB[1],
-    //             ddd: eB[5],
-    //             telefone: eB[6],
-    //             isdnClass: eB[8],
-    //             classificacao: eB[10],
-    //             mailing: eB[2],
-    //             codCliente: eB[19]
-    //         })
-    //     })
-    // })
-
 
     const sp1 = data.filter(arr => [11, 12, 13].includes(arr[5]));
     const spi = data.filter(arr => [14, 15, 16, 17, 18, 19].includes(arr[5]));
@@ -1773,9 +1738,10 @@ function manipulateFixaData(data) {
             amdSP1++
         } else if (String(e[8]).includes('Drop')) {
             dropSP1++
-        } else if (String(e[8]) == 'Falha da operadora') {
-            falhaDaOperadoraSP1++
         }
+        // else if (String(e[8]) == 'Falha da operadora') {
+        //     falhaDaOperadoraSP1++
+        // }
 
         if (String(e[10]).includes('INTERROMPIDA')) {
             ligacaoInterrompidaSP1++
@@ -1854,9 +1820,10 @@ function manipulateFixaData(data) {
             amdSPI++
         } else if (String(e[8]).includes('Drop')) {
             dropSPI++
-        } else if (String(e[8]) == 'Falha da operadora') {
-            falhaDaOperadoraSPI++
         }
+        // else if (String(e[8]) == 'Falha da operadora') {
+        //     falhaDaOperadoraSPI++
+        // }
 
         if (String(e[10]).includes('INTERROMPIDA')) {
             ligacaoInterrompidaSPI++
@@ -2094,7 +2061,7 @@ function manipulateFixaCallData(data) {
         aceites: aceitesFixa
     })
 
-    exportToCSV(dataMovelExport, dataFixaExport, dataCallExport, dataIdResultadoExport, dataIdMailingExport, dataTrabalhadoExport, dataAtendidasExport, dataAloExport, dataAloUnicoExport, dataAceiteExport, dataCpcEsforcoExport, dataCpcUnicoExport, 'dataGerencial.xlsx');
+    exportToCSV(dataMovelExport, dataFixaExport, dataCallExport, dataIdResultadoExport, dataIdMailingExport, dataAtendidasExport, dataAloExport, dataAloUnicoExport, dataAceiteExport, dataCpcEsforcoExport, dataCpcUnicoExport, 'dataGerencial.xlsx');
 }
 
 
@@ -2113,14 +2080,13 @@ function divideArrayByIndex(arr, index) {
 
 
 
-function exportToCSV(dataMovel, dataFixa, dataCall, dataResultado, dataMailing, dataTrabalhado, dataAtendidas, dataAlo, dataAloUnico, dataAceite, dataCpcEsforco, dataCpcUnico, filename) {
+function exportToCSV(dataMovel, dataFixa, dataCall, dataResultado, dataMailing, dataAtendidas, dataAlo, dataAloUnico, dataAceite, dataCpcEsforco, dataCpcUnico, filename) {
     // Cria uma nova worksheet a partir dos dados filtrados
     const worksheet1 = XLSX.utils.json_to_sheet(dataMovel);
     const worksheet2 = XLSX.utils.json_to_sheet(dataFixa);
     const worksheet3 = XLSX.utils.json_to_sheet(dataCall);
     const worksheet4 = XLSX.utils.json_to_sheet(dataMailing);
     const worksheet5 = XLSX.utils.json_to_sheet(dataResultado);
-    const worksheet6 = XLSX.utils.json_to_sheet(dataTrabalhado);
     const worksheet7 = XLSX.utils.json_to_sheet(dataAtendidas);
     const worksheet8 = XLSX.utils.json_to_sheet(dataAloUnico);
     const worksheet9 = XLSX.utils.json_to_sheet(dataAlo);
@@ -2135,12 +2101,11 @@ function exportToCSV(dataMovel, dataFixa, dataCall, dataResultado, dataMailing, 
     XLSX.utils.book_append_sheet(workbook, worksheet3, 'Ligacoes');
     XLSX.utils.book_append_sheet(workbook, worksheet4, 'Mailing');
     XLSX.utils.book_append_sheet(workbook, worksheet5, 'Discagem');
-    XLSX.utils.book_append_sheet(workbook, worksheet6, 'Trabalhado');
     XLSX.utils.book_append_sheet(workbook, worksheet7, 'Atendidas');
     XLSX.utils.book_append_sheet(workbook, worksheet8, 'AloUnico');
     XLSX.utils.book_append_sheet(workbook, worksheet9, 'AloEsforco');
-    XLSX.utils.book_append_sheet(workbook, worksheet10, 'cpcUnico');
-    XLSX.utils.book_append_sheet(workbook, worksheet11, 'cpcEsforco');
+    XLSX.utils.book_append_sheet(workbook, worksheet10, 'CpcUnico');
+    XLSX.utils.book_append_sheet(workbook, worksheet11, 'CpcEsforco');
     XLSX.utils.book_append_sheet(workbook, worksheet12, 'Aceite');
 
     // Exporta o workbook como um arquivo XLSX
