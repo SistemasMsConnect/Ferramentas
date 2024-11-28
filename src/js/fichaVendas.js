@@ -245,11 +245,17 @@ function manipulateInputData(data) {
         let mailing = ''
         let adicional = ''
         let cod = ''
-        let oferta = e[16].split('|')
+        let oferta = ''
         let status = e[47]
         let subStatus = e[48]
         let trocaTitularidade = e[46]
         let oitenta = ''
+
+        if (String(e[16]).includes('|')) {
+            oferta = String(e[16]).split('|')[0]
+        } else {
+            oferta = e[16]
+        }
 
         let indexTabulacao = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] || `${element[5]}${element[6]}` == e[7] || String(element[19]).replace(/[^0-9]/g, '') == String(e[3]).replace(/[^0-9]/g, '') && element[10] == 'VENDA')
         if (indexTabulacao != -1) {
