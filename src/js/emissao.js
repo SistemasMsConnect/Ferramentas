@@ -133,14 +133,7 @@ function manipulateInputData(data) {
             regiao = 'SPI'
         }
 
-        let status = ''
-        if (e[45] == 'Instalado' || e[45] == 'Agendado') {
-            status = 'Emitido'
-        } else if (e[45] == 'Restrição') {
-            status = 'Restrição'
-        } else {
-            status = ''
-        }
+        let status = e[47]
 
         dataInputExport.push({
             iD: id,

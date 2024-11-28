@@ -245,7 +245,7 @@ function manipulateInputData(data) {
         let mailing = ''
         let adicional = ''
         let cod = ''
-        let oferta = ''
+        let oferta = e[16].split('|')
         let status = e[47]
         let subStatus = e[48]
         let trocaTitularidade = e[46]
@@ -271,15 +271,6 @@ function manipulateInputData(data) {
                 dataCompletaTabulacao = combinedTabulacaoData[indexTabulacao][3]
             }
         }
-
-        // let indexBko = combinedBkoData.findIndex(element => element[9] == e[6] || element[9] == e[7] || element[3] == String(e[3]).replace(/[^0-9]/g, ''))
-        // if (indexBko != -1) {
-        //     if (status == 'RESTRIÇÃO') {
-        //         subStatus = combinedBkoData[indexBko][8]
-        //     }
-        //     trocaTitularidade = combinedBkoData[indexBko][11]
-        //     oferta = combinedBkoData[indexBko][4]
-        // }
 
         if (String(e[6]).slice(0, 2) == '11' || String(e[6]).slice(0, 2) == '12' || String(e[6]).slice(0, 2) == '13') {
             regiao = 'SP1'
