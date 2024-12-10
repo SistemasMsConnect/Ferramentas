@@ -482,7 +482,7 @@ function manipulateMovelData(data) {
         dividedArrays[e].forEach(eE => {
             // console.log(eE)
             if (eE[5] == 11) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _11++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -501,7 +501,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 12) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _12++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -520,7 +520,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 13) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _13++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -539,7 +539,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 14) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _14++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -558,7 +558,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 15) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _15++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -577,7 +577,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 16) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _16++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -596,7 +596,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 17) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _17++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -615,7 +615,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 18) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _18++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -634,7 +634,7 @@ function manipulateMovelData(data) {
                     }
                 }
             } else if (eE[5] == 19) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _19++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1358,7 +1358,7 @@ function manipulateFixaData(data) {
         dividedArrays[e].forEach(eE => {
             // console.log(eE)
             if (eE[5] == 11) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _11++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1377,7 +1377,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 12) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _12++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1396,7 +1396,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 13) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _13++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1415,7 +1415,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 14) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _14++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1434,7 +1434,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 15) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _15++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1453,7 +1453,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 16) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _16++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1472,7 +1472,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 17) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _17++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1491,7 +1491,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 18) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _18++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
@@ -1510,7 +1510,7 @@ function manipulateFixaData(data) {
                     }
                 }
             } else if (eE[5] == 19) {
-                if (eE[8] != 'Falha da operadora') {
+                if (eE[8] != 'Falha da operadora' && eE[8] != 'AMD') {
                     _19++
                 }
                 if (eE[8] == "AlÃ´" || eE[8] == "Alo") {
