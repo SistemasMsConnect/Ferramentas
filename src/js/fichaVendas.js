@@ -242,30 +242,30 @@ function manipulateInputData(data) {
         let campanha = ''
         let dataCompletaTabulacao = ''
         let regiao = ''
-        let mailing = ''
         let adicional = ''
         let cod = ''
         let oferta = ''
-        let status = e[47]
-        let subStatus = e[48]
-        let trocaTitularidade = e[46]
+        let status = e[48]
+        let subStatus = e[49]
+        let trocaTitularidade = e[47]
         let oitenta = ''
 
-        if (String(e[16]).includes('|')) {
-            oferta = String(e[16]).split('|')[0]
+        if (String(e[17]).includes('|')) {
+            oferta = String(e[17]).split('|')[0]
         } else {
-            oferta = e[16]
+            oferta = e[17]
         }
 
-        let indexTabulacao = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[6] || `${element[5]}${element[6]}` == e[7] || String(element[19]).replace(/[^0-9]/g, '') == String(e[3]).replace(/[^0-9]/g, '') && element[10] == 'VENDA')
+        if (String(e[29]).toLowerCase().includes('fixa')) {
+            campanha = 'FIXA FTTH'
+        } else if (String(e[29]).toLowerCase().includes('mig')) {
+            campanha = 'MIGRAÇÃO PRE CTRL'
+        }
+
+        let indexTabulacao = combinedTabulacaoData.findIndex(element => `${element[5]}${element[6]}` == e[7] || `${element[5]}${element[6]}` == e[8] || String(element[19]).replace(/[^0-9]/g, '') == String(e[4]).replace(/[^0-9]/g, '') && element[10] == 'VENDA')
         if (indexTabulacao != -1) {
-            campanha = combinedTabulacaoData[indexTabulacao][1]
-            mailing = combinedTabulacaoData[indexTabulacao][16]
-            if (combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_A+' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA_B' || combinedTabulacaoData[indexTabulacao][1] == 'FIXA AGV') {
-                campanha = 'FIXA FTTH'
-            } else {
+            if (!String(combinedTabulacaoData[indexTabulacao][1]).includes('fixa')) {
                 adicional = `${combinedTabulacaoData[indexTabulacao][30]} + 5`
-                campanha = 'MIGRAÇÃO PRE CTRL'
             }
 
 
@@ -278,25 +278,25 @@ function manipulateInputData(data) {
             }
         }
 
-        if (String(e[6]).slice(0, 2) == '11' || String(e[6]).slice(0, 2) == '12' || String(e[6]).slice(0, 2) == '13') {
+        if (String(e[7]).slice(0, 2) == '11' || String(e[7]).slice(0, 2) == '12' || String(e[7]).slice(0, 2) == '13') {
             regiao = 'SP1'
-        } else if (String(e[6]).slice(0, 2) == '14' || String(e[6]).slice(0, 2) == '15' || String(e[6]).slice(0, 2) == '16' || String(e[6]).slice(0, 2) == '17' || String(e[6]).slice(0, 2) == '18' || String(e[6]).slice(0, 2) == '19') {
+        } else if (String(e[7]).slice(0, 2) == '14' || String(e[7]).slice(0, 2) == '15' || String(e[7]).slice(0, 2) == '16' || String(e[7]).slice(0, 2) == '17' || String(e[7]).slice(0, 2) == '18' || String(e[7]).slice(0, 2) == '19') {
             regiao = 'SPI'
         }
 
-        if (String(e[15]).includes('MOVEL') || e[15] == 'Dados da venda') {
+        if (String(e[16]).includes('MOVEL') || e[16] == 'Dados da venda') {
             adicional = adicional
         } else {
             adicional = ''
         }
 
-        if (e[24] == 'Fatura Digital ') {
+        if (e[25] == 'Fatura Digital ') {
             cod = 'SIM'
         } else {
             cod = 'NÃO'
         }
 
-        let index80 = agentes.findIndex(element => element.Telefone == e[19] || element.CpfCliente == String(e[3]).replace(/[^0-9]/g, ''))
+        let index80 = agentes.findIndex(element => element.Telefone == e[20] || element.CpfCliente == String(e[4]).replace(/[^0-9]/g, ''))
         if (index80 !== -1) {
             oitenta = agentes[index80].Oitenta
         }
@@ -305,46 +305,46 @@ function manipulateInputData(data) {
         dataMovelExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            DataEmissao: e[32],
+            DataEmissao: e[34],
             Eps: 'MS CONNECT',
             Regional: regiao,
-            Terminal: e[6],
-            CPFCliente: String(e[3]).replace(/[^0-9]/g, ''),
+            Terminal: e[7],
+            CPFCliente: String(e[4]).replace(/[^0-9]/g, ''),
             Matricula: oitenta,
             Oferta: oferta,
             Status: status,
             SubStatus: subStatus,
             TrocaTitularidade: trocaTitularidade,
-            Mailing: mailing,
+            Mailing: e[0],
             Perfil: '',
             Site: 'MS',
             PlataformaEmissao: 'NEXT',
             HomeOffice: 'NÃO',
             Cod: cod,
-            EmailFatura: e[22],
+            EmailFatura: e[23],
             PacoteAdicional: adicional
         })
 
         dataFixaExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            DataEmissao: e[32],
+            DataEmissao: e[33],
             Eps: "MS CONNECT",
             Regional: regiao,
-            Terminal: e[6],
+            Terminal: e[7],
             Matricula: oitenta,
             Oferta: oferta,
             Status: status,
             SubStatus: subStatus,
             TrocaTitularidade: trocaTitularidade,
-            Mailing: mailing,
+            Mailing: e[0],
             Perfil: '',
-            ProtocoloVenda: e[29],
+            ProtocoloVenda: e[30],
             Site: 'MS',
             Plataforma: 'NEXT',
             HomeOffice: 'NÃO',
             Cod: cod,
-            EmailFatura: e[22],
+            EmailFatura: e[23],
         })
     })
 

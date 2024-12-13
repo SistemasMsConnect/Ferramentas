@@ -256,6 +256,15 @@ function handleFileSelect(event) {
                 let horas = Math.floor(totalSeconds / 3600)
                 let minutos = Math.floor((totalSeconds % 3600) / 60)
                 let segundos = Math.floor(totalSeconds % 60)
+                if (String(horas).length == 1) {
+                    horas = `0${horas}`
+                }
+                if (String(minutos).length == 1) {
+                    minutos = `0${minutos}`
+                }
+                if (String(segundos).length == 1) {
+                    segundos = `0${segundos}`
+                }
                 let horario = `${horas}:${minutos}:${segundos}`
 
                 let dataEHora = `${dataCompleta} ${horario}`
@@ -267,71 +276,76 @@ function handleFileSelect(event) {
 
                 let audiencia = ''
                 let tipoAudiencia = 0
-                let terminais = ''
-                if (e.Campanha == 'MIGRACAO_CAMP PARTE I' || e.Campanha == 'MIGRACAO_CAMP PARTE II') {
-                    audiencia = telefoneCompleto
-                    tipoAudiencia = 3
+                let terminais = 0
+
+                if (e['ISDN_Code'] == 29 || e['ISDN_Code'] == 58) {
+                    // console.warn('AMD ou Falha da Operadora')
                 } else {
-                    audiencia = e.Field_2
-                    tipoAudiencia = 4
+                    if (e.Campanha == 'MIGRACAO_CAMP PARTE I' || e.Campanha == 'MIGRACAO_CAMP PARTE II' || e.Campanha == 'MIGRACAO_CAMP PARTE III') {
+                        audiencia = telefoneCompleto
+                        tipoAudiencia = 3
+                    } else {
+                        audiencia = e.Field_2
+                        tipoAudiencia = 4
 
-                    let index = inputData.findIndex(element => element[19] == telefoneCompleto)
+                        let index = inputData.findIndex(element => element[20] == telefoneCompleto)
 
-                    if (index != -1) {
-                        if (String(inputData[index][16]).includes('TOTAL')) {
-                            terminais = 2
-                        } else if (String(inputData[index][16]).includes('SOLO')) {
-                            terminais = 1
+                        if (index != -1) {
+                            if (String(inputData[index][17]).includes('TOTAL')) {
+                                terminais = 2
+                            } else if (String(inputData[index][17]).includes('SOLO')) {
+                                terminais = 1
+                            }
                         }
                     }
-                }
 
 
 
-                if (tipoAudiencia == 3) {
-                    tipo = 'MOV'
-                } else if (tipoAudiencia == 4) {
-                    tipo = 'FIX'
-                }
+                    if (tipoAudiencia == 3) {
+                        tipo = 'MOV'
+                    } else if (tipoAudiencia == 4) {
+                        tipo = 'FIX'
+                    }
 
-                if (tipoAudiencia == 3) {
-                    csvData.push({
-                        ID_PLAY: e.ID_Cliente,
-                        ID_AUDIENCIA: audiencia,
-                        ID_TIPO_AUDIENCIA: tipoAudiencia,
-                        ID_MOTIVO_TABULACAO: e.ISDN_Code,
-                        DT_TABULACAO: dataEHora,
-                        NR_TLFN: telefoneCompleto,
-                        NOVO_CPF: '0',
-                        CPF_OPERADOR: '0',
-                        NR_TLFN_ADD1: '0',
-                        NR_TLFN_ADD2: '0',
-                        NR_TLFN_ADD3: '0',
-                        EMAIL_ADD1: '0',
-                        NR_DURACAO_CHAMADA: '0',
-                        QTD_LIGACAO: 1,
-                        CORINGA1: '0',
-                        CORINGA2: '0'
-                    })
-                } else if (tipoAudiencia == 4) {
-                    csvData.push({
-                        ID_CAMPANHA: e.ID_Cliente,
-                        ID_AUDIENCIA: audiencia,
-                        ID_TIPO_AUDIENCIA: tipoAudiencia,
-                        ID_RETORNO: e.ISDN_Code,
-                        DT_TABULACAO: dataEHora,
-                        NR_TLFN: telefoneCompleto,
-                        NOVO_CPF: '0',
-                        CPF_OPERADOR: '0',
-                        NR_TLFN_ADD1: '0',
-                        NR_TLFN_ADD2: '0',
-                        NR_TLFN_ADD3: '0',
-                        EMAIL_ADD1: '0',
-                        NR_DURACAO_CHAMADA: '0',
-                        QD_CHAMADAS: 1,
-                        ID_OFERTA: '0',
-                        QT_TERMINAIS: terminais
-                    })
+                    if (tipoAudiencia == 3) {
+                        csvData.push({
+                            ID_PLAY: e.ID_Cliente,
+                            ID_AUDIENCIA: audiencia,
+                            ID_TIPO_AUDIENCIA: tipoAudiencia,
+                            ID_MOTIVO_TABULACAO: e.ISDN_Code,
+                            DT_TABULACAO: dataEHora,
+                            NR_TLFN: telefoneCompleto,
+                            NOVO_CPF: '0',
+                            CPF_OPERADOR: '0',
+                            NR_TLFN_ADD1: '0',
+                            NR_TLFN_ADD2: '0',
+                            NR_TLFN_ADD3: '0',
+                            EMAIL_ADD1: '0',
+                            NR_DURACAO_CHAMADA: '0',
+                            QTD_LIGACAO: 1,
+                            CORINGA1: '0',
+                            CORINGA2: '0'
+                        })
+                    } else if (tipoAudiencia == 4) {
+                        csvData.push({
+                            ID_CAMPANHA: e.ID_Cliente,
+                            ID_AUDIENCIA: audiencia,
+                            ID_TIPO_AUDIENCIA: tipoAudiencia,
+                            ID_RETORNO: e.ISDN_Code,
+                            DT_TABULACAO: dataEHora,
+                            NR_TLFN: telefoneCompleto,
+                            NOVO_CPF: '0',
+                            CPF_OPERADOR: '0',
+                            NR_TLFN_ADD1: '0',
+                            NR_TLFN_ADD2: '0',
+                            NR_TLFN_ADD3: '0',
+                            EMAIL_ADD1: '0',
+                            NR_DURACAO_CHAMADA: '0',
+                            QD_CHAMADAS: 1,
+                            ID_OFERTA: '0',
+                            QT_TERMINAIS: terminais
+                        })
+                    }
                 }
             })
 
@@ -364,8 +378,18 @@ function handleFileSelect(event) {
 
             let horarioHoje = `${horasHoje}${minutosHoje}${segundosHoje}`
 
-            // console.log(csvData)
-            downloadManipulatedCsv(csvData, `${file.fileName}_RET_${tipo}_MS_${dataSemBarra}${horarioHoje}.csv`)
+            console.log(csvData)
+            const headers = Object.keys(csvData[0]).join("|");
+            const txtContent = csvData.map(obj => Object.values(obj).join("|")).join("\n");
+            const fullContent = `${headers}\n${txtContent}`;
+            // Cria o blob e baixa o arquivo
+            const blob = new Blob([fullContent], { type: "text/plain;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${file.fileName}_RET_${tipo}_MS_${dataSemBarra}${horarioHoje}.txt`; // Altere o nome para .txt
+            a.click();
+            // downloadManipulatedCsv(csvData, `${file.fileName}_RET_${tipo}_MS_${dataSemBarra}${horarioHoje}.csv`)
             csvData = []
         });
 
