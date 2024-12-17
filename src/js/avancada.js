@@ -1,444 +1,433 @@
-const loader = document.getElementById('loader')
-const inputFileDados = document.getElementById('fileInputDados')
-const inputFileSip = document.getElementById('fileInputSip')
-const inputFileCep = document.getElementById('fileInputCep')
-const inputFileVoz = document.getElementById('fileInputVoz')
-const pProcessandoDados = document.getElementById('pProcessandoDados')
-const btnDados = document.getElementById('btnDados')
-const btnCriarArquivo = document.getElementById('btnCriarArquivo')
+const inputDados = document.getElementById('fileInputDados')
+const inputSip = document.getElementById('fileInputSip')
+const inputVoz = document.getElementById('fileInputVoz')
+
 const labelDados = document.getElementById('labelFileInputDados')
 const labelSip = document.getElementById('labelFileInputSip')
-const labelCep = document.getElementById('labelFileInputCep')
 const labelVoz = document.getElementById('labelFileInputVoz')
-let dadosData = [];
-let sipData = [];
+
 let cepData = [];
-let vozData = [];
 let faixaCep = [];
 
+let combinedDadosData = []
+let combinedSipData = []
+let combinedVozData = []
 
-// ===========  Função DADOS  ===========
-inputFileDados.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    labelDados.textContent = file.name
-    loader.setAttribute('style', 'display: block')
+let filesDadosProcessed = 0
+let filesSipProcessed = 0
+let filesVozProcessed = 0
 
-    if (!file) {
-        return;
+const dataExport = []
+
+
+
+// === === === Modificacao label === === ===
+inputDados.addEventListener('change', (event) => {
+    labelDados.textContent = event.target.files[0].name
+})
+inputSip.addEventListener('change', (event) => {
+    labelSip.textContent = event.target.files[0].name
+})
+inputVoz.addEventListener('change', (event) => {
+    labelVoz.textContent = event.target.files[0].name
+})
+// === === === Modificacao label === === ===
+
+
+
+// === === === Funcoes auxiliares === === ===
+function numberToDate(data) {
+    let dia = data.getDate()
+    if (String(dia).length == 1) {
+        dia = `0${dia}`
     }
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSVDados(content);
-        loader.setAttribute('style', 'display: none')
-    };
-
-    reader.readAsText(file, 'ISO-8859-1');
-});
-
-function processCSVDados(content) {
-    // Divida o conteúdo em linhas
-    const lines = content.split('\n');
-
-    // Remove a ultima linha em branco
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
+    let mes = data.getMonth() + 1
+    if (String(mes).length == 1) {
+        mes = `0${mes}`
     }
+    let ano = data.getFullYear()
 
-    // Processar cada linha
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
-
-        columns.splice(30, 3)
-        columns.splice(15, 14)
-        columns.splice(9, 2)
-        columns.splice(4, 3)
-
-
-        if (columns[3].includes('BÃSICO') || columns[3].includes('BÁSICO')) {
-            columns[3] = columns[3].replace('BÃSICO', 'BASICO')
-            columns[3] = columns[3].replace('BÁSICO', 'BASICO')
-        } else if (columns[3].includes('GESTÃƒO') || columns[3].includes('GESTÃO')) {
-            columns[3] = columns[3].replace('GESTÃƒO', 'GESTAO')
-            columns[3] = columns[3].replace('GESTÃO', 'GESTAO')
-        }
-
-        if (columns[0] === '' || columns[0] === ' ' || columns[0] === undefined || columns[0] === null) {
-            columns[0] = '0'
-        }
-        if (columns[1] === 'CLIENTE') {
-            columns[1] = 'PERCENTUAL_DE_CONTRATO'
-        } else {
-            columns[1] = '0'
-        }
-        if (columns[2] === '' || columns[2] === ' ' || columns[2] === undefined || columns[2] === null) {
-            columns[2] = '0'
-        } else if (columns[2] !== 'NMLINHANEGOCIO') {
-            columns[2] = 'SIP'
-        }
-        if (columns[3] === '' || columns[3] === ' ' || columns[3] === undefined || columns[3] === null) {
-            columns[3] = '0'
-        } else if (columns[3] !== 'NMLINHAPRODUTO') {
-            columns[3] = 'PLANO FLEX'
-        }
-        if (columns[4] === '' || columns[4] === ' ' || columns[4] === undefined || columns[4] === null) {
-            columns[4] = '0'
-        } else if (columns[4] === 'SISTEMA_ORIGEM') {
-            columns[4] = 'TERMINAL_TRONCO'
-        }
-        if (columns[5] === '' || columns[5] === ' ' || columns[5] === undefined || columns[5] === null || columns[5].length < 2) {
-            columns[5] = '0'
-        }
-        if (columns[6] === '' || columns[6] === ' ' || columns[6] === undefined || columns[6] === null) {
-            columns[6] = '0'
-        }
-        if (columns[7] === '' || columns[7] === ' ' || columns[7] === undefined || columns[7] === null) {
-            columns[7] = '0'
-        }
-        if (columns[8] === '' || columns[8] === ' ' || columns[8] === undefined || columns[8] === null) {
-            columns[8] = '0'
-        }
-        if (columns[9] === '' || columns[9] === ' ' || columns[9] === undefined || columns[9] === null) {
-            columns[9] = '0'
-        }
-        if (columns[10] === '' || columns[10] === ' ' || columns[10] === undefined || columns[10] === null) {
-            columns[10] = '0'
-        }
-        if (columns[11] !== 'END_CIDADE') {
-            columns[11] = '0'
-        }
-        if (columns[12] !== 'END_ESTADO') {
-            columns[12] = '0'
-        }
-        columns[13] = columns[13].slice(0, -1)
-        if (columns[13] === '' || columns[13] === ' ' || columns[13] === undefined || columns[13] === null || columns[13].length < 3) {
-            columns[13] = '0'
-        }
-
-
-        dadosData.push({
-            col1: columns[0],
-            col2: columns[2],
-            col3: columns[3],
-            col4: columns[5],
-            col5: columns[6],
-            col6: columns[7],
-            col7: columns[8],
-            col8: columns[9],
-            col9: columns[10],
-            col10: columns[11],
-            col11: columns[12],
-            col12: columns[13],
-            col13: columns[1],
-            col14: columns[4],
-        });
-    });
-    console.log(dadosData)
+    let dataFormatada = `${ano}-${mes}-${dia}`
+    return dataFormatada
 }
 
 
-// ===========  Função SIP  ===========
-inputFileSip.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    labelSip.textContent = file.name
-
-    if (!file) {
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSVSip(content);
-    };
-
-    reader.readAsText(file, 'ISO-8859-1');
-});
-
-
-function processCSVSip(content) {
-    // Divida o conteúdo em linhas
-    const lines = content.split('\n');
-
-    // Remova a primeira linha
-    lines.splice(0, 1)
-
-    // Remove a ultima linha em branco
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
-
-    // Processar cada linha
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
-
-        let data = columns[52].slice(0, -13).split('-')
-        let dia = data[2]
-        let mes = data[1]
-        let ano = parseInt(data[0]) + 3
-
-        dadosData.push({
-            col1: columns[8],
-            col2: 'SIP',
-            col3: 'PLANO FLEX',
-            col4: columns[12], // verificar
-            col5: columns[9],
-            col6: '36',
-            col7: (columns[52].slice(0, -13)),
-            col8: `${ano}-${mes}-${dia}`,
-            col9: columns[11],
-            col10: columns[11], // verificar
-            col11: columns[12], // verificar
-            col12: columns[6],
-            col13: columns[1], // verificar
-            col14: columns[7],
-        });
-    });
-    console.log(dadosData)
+function removerAcentos(texto) {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 
-// ===========  Função CEP  ===========
-inputFileCep.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    labelCep.textContent = file.name
-
-    if (!file) {
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSVCep(content);
-    };
-
-    reader.readAsText(file, 'ISO-8859-1');
-});
+function numeroInteiroParaData(numero) {
+    var dataBase = new Date(1900, 0, -1); // Data base do Excel (1º de janeiro de 1900)
+    var data = new Date(dataBase.getTime() + (numero + 1) * 24 * 60 * 60 * 1000);
+    return data;
+}
 
 
-function processCSVCep(content) {
-    // Divida o conteúdo em linhas
-    const lines = content.split('\n');
+function exportToExcel(data, sheetname, filename) {
+    // Cria uma nova worksheet a partir dos dados filtrados
+    const worksheet1 = XLSX.utils.json_to_sheet(data);
 
-    // Remove a ultima linha em branco
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
+    // Cria um novo workbook e adiciona a worksheet a ele
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet1, `${sheetname}`);
 
-    // Processar cada linha
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
+    // Exporta o workbook como um arquivo XLSX
+    XLSX.writeFile(workbook, filename, { bookType: 'xlsx' });
+}
+// === === === Funcoes auxiliares === === ===
 
-        if (columns[3] !== "" || columns[3] !== undefined || columns[3] !== ' ' || columns[3] !== null) {
-            faixaCep.push(columns[3])
-            faixaCep.push(columns[4])
-        }
 
-        if (columns[1].includes('á')) {
-            columns[1] = columns[1].replace('á', 'a')
-        }
-        if (columns[1].includes('â')) {
-            columns[1] = columns[1].replace('â', 'a')
-        }
-        if (columns[1].includes('ç')) {
-            columns[1] = columns[1].replace('ç', 'c')
-        }
-        if (columns[1].includes('í')) {
-            columns[1] = columns[1].replace('í', 'i')
-        }
-        if (columns[1].includes('ú')) {
-            columns[1] = columns[1].replace('ú', 'u')
-        }
-        if (columns[1].includes('é')) {
-            columns[1] = columns[1].replace('é', 'e')
-        }
-        if (columns[1].includes('ã')) {
-            columns[1] = columns[1].replace('ã', 'a')
-        }
-        if (columns[1].includes('ó')) {
-            columns[1] = columns[1].replace('ó', 'o')
-        }
-        if (columns[1].includes('João')) {
-            columns[1] = columns[1].replace('João', 'Joao')
-        }
 
-        cepData.push({
-            col1: columns[0],
-            col2: columns[1],
-            col3: columns[3],
-            col4: columns[4],
-        });
-    });
-    faixaCep.sort((a, b) => {
-        return parseInt(a) - parseInt(b)
+// === === === Leitura dos arquivos === === ===
+fetch('../public/cep.json').then(response => {
+    response.json().then(e => {
+        console.log(e)
+
+        e.forEach(el => {
+            faixaCep.push(el.col3)
+            faixaCep.push(el.col4)
+        })
+
+        faixaCep.sort((a, b) => {
+            return parseInt(a) - parseInt(b)
+        })
+
+        cepData = e
     })
-    console.log(cepData)
-}
+})
 
 
-// ===========  Função VOZ  ===========
-inputFileVoz.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    labelVoz.textContent = file.name
+document.getElementById('processBtn').addEventListener('click', function () {
+    loader.setAttribute('style', 'display: block')
+    pProcess.setAttribute('style', 'display: block')
 
-    if (!file) {
+    const filesDados = inputDados.files;
+    const filesSip = inputSip.files;
+    const filesVoz = inputVoz.files;
+
+
+    if (filesDados.length === 0 || filesSip.length === 0 || filesVoz.length === 0) {
+        alert('Por favor, selecione pelo menos um arquivo para cada input.');
         return;
     }
 
-    const reader = new FileReader();
+    Array.from(filesDados).forEach(file => {
+        const reader = new FileReader();
 
-    reader.onload = function (e) {
-        const content = e.target.result;
-        // Processar o conteúdo do arquivo
-        processCSVVoz(content);
-    };
+        reader.onload = function (event) {
+            const data = new Uint8Array(event.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
 
-    reader.readAsText(file, 'ISO-8859-1');
-});
+            // Assume que o CSV tem apenas uma folha (sheet)
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
 
-function processCSVVoz(content) {
-    // Divida o conteúdo em linhas
-    const lines = content.split('\n');
+            // Converte o sheet para JSON
+            const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 0 });
 
-    // Remova a primeira linha
-    lines.splice(0, 1)
+            // csvData.forEach(row => {
+            //     Object.keys(row).forEach(key => {
+            //         row[key] = typeof row[key] === 'string' ? removerAcentos(row[key]) : row[key];
+            //     });
+            // });
 
-    // Remove a ultima linha em branco
-    let lastLine = lines.length - 1
-    if (lines[lastLine] == "") {
-        lines.splice(lastLine, 1)
-    }
+            // Adiciona os dados ao array combinado
+            combinedDadosData = combinedDadosData.concat(csvData);
+            filesDadosProcessed++;
 
-    // Processar cada linha
-    lines.forEach(function (line) {
-        // Divida cada linha em colunas
-        const columns = line.split(';');
+            // Se todos os arquivos foram processados, faça a manipulação dos dados
+            if (filesDadosProcessed === filesDados.length) {
+                Array.from(filesSip).forEach(file => {
+                    const reader = new FileReader();
 
-        const string = columns[14];
-        let match = ''
-        if (string.includes(' ')) {
-            [, match] = string.match(/(\S+) /) || [];
-        } else {
-            match = columns[14]
-        }
+                    reader.onload = function (event) {
+                        const data = new Uint8Array(event.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
 
-        if (columns[9] === undefined || columns[9] === '' || columns[9] === null || columns[9].length < 7) {
-            columns[9] = '0'
-        }
+                        // Assume que o CSV tem apenas uma folha (sheet)
+                        const sheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[sheetName];
 
+                        // Converte o sheet para JSON
+                        const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 0 });
 
-        dadosData.push({
-            col1: columns[1],
-            col2: match,
-            col3: columns[14],
-            col4: columns[6],
-            col5: '0',
-            col6: '0',
-            col7: '0',
-            col8: '0',
-            col9: columns[5],
-            col10: '0',
-            col11: '0',
-            col12: columns[9],
-            col13: '0',
-            col14: columns[0],
-        });
+                        // Adiciona os dados ao array combinado
+                        combinedSipData = combinedSipData.concat(csvData);
+                        filesSipProcessed++;
+
+                        // Se todos os arquivos foram processados, faça a manipulação dos dados
+                        if (filesSipProcessed === filesSip.length) {
+                            Array.from(filesVoz).forEach(file => {
+                                const reader = new FileReader();
+
+                                reader.onload = function (event) {
+                                    const data = new Uint8Array(event.target.result);
+                                    const workbook = XLSX.read(data, { type: 'array' });
+
+                                    // Assume que o CSV tem apenas uma folha (sheet)
+                                    const sheetName = workbook.SheetNames[0];
+                                    const worksheet = workbook.Sheets[sheetName];
+
+                                    // Converte o sheet para JSON
+                                    const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 0 });
+
+                                    // Adiciona os dados ao array combinado
+                                    combinedVozData = combinedVozData.concat(csvData);
+                                    filesVozProcessed++;
+
+                                    // Se todos os arquivos foram processados, faça a manipulação dos dados
+                                    if (filesVozProcessed === filesVoz.length) {
+                                        ManipulateDadosData(combinedDadosData)
+                                    }
+                                };
+
+                                reader.readAsArrayBuffer(file);
+                            });
+                        }
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                });
+            }
+        };
+
+        reader.readAsArrayBuffer(file);
     });
-    console.log(dadosData)
+});
+// === === === Leitura dos arquivos === === ===
+
+
+
+// === === === Processamento dos dados === === ===
+function ManipulateDadosData(data) {
+    console.log(data)
+
+    data.forEach(line => {
+        let dataAssCompleta = numeroInteiroParaData(line['DT_ASS'])
+        let dataAssFormatada = numberToDate(dataAssCompleta)
+        let dataFimCompleta = numeroInteiroParaData(line['DT_FIM_PRAZO_CONTRATUAL'])
+        let dataFimFormatada = numberToDate(dataFimCompleta)
+
+        dataExport.push({
+            CD_PESSOA: line['CD_PESSOA'],
+            NMLINHANEGOCIO: 'SIP',
+            NMLINHAPRODUTO: 'PLANO FLEX',
+            VELOCIDADE: line['VELOCIDADE'],
+            NRCNPJ: line['NRCNPJ'],
+            NUM_MESES_PRAZO_CONTRATUAL: line['NUM_MESES_PRAZO_CONTRATUAL'],
+            DT_ASS: dataAssFormatada,
+            DT_FIM_PRAZO_CONTRATUAL: dataFimFormatada,
+            VALOR_TOTAL: Number(line['VALOR_TOTAL']),
+            END_CIDADE: 0,
+            END_ESTADO: 0,
+            END_CEP: line['END_CEP'],
+            PERCENTUAL_DE_CONTRATO: line['CLIENTE'],
+            TERMINAL_TRONCO: line['SISTEMA_ORIGEM'],
+        });
+    })
+
+    ManipulateSipData(combinedSipData)
 }
 
 
-// ===========  Funções de Atualizações  ===========
+function ManipulateSipData(data) {
+    console.log(data)
+
+    data.forEach(line => {
+        let dataCompleta = line['DATA_CRIACAO'].slice(0, -13).split('-')
+        let dia = dataCompleta[2]
+        let mes = dataCompleta[1]
+        let ano = parseInt(dataCompleta[0]) + 3
+
+        let valorFormatado = String(line['VL_TOTAL']).slice(0, 3)
+
+        if (String(valorFormatado).includes('.')) {
+            if (String(valorFormatado).charAt(valorFormatado.length - 1) == '.') {
+                valorFormatado = Number(String(valorFormatado).slice(0, -1)).toFixed(2)
+            } else {
+                valorFormatado = Number(valorFormatado).toFixed(2)
+            }
+        }
+
+        dataExport.push({
+            CD_PESSOA: line['COD_CLIENTE'],
+            NMLINHANEGOCIO: 'SIP',
+            NMLINHAPRODUTO: 'PLANO FLEX',
+            VELOCIDADE: line['QTD_CANAIS'],
+            NRCNPJ: line['CNPJ'],
+            NUM_MESES_PRAZO_CONTRATUAL: 36,
+            DT_ASS: (line['DATA_CRIACAO'].slice(0, -13)),
+            DT_FIM_PRAZO_CONTRATUAL: `${ano}-${mes}-${dia}`,
+            VALOR_TOTAL: valorFormatado,
+            END_CIDADE: 0,
+            END_ESTADO: 0,
+            END_CEP: line['END_CEP'],
+            PERCENTUAL_DE_CONTRATO: line['CLIENTE'],
+            TERMINAL_TRONCO: line['TERMINAL'],
+        });
+    })
+
+
+    ManipulateVozData(combinedVozData)
+}
+
+
+function ManipulateVozData(data) {
+    console.log(data)
+
+    data.forEach(line => {
+        let valorFormatado = String(line['VL_TOTAL']).slice(0, 3)
+
+        if (String(valorFormatado).includes('.')) {
+            if (String(valorFormatado).charAt(valorFormatado.length - 1) == '.') {
+                valorFormatado = Number(String(valorFormatado).slice(0, -1)).toFixed(2)
+            } else {
+                valorFormatado = Number(valorFormatado).toFixed(2)
+            }
+        }
+
+        let cep = ''
+        let match = ''
+        let string = ''
+
+        if (String(line['UF']).length == 2) {
+            cep = line['NR_CEP']
+
+            string = String(line['TP_PRODUTO'])
+            if (string.includes(' ')) {
+                [, match] = string.match(/(\S+) /) || []
+            } else {
+                match = line['TP_PRODUTO']
+            }
+        } else if (String(line['TP_PRODUTO']).length == 2) {
+            cep = line['NR_IMOVEL']
+
+            string = String(line['REDE'])
+            if (string.includes(' ')) {
+                [, match] = string.match(/(\S+) /) || []
+            } else {
+                match = line['REDE']
+            }
+        } else if (String(line['REDE']).length == 2) {
+            cep = line['DS_BAIRRO']
+
+            string = String(line['QTD_PRODUTOS_CONTA'])
+            if (string.includes(' ')) {
+                [, match] = string.match(/(\S+) /) || []
+            } else {
+                match = line['QTD_PRODUTOS_CONTA']
+            }
+        } else if (String(line['UF']).length != 2 && String(line['TP_PRODUTO']).length != 2 && String(line['REDE']).length != 2) {
+            cep = line['NR_CEP']
+
+            string = String(line['TP_PRODUTO'])
+            if (string.includes(' ')) {
+                [, match] = string.match(/(\S+) /) || []
+            } else {
+                match = line['TP_PRODUTO']
+            }
+        }
+
+        dataExport.push({
+            CD_PESSOA: line['CD_PESSOA'],
+            NMLINHANEGOCIO: match,
+            NMLINHAPRODUTO: line['TP_PRODUTO'],
+            VELOCIDADE: line['QTD_ACESSO'],
+            NRCNPJ: '0',
+            NUM_MESES_PRAZO_CONTRATUAL: 0,
+            DT_ASS: '0',
+            DT_FIM_PRAZO_CONTRATUAL: '0',
+            VALOR_TOTAL: valorFormatado,
+            END_CIDADE: '0',
+            END_ESTADO: '0',
+            END_CEP: cep,
+            PERCENTUAL_DE_CONTRATO: '0',
+            TERMINAL_TRONCO: line['TRONCO'],
+        });
+    })
+
+    atualizarCep()
+    console.warn('Terminou leitura')
+}
+
+
+function mostrarDadosProcessados(data) {
+    console.log(data)
+    console.warn('Dados informados')
+
+    pProcess.setAttribute('style', 'display: none')
+    loader.setAttribute('style', 'display: none')
+    exportToExcel(dataExport, 'Advanced', 'Advanced.xlsx')
+}
+// === === === Processamento dos dados === === ===
+
+
+
+// === === === Funcoes de atualizacao === === ===
 function atualizarCep() {
-    dadosData.forEach(eA => {
-        let valor = eA.col12
+    dataExport.forEach(line => {
+        let valor = line['END_CEP']
 
         let maisProximo = faixaCep.reduce(function (anterior, corrente) {
             return (Math.abs(corrente - valor) < Math.abs(anterior - valor) ? corrente : anterior);
         });
 
-        if (eA.col12 !== 'END_CEP') {
+        if (line['END_CEP'] !== 'END_CEP') {
             cepData.forEach(eB => {
                 if (maisProximo === eB.col3 || maisProximo === eB.col4) {
-                    eA.col11 = eB.col1
-                    eA.col10 = eB.col2
+                    line['END_ESTADO'] = eB.col1
+                    line['END_CIDADE'] = eB.col2
                 }
             })
         }
-        if (eA.col10.includes('Ã£')) {
-            eA.col10 = eA.col10.replace('Ã£', 'a')
-        }
     })
+    dataDiff()
     console.log('Terminou Atualizar CEP')
 }
 
 
 function dataDiff() {
-    dadosData.forEach(e => {
-        if (e.col1 !== 'CD_PESSOA') {
-            let dataInicial = new Date(e.col7)
-            let dataFinal = new Date(e.col8)
+    dataExport.forEach(line => {
+        if (line['CD_PESSOA'] !== 'CD_PESSOA') {
+            let dataInicial = new Date(line['DT_ASS'])
+            let dataFinal = new Date(line['DT_FIM_PRAZO_CONTRATUAL'])
             let hoje = new Date()
 
-            if (e.col7 !== '0') {
+            if (line['DT_ASS'] !== '0') {
                 let result1 = Math.abs(dataFinal - dataInicial)
                 let days1 = result1 / (1000 * 3600 * 24)
 
                 let result2 = Math.abs(hoje - dataInicial)
                 let days2 = result2 / (1000 * 3600 * 24)
 
-                let result3 = (days2 / days1) * 100
-                e.col13 = `${result3.toFixed(1)}%`
+                let result3 = (days2 / days1)
+                line['PERCENTUAL_DE_CONTRATO'] = result3.toFixed(3)
             } else {
-                e.col13 = '100%'
+                line['PERCENTUAL_DE_CONTRATO'] = 1
             }
         }
     })
+    verificacaoFinal()
     console.log('Terminou Percentual')
-    btnCriarArquivo.setAttribute('style', 'display: block; border: none; background-color: cadetblue; border-radius: 5px; color: aliceblue; cursor: pointer; padding: 5px 10px; margin-top: 15px')
 }
 
 
-function criarArquivo() {
-    let newCSVContent = ''
+function verificacaoFinal() {
+    dataExport.forEach(line => {
+        line['PERCENTUAL_DE_CONTRATO'] = Number(line['PERCENTUAL_DE_CONTRATO'])
+        line['VALOR_TOTAL'] = Number(line['VALOR_TOTAL'])
 
-    dadosData.forEach(function (row) {
-        newCSVContent += Object.values(row).join(',') + '\n';
-    });
 
-    // Criar um novo arquivo Blob
-    const newCSVBlob = new Blob([newCSVContent], { type: 'text/csv' });
+        line['DT_ASS'] = new Date(line['DT_ASS'])
+        let dataBase2 = new Date(1900, 0, -2)
+        let dataInt = parseInt((line['DT_ASS'].getTime() - dataBase2) / 24 / 60 / 60 / 1000)
+        line['DT_ASS'] = dataInt
+        line['DT_FIM_PRAZO_CONTRATUAL'] = new Date(line['DT_FIM_PRAZO_CONTRATUAL'])
+        let dataMovimentacao = parseInt((line['DT_FIM_PRAZO_CONTRATUAL'].getTime() - dataBase2) / 24 / 60 / 60 / 1000)
+        line['DT_FIM_PRAZO_CONTRATUAL'] = dataMovimentacao
+    })
 
-    // Criar um link de download para o novo arquivo
-    const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(newCSVBlob);
-    
-    downloadLink.download = 'newFile.csv';
-
-    // Adicionar o link ao corpo do documento
-    document.body.appendChild(downloadLink);
-
-    console.log('Terminou')
-
-    pProcessandoDados.setAttribute('style', 'display: none')
-
-    
-    downloadLink.click();
-
-    btnDados.setAttribute('style', 'display: block; border: none; background-color: cadetblue; border-radius: 5px; color: aliceblue; cursor: pointer; padding: 5px 10px; margin-top: 15px')
-    btnDados.addEventListener('click', () => downloadLink.click())
+    mostrarDadosProcessados(dataExport)
 }
+// === === === Funcoes de atualizacao === === ===

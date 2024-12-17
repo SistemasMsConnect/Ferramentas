@@ -14,12 +14,12 @@
 #fileInputSip,
 #fileInputCep,
 #fileInputVoz,
-#pProcessandoDados,
+#pProcess,
 #btnCriarArquivo,
 #btnDados, #loader {
     display: none;
 }
 
-#pProcessandoDados {
+#pProcess {
     color: aliceblue;
 }

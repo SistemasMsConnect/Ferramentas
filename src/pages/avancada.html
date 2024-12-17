@@ -101,20 +101,16 @@
                 class="fa-solid fa-file-csv"></i></label>
         <label class="labelFileInput" id="labelFileInputSip" for="fileInputSip">Escolha o arquivo SIP .CSV <i
                 class="fa-solid fa-file-csv"></i></label>
-        <label class="labelFileInput" id="labelFileInputCep" for="fileInputCep">Escolha o arquivo CEP .CSV <i
-                class="fa-solid fa-file-csv"></i></label>
         <label class="labelFileInput" id="labelFileInputVoz" for="fileInputVoz">Escolha o arquivo VOZ .CSV <i
                 class="fa-solid fa-file-csv"></i></label>
-        <input type="file" id="fileInputDados" accept=".csv">
-        <input type="file" id="fileInputSip" accept=".csv">
-        <input type="file" id="fileInputCep" accept=".csv">
-        <input type="file" id="fileInputVoz" accept=".csv">
-        <p id="pProcessandoDados">Processando..</p>
+        <input type="file" id="fileInputDados">
+        <input type="file" id="fileInputSip">
+        <input type="file" id="fileInputVoz">
+
+        <p id="pProcess">Processando..</p>
         <div id="loader" class="loader"></div>
-        <button class="btns" id="btnAtualizarCep" onclick="atualizarCep()">Atualizar Cep</button>
-        <button class="btns" id="btnCriarPorcentagem" onclick="dataDiff()">Atualizar %</button>
-        <button class="btns" id="btnCriarArquivo" onclick="criarArquivo()">Gerar Arquivo</button>
-        <button class="btns" id="btnDados">Baixar</button>
+
+        <button class="btns" id="processBtn">Processar</button>
     </div>
 
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
