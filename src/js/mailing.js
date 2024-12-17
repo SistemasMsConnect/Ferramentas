@@ -315,16 +315,16 @@ function handleFileSelect(event) {
                             ID_MOTIVO_TABULACAO: e.ISDN_Code,
                             DT_TABULACAO: dataEHora,
                             NR_TLFN: telefoneCompleto,
-                            NOVO_CPF: null,
-                            CPF_OPERADOR: null,
-                            NR_TLFN_ADD1: null,
-                            NR_TLFN_ADD2: null,
-                            NR_TLFN_ADD3: null,
-                            EMAIL_ADD1: null,
-                            NR_DURACAO_CHAMADA: null,
+                            NOVO_CPF: 'Null',
+                            CPF_OPERADOR: 'Null',
+                            NR_TLFN_ADD1: 'Null',
+                            NR_TLFN_ADD2: 'Null',
+                            NR_TLFN_ADD3: 'Null',
+                            EMAIL_ADD1: 'Null',
+                            NR_DURACAO_CHAMADA: 'Null',
                             QTD_LIGACAO: 1,
-                            CORINGA1: null,
-                            CORINGA2: null
+                            CORINGA1: 'Null',
+                            CORINGA2: 'Null'
                         })
                     } else if (tipoAudiencia == 4) {
                         csvData.push({
@@ -334,15 +334,15 @@ function handleFileSelect(event) {
                             ID_RETORNO: e.ISDN_Code,
                             DT_TABULACAO: dataEHora,
                             NR_TLFN: telefoneCompleto,
-                            NOVO_CPF: null,
-                            CPF_OPERADOR: null,
-                            NR_TLFN_ADD1: null,
-                            NR_TLFN_ADD2: null,
-                            NR_TLFN_ADD3: null,
-                            EMAIL_ADD1: null,
-                            NR_DURACAO_CHAMADA: null,
+                            NOVO_CPF: 'Null',
+                            CPF_OPERADOR: 'Null',
+                            NR_TLFN_ADD1: 'Null',
+                            NR_TLFN_ADD2: 'Null',
+                            NR_TLFN_ADD3: 'Null',
+                            EMAIL_ADD1: 'Null',
+                            NR_DURACAO_CHAMADA: 'Null',
                             QD_CHAMADAS: 1,
-                            ID_OFERTA: null,
+                            ID_OFERTA: 'Null',
                             QT_TERMINAIS: terminais
                         })
                     }
