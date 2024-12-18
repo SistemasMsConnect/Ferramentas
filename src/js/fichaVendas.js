@@ -305,7 +305,7 @@ function manipulateInputData(data) {
         dataMovelExport.push({
             Campanha: campanha,
             DataVenda: dataCompletaTabulacao,
-            DataEmissao: e[34],
+            DataEmissao: e[33],
             Eps: 'MS CONNECT',
             Regional: regiao,
             Terminal: e[7],
