@@ -19,6 +19,11 @@ let filesVozProcessed = 0
 
 const dataExport = []
 
+const ufs = [
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+    "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+];
+
 
 
 // === === === Modificacao label === === ===
@@ -290,9 +295,12 @@ function ManipulateVozData(data) {
         let cep = ''
         let match = ''
         let string = ''
+        let produto = ''
 
-        if (String(line['UF']).length == 2) {
+
+        if (ufs.includes(String(line['UF']))) {
             cep = line['NR_CEP']
+            produto = line['TP_PRODUTO']
 
             string = String(line['TP_PRODUTO'])
             if (string.includes(' ')) {
@@ -300,8 +308,9 @@ function ManipulateVozData(data) {
             } else {
                 match = line['TP_PRODUTO']
             }
-        } else if (String(line['TP_PRODUTO']).length == 2) {
+        } else if (ufs.includes(String(line['TP_PRODUTO']))) {
             cep = line['NR_IMOVEL']
+            produto = line['REDE']
 
             string = String(line['REDE'])
             if (string.includes(' ')) {
@@ -309,8 +318,9 @@ function ManipulateVozData(data) {
             } else {
                 match = line['REDE']
             }
-        } else if (String(line['REDE']).length == 2) {
+        } else if (ufs.includes(String(line['REDE']))) {
             cep = line['DS_BAIRRO']
+            produto = line['QTD_PRODUTOS_CONTA']
 
             string = String(line['QTD_PRODUTOS_CONTA'])
             if (string.includes(' ')) {
@@ -318,8 +328,10 @@ function ManipulateVozData(data) {
             } else {
                 match = line['QTD_PRODUTOS_CONTA']
             }
-        } else if (String(line['UF']).length != 2 && String(line['TP_PRODUTO']).length != 2 && String(line['REDE']).length != 2) {
+        } else {
+            console.error(line['NR_CEP'])
             cep = line['NR_CEP']
+            produto = line['TP_PRODUTO']
 
             string = String(line['TP_PRODUTO'])
             if (string.includes(' ')) {
@@ -329,10 +341,11 @@ function ManipulateVozData(data) {
             }
         }
 
+
         dataExport.push({
             CD_PESSOA: line['CD_PESSOA'],
             NMLINHANEGOCIO: match,
-            NMLINHAPRODUTO: line['TP_PRODUTO'],
+            NMLINHAPRODUTO: produto,
             VELOCIDADE: line['QTD_ACESSO'],
             NRCNPJ: '0',
             NUM_MESES_PRAZO_CONTRATUAL: 0,
@@ -358,7 +371,7 @@ function mostrarDadosProcessados(data) {
 
     pProcess.setAttribute('style', 'display: none')
     loader.setAttribute('style', 'display: none')
-    exportToExcel(dataExport, 'Advanced', 'Advanced.xlsx')
+    exportToExcel(dataExport, 'Avancada', 'Avancada.xlsx')
 }
 // === === === Processamento dos dados === === ===
 
@@ -426,6 +439,12 @@ function verificacaoFinal() {
         line['DT_FIM_PRAZO_CONTRATUAL'] = new Date(line['DT_FIM_PRAZO_CONTRATUAL'])
         let dataMovimentacao = parseInt((line['DT_FIM_PRAZO_CONTRATUAL'].getTime() - dataBase2) / 24 / 60 / 60 / 1000)
         line['DT_FIM_PRAZO_CONTRATUAL'] = dataMovimentacao
+
+        if (line['END_CEP'] == undefined || line['END_CEP'] == 0 || line['END_CEP'] == '' || line['END_CEP'] == 1) {
+            line['END_CEP'] = 0
+            line['END_ESTADO'] = 0
+            line['END_CIDADE'] = 0
+        }
     })
 
     mostrarDadosProcessados(dataExport)
