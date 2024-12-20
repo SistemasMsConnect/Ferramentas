@@ -380,8 +380,8 @@ function handleFileSelect(event) {
 
             console.log(csvData)
             const headers = Object.keys(csvData[0]).join("|");
-            const txtContent = csvData.map(obj => Object.values(obj).join("|")).join("\n");
-            const fullContent = `${headers}\n${txtContent}`;
+            const txtContent = csvData.map(obj => Object.values(obj).join("|")).join("\r\n");
+            const fullContent = `${headers}\r\n${txtContent}`;
             // Cria o blob e baixa o arquivo
             const blob = new Blob([fullContent], { type: "text/plain;charset=utf-8;" });
             const url = URL.createObjectURL(blob);
