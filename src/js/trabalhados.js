@@ -247,22 +247,19 @@ async function manipulateMovelData(data) {
         let id = ''
         let found = false;
 
-        if (e[8] == 'AlÃ´' || e[8] == 'Alo') {
-            telefone = `${e[5]}${e[6]}`
+        telefone = `${e[5]}${e[6]}`
 
+        for (let key in filesDataMovel) {
+            // Encontra o índice do array interno que contém o item
+            const index = filesDataMovel[key].findIndex(innerArray => innerArray.includes(telefone));
 
-            for (let key in filesDataMovel) {
-                // Encontra o índice do array interno que contém o item
-                const index = filesDataMovel[key].findIndex(innerArray => innerArray.includes(telefone));
-
-                if (index !== -1) { // Se o índice for encontrado
-                    // console.log(`Item ${telefone} found in ${key}, removing array ${JSON.stringify(filesDataMovel[key][index])}`);
-                    filesDataMovel[key].splice(index, 1); // Remove o array do objeto
-                    id = key
-                    adicionarItem(trabalhadosM, key, telefone)
-                    found = true;
-                    break; // Sai do loop ao encontrar o item
-                }
+            if (index !== -1) { // Se o índice for encontrado
+                // console.log(`Item ${telefone} found in ${key}, removing array ${JSON.stringify(filesDataMovel[key][index])}`);
+                filesDataMovel[key].splice(index, 1); // Remove o array do objeto
+                id = key
+                adicionarItem(trabalhadosM, key, telefone)
+                found = true;
+                break; // Sai do loop ao encontrar o item
             }
         }
     })
