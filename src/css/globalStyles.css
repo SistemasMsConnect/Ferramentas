@@ -75,6 +75,18 @@ label i {
     color: #262749;
 }
 
+#ferramenta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#ferramenta h1 {
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+
 .labelFileInput {
     min-width: 250px;
     width: max-content;

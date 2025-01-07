@@ -1,15 +1,3 @@
-#ferramenta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
-}
-
-#ferramenta h1 {
-    color: aliceblue;
-    margin-bottom: 20px;
-}
-
 #fileInput, #loader {
     display: none;
 }

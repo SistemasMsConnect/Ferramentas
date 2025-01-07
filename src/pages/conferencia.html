@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="../css/globalReset.css">
     <link rel="stylesheet" href="../css/globalStyles.css">
-    <link rel="stylesheet" href="../css/gerencial.css">
+    <link rel="stylesheet" href="../css/trabalhados.css">
 
-    <title>Gerencial</title>
+    <title>Trabalhados</title>
 </head>
 
 <body>
@@ -67,10 +67,10 @@
         </div>
 
         <button class="drop" id="GerencialDrop">Gerencial</button>
-        <div class="options" id="GerencialOptions">
-            <a>Gerencial</a>
-            <a href="./emissao.html">Emissão</a>
-            <a href="./trabalhados.html">Trabalhados</a>
+        <div class="options hide" id="GerencialOptions">
+            <a href="gerencial.html">Gerencial</a>
+            <a href="emissao.html">Emissão</a>
+            <a href="trabalhados.html">Trabalhados</a>
         </div>
 
         <button class="drop" id="QuartilDrop">Quartil</button>
@@ -92,34 +92,29 @@
         <div class="options hide" id="QuantidadeLigacoesOptions">
             <a href="repeat.html">Quantidade</a>
         </div>
+
+        <button class="drop" id="ConferenciaDrop">Conferência</button>
+        <div class="options" id="ConferenciaOptions">
+            <a>Green Voice x Akiva</a>
+        </div>
     </aside>
 
     <div class="delay" id="ferramenta">
-        <h1>Gerencial</h1>
+        <h1>Trabalhados</h1>
+
+        <label class="labelFileInput" id="labelGreenVoiceFileInput" for="fileGreenVoiceInput">Arquivo Green Voice <i
+                class="fa-solid fa-file-lines"></i></label>
 
 
-        <label class="labelFileInput" id="labelTxtFileInput" for="fileTxtInput">Arquivos Txt Mailing Móvel <i class="fa-solid fa-file-lines"></i></label>
-
-        <label class="labelFileInput" id="labelTxtFixaFileInput" for="fileTxtFixaInput">Arquivos Txt Mailing Fixa <i class="fa-solid fa-file-lines"></i></label>
-
-        <label class="labelFileInput" id="labelMovelFileInput" for="fileMovelInput">Arquivos tabulaçãoMigracao <i class="fa-solid fa-file-csv"></i></label>
-
-        <label class="labelFileInput" id="labelFixaFileInput" for="fileFixaInput">Arquivos tabulaçãoFixa <i class="fa-solid fa-file-csv"></i></label>
+        <label class="labelFileInput" id="labelAkivaFileInput" for="fileAkivaInput">Arquivos Ligações <i
+                class="fa-solid fa-file-csv"></i></label>
 
 
-        <label class="labelFileInput" id="labelMovelCallFileInput" for="fileMovelCallInput">Arquivo ligaçõesMigração <i class="fa-solid fa-file-csv"></i></label>
 
-        <label class="labelFileInput" id="labelFixaCallFileInput" for="fileFixaCallInput">Arquivo ligaçõesFixa <i class="fa-solid fa-file-csv"></i></label>
+        <input type="file" class="fileInput" id="fileGreenVoiceInput" accept=".xlsx" multiple>
 
+        <input type="file" class="fileInput" id="fileAkivaInput" multiple accept=".csv" />
 
-        <input type="file" class="fileInput" id="fileTxtInput" accept=".txt" multiple>
-        <input type="file" class="fileInput" id="fileTxtFixaInput" accept=".txt" multiple>
-
-        <input type="file" class="fileInput" id="fileMovelInput" multiple accept=".csv" />
-        <input type="file" class="fileInput" id="fileFixaInput" multiple accept=".csv" />
-
-        <input type="file" class="fileInput" id="fileMovelCallInput" multiple accept=".csv" />
-        <input type="file" class="fileInput" id="fileFixaCallInput" multiple accept=".csv" />
 
         <p id="pProcessando">Processando..</p>
         <div id="loader" class="loader"></div>
@@ -130,7 +125,7 @@
     <script src="https://kit.fontawesome.com/f3b3db3001.js" crossorigin="anonymous"></script>
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/globalScripts.js"></script>
-    <script src="../js/gerencial.js"></script>
+    <script src="../js/conferencia.js"></script>
 </body>
 
 </html>
