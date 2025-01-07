@@ -349,11 +349,11 @@ function manipulateInputData(data) {
       oitenta = agentes[index80].Oitenta;
     }
 
-    const parsedDate = XLSX.SSF.parse_date_code(e[33]);
+    const parsedDate = XLSX.SSF.parse_date_code(Number(e[33]));
     const year = parsedDate.y;
     const month = String(parsedDate.m).padStart(2, "0");
     const day = String(parsedDate.d).padStart(2, "0");
-    const dataEmissao = `${day}/${month}/${year}`;
+    const dataEmissao = `${month}/${day}/${year}`;
 
     // Modificado para o arquivo do modulo 89
     dataMovelExport.push({
