@@ -3,16 +3,10 @@ const loader = document.getElementById("loader");
 
 const inputInput = document.getElementById("fileInputInput");
 const inputTabulacao = document.getElementById("fileTabulacaoInput");
-const inputTabulacaoAceites = document.getElementById(
-  "fileTabulacaoAceitesInput"
-);
 const inputOitenta = document.getElementById("fileOitentaInput");
 
 const labelInput = document.getElementById("labelInputFileInput");
 const labelTabulacao = document.getElementById("labelTabulacaoFileInput");
-const labelTabulacaoAceites = document.getElementById(
-  "labelTabulacaoAceitesFileInput"
-);
 const labelOitenta = document.getElementById("labelOitentaFileInput");
 
 let dataMovelExport = [];
@@ -21,12 +15,10 @@ let dataAceitesExport = [];
 
 let filesInputProcessed = 0;
 let filesTabulacaoProcessed = 0;
-let filesTabulacaoAceitesProcessed = 0;
 let filesOitentaProcessed = 0;
 
 let combinedInputData = [];
 let combinedTabulacaoData = [];
-let combinedTabulacaoAceitesData = [];
 let combinedOitentaData = [];
 
 let agentes = [];
@@ -47,14 +39,6 @@ inputTabulacao.addEventListener("change", (event) => {
   }
 });
 
-inputTabulacaoAceites.addEventListener("change", (event) => {
-  if (event.target.files.length > 1) {
-    labelTabulacaoAceites.textContent = `${event.target.files.length} arquivos`;
-  } else if (event.target.files.length == 1) {
-    labelTabulacaoAceites.textContent = `${event.target.files.length} arquivo`;
-  }
-});
-
 inputOitenta.addEventListener("change", (event) => {
   if (event.target.files.length > 1) {
     labelOitenta.textContent = `${event.target.files.length} arquivos`;
@@ -69,13 +53,11 @@ document.getElementById("processBtn").addEventListener("click", function () {
 
   const filesInput = inputInput.files;
   const filesTabulacao = inputTabulacao.files;
-  const filesTabulacaoAceites = inputTabulacaoAceites.files;
   const filesOitenta = inputOitenta.files;
 
   if (
     filesInput.length === 0 ||
     filesTabulacao.length === 0 ||
-    filesTabulacaoAceites.length === 0 ||
     filesOitenta.length === 0
   ) {
     alert("Por favor, selecione pelo menos um arquivo em cada campo.");
@@ -122,7 +104,7 @@ document.getElementById("processBtn").addEventListener("click", function () {
 
             // Se todos os arquivos foram processados, faça a manipulação dos dados
             if (filesTabulacaoProcessed === filesTabulacao.length) {
-              Array.from(filesTabulacaoAceites).forEach((file) => {
+              Array.from(filesOitenta).forEach((file) => {
                 const reader = new FileReader();
 
                 reader.onload = function (event) {
@@ -139,44 +121,12 @@ document.getElementById("processBtn").addEventListener("click", function () {
                   });
 
                   // Adiciona os dados ao array combinado
-                  combinedTabulacaoAceitesData =
-                    combinedTabulacaoAceitesData.concat(csvData);
-                  filesTabulacaoAceitesProcessed++;
+                  combinedOitentaData = combinedOitentaData.concat(csvData);
+                  filesOitentaProcessed++;
 
                   // Se todos os arquivos foram processados, faça a manipulação dos dados
-                  if (
-                    filesTabulacaoAceitesProcessed ===
-                    filesTabulacaoAceites.length
-                  ) {
-                    Array.from(filesOitenta).forEach((file) => {
-                      const reader = new FileReader();
-
-                      reader.onload = function (event) {
-                        const data = new Uint8Array(event.target.result);
-                        const workbook = XLSX.read(data, { type: "array" });
-
-                        // Assume que o CSV tem apenas uma folha (sheet)
-                        const sheetName = workbook.SheetNames[0];
-                        const worksheet = workbook.Sheets[sheetName];
-
-                        // Converte o sheet para JSON
-                        const csvData = XLSX.utils.sheet_to_json(worksheet, {
-                          header: 1,
-                        });
-
-                        // Adiciona os dados ao array combinado
-                        combinedOitentaData =
-                          combinedOitentaData.concat(csvData);
-                        filesOitentaProcessed++;
-
-                        // Se todos os arquivos foram processados, faça a manipulação dos dados
-                        if (filesOitentaProcessed === filesOitenta.length) {
-                          manipulateOitentaData(combinedOitentaData);
-                        }
-                      };
-
-                      reader.readAsArrayBuffer(file);
-                    });
+                  if (filesOitentaProcessed === filesOitenta.length) {
+                    manipulateTabulacaoData(combinedTabulacaoData);
                   }
                 };
 
@@ -194,56 +144,28 @@ document.getElementById("processBtn").addEventListener("click", function () {
   });
 });
 
-function manipulateOitentaData(data) {
-  console.log(data);
-
-  manipulateTabulacaoData(combinedTabulacaoData);
-}
-
 function manipulateTabulacaoData(data) {
-  console.log(data);
-
-  data.forEach((e) => {
-    let index80 = combinedOitentaData.findIndex(
-      (element) => element[8] == e[14]
-    );
-    if (index80 !== -1) {
-      agentes.push({
-        CpfOperador: String(combinedOitentaData[index80][5]).replace(
-          /[^0-9]/g,
-          ""
-        ),
-        Oitenta: combinedOitentaData[index80][7],
-        Telefone: `${e[5]}${e[6]}`,
-        CpfCliente: e[19],
-      });
-    }
-  });
-
-  manipulateTabulacaoAceitesData(combinedTabulacaoAceitesData);
-}
-
-function manipulateTabulacaoAceitesData(data) {
   console.log(data);
 
   let aceitesMovel = 0;
   let aceitesFixa = 0;
 
   data.forEach((e) => {
+    let index80 = combinedOitentaData.findIndex(
+      (element) => element[6] == e[14]
+    );
+    if (index80 !== -1) {
+      agentes.push({
+        Oitenta: combinedOitentaData[index80][5],
+        Telefone: `${e[5]}${e[6]}`,
+        CpfCliente: e[19],
+      });
+    }
+
     if (e[10] == "VENDA") {
-      if (
-        e[1] == "FIXA_A" ||
-        e[1] == "FIXA_B" ||
-        e[1] == "FIXA_A+" ||
-        e[1] == "FIXA AGV"
-      ) {
+      if (e[1].includes("FIXA")) {
         aceitesFixa++;
-      } else if (
-        e[1] == "MIGRACAO_CAMP PARTE I" ||
-        e[1] == "MIGRACAO_CAMP PARTE II" ||
-        e[1] == "MIGRACAO OUT" ||
-        e[1] == "MIGRACAO_CAMP PARTE III"
-      ) {
+      } else if (e[1].includes("MIGRACAO")) {
         aceitesMovel++;
       }
     }
@@ -311,19 +233,10 @@ function manipulateInputData(data) {
       }
     }
 
-    if (
-      String(e[7]).slice(0, 2) == "11" ||
-      String(e[7]).slice(0, 2) == "12" ||
-      String(e[7]).slice(0, 2) == "13"
-    ) {
+    if (["11", "12", "13"].includes(String(e[7]).slice(0, 2))) {
       regiao = "SP1";
     } else if (
-      String(e[7]).slice(0, 2) == "14" ||
-      String(e[7]).slice(0, 2) == "15" ||
-      String(e[7]).slice(0, 2) == "16" ||
-      String(e[7]).slice(0, 2) == "17" ||
-      String(e[7]).slice(0, 2) == "18" ||
-      String(e[7]).slice(0, 2) == "19"
+      ["14", "15", "16", "17", "18", "19"].includes(String(e[7]).slice(0, 2))
     ) {
       regiao = "SPI";
     }
