@@ -295,7 +295,11 @@ function handleFileSelect(event) {
             audiencia = telefoneCompleto;
             tipoAudiencia = 3;
           } else {
-            audiencia = e.Field_2;
+            if (String(e.Field_2).startsWith("'")) {
+              audiencia = e.Field_2.substring(1);
+            } else {
+              audiencia = e.Field_2;
+            }
             tipoAudiencia = 4;
 
             let index = inputData.findIndex(
