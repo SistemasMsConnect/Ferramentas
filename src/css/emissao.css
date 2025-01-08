@@ -1,9 +1,0 @@
-#pProcessando {
-    color: aliceblue;
-}
-
-.fileInput,
-#pProcessando,
-#btn, #loader {
-    display: none;
-}

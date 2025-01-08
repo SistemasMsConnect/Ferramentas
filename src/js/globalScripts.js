@@ -10,8 +10,6 @@ let pEA = document.getElementById("EmpresAquiDrop");
 let dEA = document.getElementById("EmpresAquiOptions");
 let pRM = document.getElementById("MailingDrop");
 let dRM = document.getElementById("MailingOptions");
-let pGF = document.getElementById("GerencialDrop");
-let dGF = document.getElementById("GerencialOptions");
 let pQR = document.getElementById("QuartilDrop");
 let dQR = document.getElementById("QuartilOptions");
 let pTB = document.getElementById("TabulacaoDrop");
@@ -58,10 +56,6 @@ pEA.addEventListener("click", () => {
 
 pRM.addEventListener("click", () => {
   dRM.classList.toggle("hide");
-});
-
-pGF.addEventListener("click", () => {
-  dGF.classList.toggle("hide");
 });
 
 pQR.addEventListener("click", () => {
