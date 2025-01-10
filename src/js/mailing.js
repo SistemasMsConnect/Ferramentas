@@ -355,7 +355,7 @@ function handleFileSelect(event) {
               NR_TLFN_ADD3: null,
               EMAIL_ADD1: null,
               NR_DURACAO_CHAMADA: null,
-              QD_CHAMADAS: 1,
+              QT_CHAMADAS: 1,
               ID_OFERTA: null,
               QT_TERMINAIS: terminais,
             });
