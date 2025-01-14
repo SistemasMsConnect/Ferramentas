@@ -1,0 +1,11 @@
+input,
+#pProcess,
+#btnCriarArquivo,
+#btnDados,
+#loader {
+  display: none;
+}
+
+#pProcess {
+  color: aliceblue;
+}

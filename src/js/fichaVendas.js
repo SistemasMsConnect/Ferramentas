@@ -262,57 +262,66 @@ function manipulateInputData(data) {
       oitenta = agentes[index80].Oitenta;
     }
 
-    const parsedDate = XLSX.SSF.parse_date_code(Number(e[33]));
-    const year = parsedDate.y;
-    const month = String(parsedDate.m).padStart(2, "0");
-    const day = String(parsedDate.d).padStart(2, "0");
-    const dataEmissao = `${month}/${day}/${year}`;
+    let dataEmissao = "";
+
+    if (typeof e[33] == "number") {
+      const parsedDate = XLSX.SSF.parse_date_code(Number(e[33]));
+      const year = parsedDate.y;
+      const month = String(parsedDate.m).padStart(2, "0");
+      const day = String(parsedDate.d).padStart(2, "0");
+      dataEmissao = `${month}/${day}/${year}`;
+    } else {
+      dataEmissao = e[33].split(" ")[0];
+    }
 
     // Modificado para o arquivo do modulo 89
-    dataMovelExport.push({
-      Campanha: campanha,
-      DataVenda: dataCompletaTabulacao,
-      DataEmissao: dataEmissao,
-      Eps: "MS CONNECT",
-      Regional: regiao,
-      Terminal: e[7],
-      CPFCliente: String(e[4]).replace(/[^0-9]/g, ""),
-      Matricula: oitenta,
-      Oferta: oferta,
-      Status: status,
-      SubStatus: subStatus,
-      TrocaTitularidade: trocaTitularidade,
-      Mailing: e[0],
-      Perfil: "",
-      Site: "MS",
-      PlataformaEmissao: "NEXT",
-      HomeOffice: "NÃO",
-      Cod: cod,
-      EmailFatura: e[23],
-      PacoteAdicional: adicional,
-    });
 
-    dataFixaExport.push({
-      Campanha: campanha,
-      DataVenda: dataCompletaTabulacao,
-      DataEmissao: dataEmissao,
-      Eps: "MS CONNECT",
-      Regional: regiao,
-      Terminal: e[7],
-      Matricula: oitenta,
-      Oferta: oferta,
-      Status: status,
-      SubStatus: subStatus,
-      TrocaTitularidade: trocaTitularidade,
-      Mailing: e[0],
-      Perfil: "",
-      ProtocoloVenda: e[30],
-      Site: "MS",
-      Plataforma: "NEXT",
-      HomeOffice: "NÃO",
-      Cod: cod,
-      EmailFatura: e[23],
-    });
+    if (campanha == "MIGRAÇÃO PRE CTRL") {
+      dataMovelExport.push({
+        Campanha: campanha,
+        DataVenda: dataCompletaTabulacao,
+        DataEmissao: dataEmissao,
+        Eps: "MS CONNECT",
+        Regional: regiao,
+        Terminal: e[7],
+        CPFCliente: String(e[4]).replace(/[^0-9]/g, ""),
+        Matricula: oitenta,
+        Oferta: oferta,
+        Status: status,
+        SubStatus: subStatus,
+        TrocaTitularidade: trocaTitularidade,
+        Mailing: e[0],
+        Perfil: "",
+        Site: "MS",
+        PlataformaEmissao: "NEXT",
+        HomeOffice: "NÃO",
+        Cod: cod,
+        EmailFatura: e[23],
+        PacoteAdicional: adicional,
+      });
+    } else if (campanha == "FIXA FTTH") {
+      dataFixaExport.push({
+        Campanha: campanha,
+        DataVenda: dataCompletaTabulacao,
+        DataEmissao: dataEmissao,
+        Eps: "MS CONNECT",
+        Regional: regiao,
+        Terminal: e[7],
+        Matricula: oitenta,
+        Oferta: oferta,
+        Status: status,
+        SubStatus: subStatus,
+        TrocaTitularidade: trocaTitularidade,
+        Mailing: e[0],
+        Perfil: "",
+        ProtocoloVenda: e[30],
+        Site: "MS",
+        Plataforma: "NEXT",
+        HomeOffice: "NÃO",
+        Cod: cod,
+        EmailFatura: e[23],
+      });
+    }
   });
 
   exportToCSV(
