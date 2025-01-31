@@ -227,12 +227,24 @@ function ManipulateDadosData(data) {
   console.log(data);
 
   data.forEach((line) => {
-    let dataAssCompleta = numeroInteiroParaData(line["DT_ASS"]);
-    let dataAssFormatada = numberToDate(dataAssCompleta);
-    let dataFimCompleta = numeroInteiroParaData(
-      line["DT_FIM_PRAZO_CONTRATUAL"]
-    );
-    let dataFimFormatada = numberToDate(dataFimCompleta);
+    let dataAssFormatada = 0;
+    let dataFimFormatada = 0;
+
+    if (
+      line["DT_ASS"] != undefined ||
+      line["DT_ASS"] != null ||
+      line["DT_ASS"] != "" ||
+      line["DT_ASS"].length < 3
+    ) {
+      if (typeof line["DT_ASS"] == "number") {
+        const parsedDate = XLSX.SSF.parse_date_code(Number(line["DT_ASS"]));
+        const year = parsedDate.y;
+        const month = String(parsedDate.m).padStart(2, "0");
+        const day = String(parsedDate.d).padStart(2, "0");
+        dataAssFormatada = `${month}/${day}/${year}`;
+        dataFimFormatada = `${month}/${day}/${year + 3}`;
+      }
+    }
 
     dataExport.push({
       CD_PESSOA: line["CD_PESSOA"],
@@ -259,10 +271,40 @@ function ManipulateSipData(data) {
   console.log(data);
 
   data.forEach((line) => {
-    let dataCompleta = line["DATA_CRIACAO"].slice(0, -13).split("-");
-    let dia = dataCompleta[2];
-    let mes = dataCompleta[1];
-    let ano = parseInt(dataCompleta[0]) + 3;
+    let dataCompleta = "";
+    let dia = 0;
+    let mes = 0;
+    let ano = 0;
+
+    let dataCriacao = "";
+    let dataFimPrazo = "";
+
+    if (
+      line["DATA_CRIACAO"] != undefined ||
+      line["DATA_CRIACAO"] != null ||
+      line["DATA_CRIACAO"] != ""
+    ) {
+      if (typeof line["DATA_CRIACAO"] == "number") {
+        const parsedDate = XLSX.SSF.parse_date_code(
+          Number(line["DATA_CRIACAO"])
+        );
+        const year = parsedDate.y;
+        const month = String(parsedDate.m).padStart(2, "0");
+        const day = String(parsedDate.d).padStart(2, "0");
+        dataCriacao = `${month}/${day}/${year}`;
+        dataFimPrazo = `${month}/${day}/${year + 3}`;
+      } else {
+        dataCompleta = line["DATA_CRIACAO"].slice(0, -13).split("-");
+        dia = dataCompleta[2];
+        mes = dataCompleta[1];
+        ano = parseInt(dataCompleta[0]) + 3;
+        dataCriacao = line["DATA_CRIACAO"].slice(0, -13).split("-");
+        dataFimPrazo = `${dia}/${mes}/${ano}`;
+      }
+    } else {
+      dataCriacao = "0";
+      dataFimPrazo = "0";
+    }
 
     let valorFormatado = String(line["VL_TOTAL"]).slice(0, 3);
 
@@ -281,8 +323,8 @@ function ManipulateSipData(data) {
       VELOCIDADE: line["QTD_CANAIS"],
       NRCNPJ: line["CNPJ"],
       NUM_MESES_PRAZO_CONTRATUAL: 36,
-      DT_ASS: line["DATA_CRIACAO"].slice(0, -13),
-      DT_FIM_PRAZO_CONTRATUAL: `${ano}-${mes}-${dia}`,
+      DT_ASS: dataCriacao,
+      DT_FIM_PRAZO_CONTRATUAL: dataFimPrazo,
       VALOR_TOTAL: valorFormatado,
       END_CIDADE: 0,
       END_ESTADO: 0,
@@ -420,7 +462,7 @@ function dataDiff() {
       let dataFinal = new Date(line["DT_FIM_PRAZO_CONTRATUAL"]);
       let hoje = new Date();
 
-      if (line["DT_ASS"] !== "0") {
+      if (line["DT_ASS"] != "0") {
         let result1 = Math.abs(dataFinal - dataInicial);
         let days1 = result1 / (1000 * 3600 * 24);
 
