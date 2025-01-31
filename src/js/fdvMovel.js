@@ -440,15 +440,35 @@ function processMovelData2(content) {
       });
     }
 
+    let concat = e.itemEspecificacao + e.itemEspecificacaoOpcao;
+    console.log(concat);
+
     if (
-      e.itemEspecificacao == "Microsoft Office" ||
-      e.itemEspecificacao == "MDM" ||
-      e.itemEspecificacao == "Vivo Gestão de Equipe" ||
-      e.itemEspecificacao == "Vivo Travel Mensal" ||
-      e.itemEspecificacao == "Caixas de Saldo Smart Empresas  / Internet PJ" ||
-      e.itemEspecificacao == "Vivo Proteção Celular"
+      ![
+        "Caixas de Saldo Smart Empresas  / Internet PJ10GB para Comunicação ",
+        "Caixas de Saldo Smart Empresas  / Internet PJ10GB para Streaming",
+        "Caixas de Saldo Smart Empresas  / Internet PJRedes Sociais 10GB",
+        "E-mail - ExchangeOnline Kiosk",
+        "E-mail - ExchangeOnline Plano 1",
+        "E-mail - ExchangeOnline Plano 2",
+        "Pacote LDILDI 5.000",
+        "Plano Corporate +Gestão de Dispositivo - Bloq. Chip ",
+        "Plano Corporate +Google Workspace",
+        "Plano Corporate +MDM( Gestao  serviço Digital)",
+        "Plano Corporate +Microsoft Office",
+        "Plano Corporate +Vivo Gestão de Equipe",
+        "Vivo Proteção CelularPJ 1000",
+        "Vivo Proteção CelularPJ 2000",
+        "Vivo Proteção CelularPJ 3000",
+        "Vivo Proteção CelularPJ 500",
+        "Vivo Proteção CelularPJ 5000",
+        "Vivo Proteção CelularPJ 8000",
+        "Vivo Travel MensalAmericas Dados",
+        "Vivo Travel MensalAmericas Voz + Dados",
+        "Vivo Travel MensalEuropa Voz + Dados",
+        "Vivo Travel MensalMundo Voz + Dados",
+      ].includes(concat)
     ) {
-    } else {
       return;
     }
 
