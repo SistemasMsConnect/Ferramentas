@@ -345,7 +345,7 @@ function handleFileSelect(event) {
               ID_CAMPANHA: e.ID_Cliente,
               ID_AUDIENCIA: audiencia,
               ID_TIPO_AUDIENCIA: tipoAudiencia,
-              ID_RETORNO: e.ISDN_Code,
+              ID_RETORNO: e.Disposition_Return_Code,
               DT_TABULACAO: dataEHora,
               NR_TLFN: telefoneCompleto,
               NOVO_CPF: null,
