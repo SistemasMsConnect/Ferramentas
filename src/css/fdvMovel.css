@@ -5,3 +5,15 @@
 #p, #span {
     color: aliceblue;
 }
+
+#dataHoje {
+    margin-top: 20px;
+    width: 150px;
+    padding: 5px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #883397;
+}
