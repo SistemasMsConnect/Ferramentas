@@ -42,14 +42,11 @@ function handleInput() {
       const data = new Uint8Array(event.target.result);
       const workbook = XLSX.read(data, { type: "array" });
 
-      // Assume que o CSV tem apenas uma folha (sheet)
       const sheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[sheetName];
 
-      // Converte o sheet para JSON
       const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-      // Adiciona os dados ao array combinado
       inputData = inputData.concat(csvData);
       console.log(inputData);
     };
@@ -59,35 +56,6 @@ function handleInput() {
 
     reader.readAsArrayBuffer(file);
   });
-
-  // const file = event.target.files[0];
-  // labelInput.textContent = file.name
-
-  // if (!file) {
-  //     alert("Por favor, selecione um arquivo.");
-  //     return;
-  // }
-
-  // const reader = new FileReader();
-
-  // reader.onload = function (e) {
-  //     const data = new Uint8Array(e.target.result);
-  //     const workbook = XLSX.read(data, { type: 'array' });
-
-  //     // Assume the CSV is the first sheet
-  //     const sheetName = workbook.SheetNames[0];
-  //     const worksheet = workbook.Sheets[sheetName];
-  //     const json = XLSX.utils.sheet_to_json(worksheet);
-
-  //     inputData = json
-
-  //     console.log(inputData)
-
-  //     pProcess.setAttribute('style', 'display: none')
-  //     loader.setAttribute('style', 'display: none')
-  // };
-
-  // reader.readAsArrayBuffer(file);
 }
 
 function handleCall(event) {
@@ -108,16 +76,15 @@ function handleCall(event) {
     const data = new Uint8Array(e.target.result);
     const workbook = XLSX.read(data, { type: "array" });
 
-    // Assume the CSV is the first sheet
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
     const json = XLSX.utils.sheet_to_json(worksheet);
 
-    // Split the data based on column C
+    // Dividir os dados pela coluna C
     const splitFiles = {};
 
     json.forEach((row) => {
-      const key = row["ID_Cliente"]; // Replace 'ColumnC' with the actual name of column C
+      const key = row["ID_Cliente"];
       if (!splitFiles[key]) {
         splitFiles[key] = [];
       }
@@ -135,19 +102,15 @@ function handleCall(event) {
         type: "string",
       });
 
-      // Store the content in the array
+      // Armazenar o conteúdo no array
       splitFileContents.push({ fileName: `${key}.csv`, content: csvContent });
     });
-
-    // console.log(splitFileContents);
 
     splitFileContents.forEach((file) => {
       // console.log(`Processing file: ${file.fileName}`);
       const rows = XLSX.utils.sheet_to_json(
         XLSX.read(file.content, { type: "string" }).Sheets.Sheet1
       );
-
-      // console.log(rows);
 
       rows.forEach((e) => {
         ttt = parseInt(e.Tempo_total * 86400);
@@ -157,10 +120,6 @@ function handleCall(event) {
           t: ttt,
         });
       });
-
-      // console.log(callData)
-
-      // Add any other manipulation here
     });
 
     pProcess.setAttribute("style", "display: none");
@@ -188,12 +147,10 @@ function handleFileSelect(event) {
     const data = new Uint8Array(e.target.result);
     const workbook = XLSX.read(data, { type: "array" });
 
-    // Assume the CSV is the first sheet
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
     const json = XLSX.utils.sheet_to_json(worksheet);
 
-    // Split the data based on column C
     const splitFiles = {};
 
     json.forEach((row) => {
@@ -215,11 +172,8 @@ function handleFileSelect(event) {
         type: "string",
       });
 
-      // Store the content in the array
       splitFileContents.push({ fileName: `${key}`, content: csvContent });
     });
-
-    // console.log(splitFileContents);
 
     splitFileContents.forEach((file) => {
       // console.log(`Processing file: ${file.fileName}`);
@@ -227,14 +181,10 @@ function handleFileSelect(event) {
         XLSX.read(file.content, { type: "string" }).Sheets.Sheet1
       );
 
-      // console.log(rows);
-
       let tipo = "";
       let dataSemBarra;
 
       rows.forEach((e) => {
-        // console.log(e)
-
         let data;
         let dia;
         let mes;

@@ -343,13 +343,13 @@ function numeroInteiroParaData(numero) {
 
 function exportToCSV(dataMovel, dataFixa, dataAceites, filename) {
   // Cria uma nova worksheet a partir dos dados filtrados
-  const worksheet1 = XLSX.utils.json_to_sheet(dataMovel);
+  // const worksheet1 = XLSX.utils.json_to_sheet(dataMovel);
   const worksheet2 = XLSX.utils.json_to_sheet(dataFixa);
   const worksheet3 = XLSX.utils.json_to_sheet(dataAceites);
 
   // Cria um novo workbook e adiciona a worksheet a ele
   const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet1, "Movel");
+  // XLSX.utils.book_append_sheet(workbook, worksheet1, "Movel");
   XLSX.utils.book_append_sheet(workbook, worksheet2, "Fixa");
   XLSX.utils.book_append_sheet(workbook, worksheet3, "Aceites");
 

@@ -8,7 +8,6 @@ const dropdown = document.getElementById("dropdown");
 const labelFixa = document.getElementById("labelFixaFileInput");
 const labelAtivos = document.getElementById("labelAtivosFileInput");
 
-let dataMovelExport = [];
 let dataFixaExport = [];
 
 let filesFixaProcessed = 0;
@@ -154,13 +153,10 @@ function exportToCSV(
   sheetnameFixa,
   filename
 ) {
-  // Cria uma nova worksheet a partir dos dados filtrados
   const worksheet = XLSX.utils.json_to_sheet(dataFixa);
 
-  // Cria um novo workbook e adiciona a worksheet a ele
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, `${sheetnameFixa}`);
 
-  // Exporta o workbook como um arquivo XLSX
   XLSX.writeFile(workbook, filename, { bookType: "xlsx" });
 }
