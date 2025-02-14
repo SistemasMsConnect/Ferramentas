@@ -9,6 +9,7 @@ let filtroData = [];
 let m2mData = [];
 const fileMovel1Label = document.getElementById("labelFileInputMovel");
 const fileMovel2Label = document.getElementById("labelFileInputMovel2");
+const dataHoje = document.getElementById("dataHoje");
 
 document
   .getElementById("fileInputMovel")
@@ -53,7 +54,7 @@ function processMovelData(content) {
     delete e.DS_SERVICO_SMS;
     delete e.DS_PLANO;
     delete e.DS_APARELHO;
-    delete e.NM_FABRICANTE;
+    delete e.DS_TIPO_NEGOCIACAO;
     delete e.DS_MAILING;
     delete e.DT_MES;
     delete e.DS_STATUS_LINHA;
@@ -106,7 +107,7 @@ function processMovelData(content) {
       e.FL_CNPJ_FRESH = e.FL_CNPJ_FRESH.replace("N", "Base");
     }
 
-    if (e.DS_TIPO_NEGOCIACAO == "Venda" && e.VL_APARELHO > 0) {
+    if (e.NM_FABRICANTE != 0 && e.VL_APARELHO > 0) {
       filtroData.push(e);
     }
 
@@ -154,7 +155,7 @@ function alterarDuplicados() {
   });
 
   movelData.forEach((e) => {
-    delete e.DS_TIPO_NEGOCIACAO;
+    delete e.NM_FABRICANTE;
     delete e.VL_APARELHO;
   });
 
@@ -171,7 +172,7 @@ function excluirPelaData() {
       dataBase.getTime() + e.DT_ULTIMA_ATU * 24 * 60 * 60 * 1000
     );
     let month = data.getMonth();
-    let mesHoje = new Date().getMonth();
+    let mesHoje = new Date(dataHoje).getMonth();
     if (month < mesHoje - 1) {
       movelData.splice(index, 1);
     }
