@@ -99,6 +99,7 @@ document.getElementById("processBtn").addEventListener("click", function () {
 });
 
 function manipulateFixaData(data) {
+  console.log(data)
   data.forEach((e) => {
     if (e[8] == "AlÃ´" || e[8] == "Alo") {
       let funcional = "";
@@ -125,15 +126,15 @@ function manipulateFixaData(data) {
 
       dataFixaExport.push({
         TERMINAL: `${e[5]}${e[6]}`,
-        NOME_CLIENTE: e[17],
-        CPF_CLIENTE: e[19],
+        NOME_CLIENTE: e[15],
+        CPF_CLIENTE: e[17],
         FUNCIONAL: funcional,
-        OFERTA_DISPONIVEL: e[27],
+        OFERTA_DISPONIVEL: e[25],
         PRODUTO: "Fixa",
-        TABULACAO: e[10],
+        TABULACAO: e[9],
         DATA: dataTabulacao,
         SEMANA: dropdown.value,
-        ID_PLAY: e[16],
+        ID_PLAY: e[14],
       });
     }
   });
