@@ -21,8 +21,6 @@ let combinedInputData = [];
 let combinedTabulacaoData = [];
 let combinedOitentaData = [];
 
-let agentes = [];
-
 inputInput.addEventListener("change", (event) => {
   if (event.target.files.length > 1) {
     labelInput.textContent = `${event.target.files.length} arquivos`;
@@ -72,8 +70,8 @@ document.getElementById("processBtn").addEventListener("click", function () {
       const workbook = XLSX.read(data, { type: "array" });
 
       // Assume que o CSV tem apenas uma folha (sheet)
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
+      const sheetName = workbook.SheetNames[ 0 ];
+      const worksheet = workbook.Sheets[ sheetName ];
 
       // Converte o sheet para JSON
       const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
@@ -92,8 +90,8 @@ document.getElementById("processBtn").addEventListener("click", function () {
             const workbook = XLSX.read(data, { type: "array" });
 
             // Assume que o CSV tem apenas uma folha (sheet)
-            const sheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[sheetName];
+            const sheetName = workbook.SheetNames[ 0 ];
+            const worksheet = workbook.Sheets[ sheetName ];
 
             // Converte o sheet para JSON
             const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
@@ -112,8 +110,8 @@ document.getElementById("processBtn").addEventListener("click", function () {
                   const workbook = XLSX.read(data, { type: "array" });
 
                   // Assume que o CSV tem apenas uma folha (sheet)
-                  const sheetName = workbook.SheetNames[0];
-                  const worksheet = workbook.Sheets[sheetName];
+                  const sheetName = workbook.SheetNames[ 0 ];
+                  const worksheet = workbook.Sheets[ sheetName ];
 
                   // Converte o sheet para JSON
                   const csvData = XLSX.utils.sheet_to_json(worksheet, {
@@ -151,21 +149,10 @@ function manipulateTabulacaoData(data) {
   let aceitesFixa = 0;
 
   data.forEach((e) => {
-    let index80 = combinedOitentaData.findIndex(
-      (element) => element[6] == e[14]
-    );
-    if (index80 !== -1) {
-      agentes.push({
-        Oitenta: combinedOitentaData[index80][5],
-        Telefone: `${e[5]}${e[6]}`,
-        CpfCliente: e[19],
-      });
-    }
-
-    if (e[10] == "VENDA") {
-      if (e[1].includes("FIXA")) {
+    if (e[ 9 ] == "VENDA") {
+      if (e[ 1 ].includes("FIXA")) {
         aceitesFixa++;
-      } else if (e[1].includes("MIGRACAO")) {
+      } else if (e[ 1 ].includes("MIGRACAO")) {
         aceitesMovel++;
       }
     }
@@ -181,7 +168,6 @@ function manipulateTabulacaoData(data) {
 
 function manipulateInputData(data) {
   console.log(data);
-  console.log(agentes);
 
   data.forEach((e) => {
     let campanha = "";
@@ -190,136 +176,166 @@ function manipulateInputData(data) {
     let adicional = "";
     let cod = "";
     let oferta = "";
-    let status = e[48];
-    let subStatus = e[49];
-    let trocaTitularidade = e[47];
+    let status = e[ 48 ];
+    let subStatus = e[ 49 ];
+    let trocaTitularidade = e[ 47 ];
     let oitenta = "";
-
-    if (String(e[17]).includes("|")) {
-      oferta = String(e[17]).split("|")[0];
-    } else {
-      oferta = e[17];
+    let aceite = e[ 25 ].includes('Débito') ? 'SIM' : 'NÃO'
+    let words = e[ 10 ].split(' ')
+    for (let i = 0; i < words.length; i++) {
+      if (words[ i ][ 0 ] !== undefined) {
+        words[ i ] = words[ i ][ 0 ].toUpperCase() + words[ i ].substr(1).toLowerCase()
+      }
     }
 
-    if (String(e[29]).toLowerCase().includes("fixa")) {
+    let index80 = combinedOitentaData.findIndex(element => element[ 6 ] == e[ 37 ])
+
+    if (index80 !== -1) {
+      oitenta = combinedOitentaData[ index80 ][ 5 ];
+    }
+
+    if (String(e[ 17 ]).includes("|")) {
+      oferta = String(e[ 17 ]).split("|")[ 0 ];
+    } else {
+      oferta = e[ 17 ];
+    }
+
+    if (String(e[ 29 ]).toLowerCase().includes("fixa")) {
       campanha = "FIXA FTTH";
-    } else if (String(e[29]).toLowerCase().includes("mig")) {
+    } else if (String(e[ 29 ]).toLowerCase().includes("mig")) {
       campanha = "MIGRAÇÃO PRE CTRL";
     }
 
     let indexTabulacao = combinedTabulacaoData.findIndex(
       (element) =>
-        `${element[5]}${element[6]}` == e[7] ||
-        `${element[5]}${element[6]}` == e[8] ||
-        (String(element[19]).replace(/[^0-9]/g, "") ==
-          String(e[4]).replace(/[^0-9]/g, "") &&
-          element[10] == "VENDA")
+        `${element[ 5 ]}${element[ 6 ]}` == e[ 7 ] ||
+        `${element[ 5 ]}${element[ 6 ]}` == e[ 8 ] ||
+        (String(element[ 17 ]).replace(/[^0-9]/g, "") == String(e[ 4 ]).replace(/[^0-9]/g, "")) &&
+        element[ 10 ] == "VENDA"
     );
     if (indexTabulacao != -1) {
-      if (!String(combinedTabulacaoData[indexTabulacao][1]).includes("fixa")) {
-        adicional = `${combinedTabulacaoData[indexTabulacao][30]} + 5`;
+      if (!String(combinedTabulacaoData[ indexTabulacao ][ 1 ]).includes("fixa")) {
+        adicional = `${combinedTabulacaoData[ indexTabulacao ][ 30 ]} + 5`;
       }
 
-      if (String(combinedTabulacaoData[indexTabulacao][3]).length == 5) {
+      if (String(combinedTabulacaoData[ indexTabulacao ][ 3 ]).length == 5) {
         let dataFuncao = numeroInteiroParaData(
-          combinedTabulacaoData[indexTabulacao][3]
+          combinedTabulacaoData[ indexTabulacao ][ 3 ]
         );
 
-        dataCompletaTabulacao = `${
-          dataFuncao.getUTCMonth() + 1
-        }/${dataFuncao.getUTCDate()}/${dataFuncao.getUTCFullYear()}`;
+        dataCompletaTabulacao = `${dataFuncao.getUTCMonth() + 1
+          }/${dataFuncao.getUTCDate()}/${dataFuncao.getUTCFullYear()}`;
       } else {
-        dataCompletaTabulacao = combinedTabulacaoData[indexTabulacao][3];
+        dataCompletaTabulacao = combinedTabulacaoData[ indexTabulacao ][ 3 ];
       }
     }
 
-    if (["11", "12", "13"].includes(String(e[7]).slice(0, 2))) {
+    if ([ "11", "12", "13" ].includes(String(e[ 7 ]).slice(0, 2))) {
       regiao = "SP1";
     } else if (
-      ["14", "15", "16", "17", "18", "19"].includes(String(e[7]).slice(0, 2))
+      [ "14", "15", "16", "17", "18", "19" ].includes(String(e[ 7 ]).slice(0, 2))
     ) {
       regiao = "SPI";
     }
 
-    if (String(e[16]).includes("MOVEL") || e[16] == "Dados da venda") {
+    if (String(e[ 16 ]).includes("MOVEL") || e[ 16 ] == "Dados da venda") {
       adicional = adicional;
     } else {
       adicional = "";
     }
 
-    if (e[25] == "Fatura Digital ") {
+    if (e[ 25 ] == "Fatura Digital ") {
       cod = "SIM";
     } else {
       cod = "NÃO";
     }
 
-    let index80 = agentes.findIndex(
-      (element) =>
-        element.Telefone == e[20] ||
-        element.CpfCliente == String(e[4]).replace(/[^0-9]/g, "")
-    );
-    if (index80 !== -1) {
-      oitenta = agentes[index80].Oitenta;
-    }
-
     let dataEmissao = "";
 
-    if (typeof e[33] == "number") {
-      const parsedDate = XLSX.SSF.parse_date_code(Number(e[33]));
+    if (typeof e[ 33 ] == "number") {
+      const parsedDate = XLSX.SSF.parse_date_code(Number(e[ 33 ]));
       const year = parsedDate.y;
       const month = String(parsedDate.m).padStart(2, "0");
       const day = String(parsedDate.d).padStart(2, "0");
       dataEmissao = `${month}/${day}/${year}`;
     } else {
-      dataEmissao = e[33].split(" ")[0];
+      dataEmissao = e[ 33 ].split(" ")[ 0 ];
     }
 
     // Modificado para o arquivo do modulo 89
 
-    if (campanha == "MIGRAÇÃO PRE CTRL") {
-      dataMovelExport.push({
-        Campanha: campanha,
-        DataVenda: dataCompletaTabulacao,
-        DataEmissao: dataEmissao,
-        Eps: "MS CONNECT",
-        Regional: regiao,
-        Terminal: e[7],
-        CPFCliente: String(e[4]).replace(/[^0-9]/g, ""),
-        Matricula: oitenta,
-        Oferta: oferta,
-        Status: status,
-        SubStatus: subStatus,
-        TrocaTitularidade: trocaTitularidade,
-        Mailing: e[0],
-        Perfil: "",
-        Site: "MS",
-        PlataformaEmissao: "NEXT",
-        HomeOffice: "NÃO",
-        Cod: cod,
-        EmailFatura: e[23],
-        PacoteAdicional: adicional,
-      });
-    } else if (campanha == "FIXA FTTH") {
+    // if (campanha == "MIGRAÇÃO PRE CTRL") {
+    //   dataMovelExport.push({
+    //     Campanha: campanha,
+    //     DataVenda: dataCompletaTabulacao,
+    //     DataEmissao: dataEmissao,
+    //     Eps: "MS CONNECT",
+    //     Regional: regiao,
+    //     Terminal: e[ 7 ],
+    //     CPFCliente: String(e[ 4 ]).replace(/[^0-9]/g, ""),
+    //     Matricula: oitenta,
+    //     Oferta: oferta,
+    //     Status: status,
+    //     SubStatus: subStatus,
+    //     TrocaTitularidade: trocaTitularidade,
+    //     Mailing: e[ 0 ],
+    //     Perfil: "",
+    //     Site: "MS",
+    //     PlataformaEmissao: "NEXT",
+    //     HomeOffice: "NÃO",
+    //     Cod: cod,
+    //     EmailFatura: e[ 23 ],
+    //     PacoteAdicional: adicional,
+    //   });
+    // } else
+    if (campanha == "FIXA FTTH") {
       dataFixaExport.push({
         Campanha: campanha,
         DataVenda: dataCompletaTabulacao,
         DataEmissao: dataEmissao,
         Eps: "MS CONNECT",
         Regional: regiao,
-        Terminal: e[7],
-        Matricula: oitenta,
+        Terminal: e[ 7 ],
+        CpfCliente: e[ 4 ],
+        Funcional: oitenta,
         Oferta: oferta,
+        ValorOferta: e[ 18 ],
         Status: status,
         SubStatus: subStatus,
         TrocaTitularidade: trocaTitularidade,
-        Mailing: e[0],
+        Mailing: e[ 0 ],
         Perfil: "",
-        ProtocoloVenda: e[30],
         Site: "MS",
         Plataforma: "NEXT",
         HomeOffice: "NÃO",
         Cod: cod,
-        EmailFatura: e[23],
+        EmailFatura: e[ 23 ],
+        PacoteAdicional1: 'adicional1',
+        ValorAdicional1: 'valorAdicional1',
+        PacoteAdicional2: 'adicional2',
+        ValorAdicional2: 'valorAdicional2',
+        PacoteAdicional3: 'adicional3',
+        ValorAdicional3: 'valorAdicional3',
+        PacoteAdicional4: 'adicional4',
+        ValorAdicional4: 'valorAdicional4',
+        PacoteAdicional5: 'adicional5',
+        ValorAdicional5: 'valorAdicional5',
+        PacoteAdicional6: 'adicional6',
+        ValorAdicional6: 'valorAdicional6',
+        Logradouro: words.join(' '),
+        Numero: e[ 12 ],
+        Complemento: e[ 11 ],
+        Bairro: e[ 14 ],
+        Cidade: 'cidade',
+        UF: 'uf',
+        NumeroOS: e[ 30 ],
+        AceiteDebitoEmConta: aceite,
+        CodigoBanco: 'codigoBanco',
+        NomeBanco: 'nomeBanco',
+        AgenciaBanco: 'agenciaBanco',
+        NumeroConta: 'numeroConta',
+        DigitoConta: 'digitoConta',
+        TitularConta: 'titularConta'
       });
     }
   });
