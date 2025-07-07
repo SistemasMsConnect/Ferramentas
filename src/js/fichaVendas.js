@@ -180,7 +180,7 @@ function manipulateInputData(data) {
     let subStatus = e[ 49 ];
     let trocaTitularidade = e[ 47 ];
     let oitenta = "";
-    let aceite = e[ 25 ].includes('Débito') ? 'SIM' : 'NÃO'
+    let aceite = e[ 25 ].includes('DÉBITO') ? 'SIM' : 'NÃO'
     let words = e[ 10 ].split(' ')
     for (let i = 0; i < words.length; i++) {
       if (words[ i ][ 0 ] !== undefined) {
@@ -244,7 +244,7 @@ function manipulateInputData(data) {
       adicional = "";
     }
 
-    if (e[ 25 ] == "Fatura Digital ") {
+    if (e[ 25 ] == "FATURA DIGITAL") {
       cod = "SIM";
     } else {
       cod = "NÃO";
@@ -310,32 +310,32 @@ function manipulateInputData(data) {
         HomeOffice: "NÃO",
         Cod: cod,
         EmailFatura: e[ 23 ],
-        PacoteAdicional1: 'adicional1',
-        ValorAdicional1: 'valorAdicional1',
-        PacoteAdicional2: 'adicional2',
-        ValorAdicional2: 'valorAdicional2',
-        PacoteAdicional3: 'adicional3',
-        ValorAdicional3: 'valorAdicional3',
-        PacoteAdicional4: 'adicional4',
-        ValorAdicional4: 'valorAdicional4',
-        PacoteAdicional5: 'adicional5',
-        ValorAdicional5: 'valorAdicional5',
-        PacoteAdicional6: 'adicional6',
-        ValorAdicional6: 'valorAdicional6',
+        PacoteAdicional1: e[ 21 ],
+        ValorAdicional1: '',
+        PacoteAdicional2: '',
+        ValorAdicional2: '',
+        PacoteAdicional3: '',
+        ValorAdicional3: '',
+        PacoteAdicional4: '',
+        ValorAdicional4: '',
+        PacoteAdicional5: '',
+        ValorAdicional5: '',
+        PacoteAdicional6: '',
+        ValorAdicional6: '',
         Logradouro: words.join(' '),
         Numero: e[ 12 ],
         Complemento: e[ 11 ],
         Bairro: e[ 14 ],
-        Cidade: 'cidade',
-        UF: 'uf',
+        Cidade: '',
+        UF: '',
         NumeroOS: e[ 30 ],
         AceiteDebitoEmConta: aceite,
-        CodigoBanco: 'codigoBanco',
-        NomeBanco: 'nomeBanco',
-        AgenciaBanco: 'agenciaBanco',
-        NumeroConta: 'numeroConta',
-        DigitoConta: 'digitoConta',
-        TitularConta: 'titularConta'
+        CodigoBanco: '',
+        NomeBanco: e[ 26 ],
+        AgenciaBanco: e[ 27 ],
+        NumeroConta: e[ 28 ],
+        DigitoConta: '',
+        TitularConta: e[ 3 ]
       });
     }
   });
