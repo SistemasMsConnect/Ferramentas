@@ -182,6 +182,7 @@ function manipulateInputData(data) {
     let oitenta = "";
     let aceite = e[ 25 ].includes('DÉBITO') ? 'SIM' : 'NÃO'
     let words = e[ 10 ].split(' ')
+    let cidade = '';
     for (let i = 0; i < words.length; i++) {
       if (words[ i ][ 0 ] !== undefined) {
         words[ i ] = words[ i ][ 0 ].toUpperCase() + words[ i ].substr(1).toLowerCase()
@@ -228,6 +229,8 @@ function manipulateInputData(data) {
       } else {
         dataCompletaTabulacao = combinedTabulacaoData[ indexTabulacao ][ 3 ];
       }
+
+      cidade = combinedTabulacaoData[ indexTabulacao ][ 32 ];
     }
 
     if ([ "11", "12", "13" ].includes(String(e[ 7 ]).slice(0, 2))) {
@@ -259,7 +262,11 @@ function manipulateInputData(data) {
       const day = String(parsedDate.d).padStart(2, "0");
       dataEmissao = `${month}/${day}/${year}`;
     } else {
-      dataEmissao = e[ 33 ].split(" ")[ 0 ];
+      if (e[ 33 ] == undefined || e[ 33 ] == null) {
+        dataEmissao = '';
+      } else {
+        dataEmissao = e[ 33 ].split(" ")[ 0 ];
+      }
     }
 
     // Modificado para o arquivo do modulo 89
@@ -326,7 +333,7 @@ function manipulateInputData(data) {
         Numero: e[ 12 ],
         Complemento: e[ 11 ],
         Bairro: e[ 14 ],
-        Cidade: '',
+        Cidade: cidade,
         UF: '',
         NumeroOS: e[ 30 ],
         AceiteDebitoEmConta: aceite,
