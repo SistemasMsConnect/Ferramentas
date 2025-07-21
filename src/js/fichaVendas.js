@@ -181,13 +181,16 @@ function manipulateInputData(data) {
     let trocaTitularidade = e[ 47 ];
     let oitenta = "";
     let aceite = e[ 25 ].includes('DÉBITO') ? 'SIM' : 'NÃO'
-    let words = e[ 10 ].split(' ')
-    let cidade = '';
-    for (let i = 0; i < words.length; i++) {
-      if (words[ i ][ 0 ] !== undefined) {
-        words[ i ] = words[ i ][ 0 ].toUpperCase() + words[ i ].substr(1).toLowerCase()
+    let words = ''
+    if (e[ 10 ] != undefined) {
+      words = e[ 10 ].split(' ')
+      for (let i = 0; i < words.length; i++) {
+        if (words[ i ][ 0 ] !== undefined) {
+          words[ i ] = words[ i ][ 0 ].toUpperCase() + words[ i ].substr(1).toLowerCase()
+        }
       }
     }
+    let cidade = '';
 
     let index80 = combinedOitentaData.findIndex(element => element[ 6 ] == e[ 37 ])
 
@@ -329,7 +332,7 @@ function manipulateInputData(data) {
         ValorAdicional5: '',
         PacoteAdicional6: '',
         ValorAdicional6: '',
-        Logradouro: words.join(' '),
+        Logradouro: words.join(' ') != undefined ? words.join(' ') : '',
         Numero: e[ 12 ],
         Complemento: e[ 11 ],
         Bairro: e[ 14 ],
