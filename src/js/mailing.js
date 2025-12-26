@@ -42,8 +42,8 @@ function handleInput() {
       const data = new Uint8Array(event.target.result);
       const workbook = XLSX.read(data, { type: "array" });
 
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
+      const sheetName = workbook.SheetNames[ 0 ];
+      const worksheet = workbook.Sheets[ sheetName ];
 
       const csvData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
@@ -62,7 +62,7 @@ function handleCall(event) {
   loader.setAttribute("style", "display: block");
   pProcess.setAttribute("style", "display: block");
 
-  const file = event.target.files[0];
+  const file = event.target.files[ 0 ];
   labelCall.textContent = file.name;
 
   if (!file) {
@@ -76,25 +76,25 @@ function handleCall(event) {
     const data = new Uint8Array(e.target.result);
     const workbook = XLSX.read(data, { type: "array" });
 
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
+    const sheetName = workbook.SheetNames[ 0 ];
+    const worksheet = workbook.Sheets[ sheetName ];
     const json = XLSX.utils.sheet_to_json(worksheet);
 
     // Dividir os dados pela coluna C
     const splitFiles = {};
 
     json.forEach((row) => {
-      const key = row["ID_Cliente"];
-      if (!splitFiles[key]) {
-        splitFiles[key] = [];
+      const key = row[ "ID_Cliente" ];
+      if (!splitFiles[ key ]) {
+        splitFiles[ key ] = [];
       }
-      splitFiles[key].push(row);
+      splitFiles[ key ].push(row);
     });
 
     const splitFileContents = [];
 
     Object.keys(splitFiles).forEach((key) => {
-      const newWorksheet = XLSX.utils.json_to_sheet(splitFiles[key]);
+      const newWorksheet = XLSX.utils.json_to_sheet(splitFiles[ key ]);
       const newWorkbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, "Sheet1");
       const csvContent = XLSX.write(newWorkbook, {
@@ -133,7 +133,7 @@ function handleFileSelect(event) {
   loader.setAttribute("style", "display: block");
   pProcess.setAttribute("style", "display: block");
 
-  const file = event.target.files[0];
+  const file = event.target.files[ 0 ];
   labelDisc.textContent = file.name;
 
   if (!file) {
@@ -147,24 +147,24 @@ function handleFileSelect(event) {
     const data = new Uint8Array(e.target.result);
     const workbook = XLSX.read(data, { type: "array" });
 
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
+    const sheetName = workbook.SheetNames[ 0 ];
+    const worksheet = workbook.Sheets[ sheetName ];
     const json = XLSX.utils.sheet_to_json(worksheet);
 
     const splitFiles = {};
 
     json.forEach((row) => {
-      const key = row["ID_Cliente"];
-      if (!splitFiles[key]) {
-        splitFiles[key] = [];
+      const key = row[ "ID_Cliente" ];
+      if (!splitFiles[ key ]) {
+        splitFiles[ key ] = [];
       }
-      splitFiles[key].push(row);
+      splitFiles[ key ].push(row);
     });
 
     const splitFileContents = [];
 
     Object.keys(splitFiles).forEach((key) => {
-      const newWorksheet = XLSX.utils.json_to_sheet(splitFiles[key]);
+      const newWorksheet = XLSX.utils.json_to_sheet(splitFiles[ key ]);
       const newWorkbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, "Sheet1");
       const csvContent = XLSX.write(newWorkbook, {
@@ -238,7 +238,7 @@ function handleFileSelect(event) {
         let tipoAudiencia = 0;
         let terminais = 0;
 
-        if (e["ISDN_Code"] == 29 || e["ISDN_Code"] == 58) {
+        if (e[ "ISDN_Code" ] == 29 || e[ "ISDN_Code" ] == 58) {
           // console.warn('AMD ou Falha da Operadora')
         } else {
           if (e.Campanha.includes("MIGRACAO")) {
@@ -253,13 +253,13 @@ function handleFileSelect(event) {
             tipoAudiencia = 4;
 
             let index = inputData.findIndex(
-              (element) => element[20] == telefoneCompleto
+              (element) => element[ 20 ] == telefoneCompleto
             );
 
             if (index != -1) {
-              if (String(inputData[index][17]).includes("TOTAL")) {
+              if (String(inputData[ index ][ 17 ]).includes("TOTAL")) {
                 terminais = 2;
-              } else if (String(inputData[index][17]).includes("SOLO")) {
+              } else if (String(inputData[ index ][ 17 ]).includes("SOLO")) {
                 terminais = 1;
               }
             }
@@ -316,9 +316,38 @@ function handleFileSelect(event) {
       csvData.forEach((e) => {
         let index = callData.findIndex((element) => element.n == e.NR_TLFN);
         if (index != -1) {
-          e.NR_DURACAO_CHAMADA = String(callData[index].t);
+          e.NR_DURACAO_CHAMADA = String(callData[ index ].t);
         }
       });
+
+      // Deduplicate csvData by NR_TLFN
+      // Regra: se houver repetições de NR_TLFN e entre elas existir uma com ID_RETORNO,
+      // manter apenas essa; se nenhuma tiver ID_RETORNO, manter apenas uma ocorrência.
+      (function dedupeByPhone() {
+        const grouped = {};
+        csvData.forEach((item) => {
+          const key = item.NR_TLFN || "";
+          if (!grouped[ key ]) grouped[ key ] = [];
+          grouped[ key ].push(item);
+        });
+
+        const deduped = [];
+        Object.keys(grouped).forEach((k) => {
+          const group = grouped[ k ];
+          if (group.length === 1) {
+            deduped.push(group[ 0 ]);
+          } else {
+            const withRetorno = group.find((x) => x.ID_RETORNO !== undefined && x.ID_RETORNO !== null && String(x.ID_RETORNO) !== "");
+            if (withRetorno) {
+              deduped.push(withRetorno);
+            } else {
+              deduped.push(group[ 0 ]);
+            }
+          }
+        });
+
+        csvData = deduped;
+      })();
 
       let secondsNow = Date.now();
       let dataHoje = new Date(secondsNow);
@@ -347,13 +376,13 @@ function handleFileSelect(event) {
         return;
       }
 
-      const headers = Object.keys(csvData[0]).join("|");
+      const headers = Object.keys(csvData[ 0 ]).join("|");
       const txtContent = csvData
         .map((obj) => Object.values(obj).join("|"))
         .join("\r\n");
       const fullContent = `${headers}\r\n${txtContent}`;
       // Cria o blob e baixa o arquivo
-      const blob = new Blob([fullContent], {
+      const blob = new Blob([ fullContent ], {
         type: "text/plain;charset=utf-8;",
       });
       const url = URL.createObjectURL(blob);
@@ -392,7 +421,7 @@ function downloadManipulatedCsv(data, name) {
 }
 
 function downloadCSV(csvContent, fileName) {
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const blob = new Blob([ csvContent ], { type: "text/csv;charset=utf-8;" });
   const link = document.createElement("a");
 
   if (link.download !== undefined) {
