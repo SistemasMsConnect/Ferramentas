@@ -161,6 +161,6 @@
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Resumo");
 
-    downloadWorkbook(wb, "RESULTADO_CONVERTIDO.xlsx");
+    downloadWorkbook(wb, "RESULTADO_FIXABASICA.xlsx");
   });
 })();
