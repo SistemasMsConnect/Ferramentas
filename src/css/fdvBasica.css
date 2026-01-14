@@ -1,8 +1,43 @@
-#fileInput, #loader {
-    display: none;
+/* ================================
+   Ajuste de layout do LEGADO
+   ================================ */
+
+/* mantém tudo do legado centralizado dentro do #ferramenta */
+#ferramentaLegacy,
+#ferramenta {
+  text-align: center;
 }
 
-#p {
-    display: none;
-    color: aliceblue;
+/* centraliza o label roxo (botão de upload) do legado */
+#labelFileInput {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 360px;
+  max-width: calc(100vw - 40px);
+
+  margin: 0 auto 12px auto; /* <-- centraliza e dá espaçamento */
+}
+
+/* centraliza o botão exportar do legado */
+#exportBtn {
+  display: block;
+  width: 360px;
+  max-width: calc(100vw - 40px);
+  margin: 8px auto 0 auto;
+}
+
+/* garante que o loader e o texto do legado fiquem no centro */
+#p,
+#loader {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Baixa o bloco inteiro do LEGADO */
+#ferramentaLegacy {
+  margin-top: 120px;
 }
