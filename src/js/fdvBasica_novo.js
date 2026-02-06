@@ -1,4 +1,4 @@
-// src/js/fdvBasica_novo.js (AJUSTADO)
+// src/js/fdvBasica_novo.js (AJUSTADO FINAL)
 
 (function () {
   const loaderNew = document.getElementById("loaderNew");
@@ -47,7 +47,7 @@
     "DT_CARGA_WFM_ZEUS",
   ];
 
-  // Se ainda quiser manter extras (opcional)
+  // Extras (opcional)
   const EXTRA_COLUMNS = ["STATUS_ATUAL", "DT_STATUS", "NOTA_ATUALIZACAO"];
   const HEADER_ORDER = [...BASE_COLUMNS, ...EXTRA_COLUMNS];
 
@@ -57,6 +57,9 @@
     loaderNew.style.display = isLoading ? "block" : "none";
     pNew.style.display = isLoading ? "block" : "none";
   }
+
+  // garante estado inicial
+  setLoading(false);
 
   function downloadWorkbook(workbook, filename) {
     const wbout = XLSX.write(workbook, {
@@ -86,32 +89,46 @@
     return semiCount > commaCount ? ";" : ",";
   }
 
-  function readFileAsJson(file, cb) {
+  function readFileAsJson(file, cb, onErr) {
     const name = (file.name || "").toLowerCase();
 
-    if (name.endsWith(".csv")) {
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        const csvText = String(event.target.result || "");
-        const delim = detectCsvDelimiter(csvText);
-        const wb = XLSX.read(csvText, { type: "string", FS: delim });
-        const sheet = wb.Sheets[wb.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
-        cb(json);
-      };
-      reader.readAsText(file, "utf-8");
-      return;
-    }
+    try {
+      if (name.endsWith(".csv")) {
+        const reader = new FileReader();
+        reader.onerror = () => onErr && onErr(reader.error || new Error("Erro ao ler CSV"));
+        reader.onload = function (event) {
+          try {
+            const csvText = String(event.target.result || "");
+            const delim = detectCsvDelimiter(csvText);
+            const wb = XLSX.read(csvText, { type: "string", FS: delim });
+            const sheet = wb.Sheets[wb.SheetNames[0]];
+            const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+            cb(json);
+          } catch (e) {
+            onErr && onErr(e);
+          }
+        };
+        reader.readAsText(file, "utf-8");
+        return;
+      }
 
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      const data = new Uint8Array(event.target.result);
-      const wb = XLSX.read(data, { type: "array" });
-      const sheet = wb.Sheets[wb.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
-      cb(json);
-    };
-    reader.readAsArrayBuffer(file);
+      const reader = new FileReader();
+      reader.onerror = () => onErr && onErr(reader.error || new Error("Erro ao ler XLSX"));
+      reader.onload = function (event) {
+        try {
+          const data = new Uint8Array(event.target.result);
+          const wb = XLSX.read(data, { type: "array" });
+          const sheet = wb.Sheets[wb.SheetNames[0]];
+          const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+          cb(json);
+        } catch (e) {
+          onErr && onErr(e);
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    } catch (e) {
+      onErr && onErr(e);
+    }
   }
 
   function clean(v) {
@@ -119,9 +136,30 @@
     return String(v).replace(/[\x00-\x1F\x7F]/g, "").trim();
   }
 
+  // Normaliza cabeçalho: remove espaços, troca por underline, deixa em maiúsculo
+  function normalizeKey(k) {
+    return clean(k)
+      .toUpperCase()
+      .replace(/\s+/g, "_")
+      .replace(/-+/g, "_");
+  }
+
+  // Converte cada linha para ter chaves normalizadas
+  function normalizeRows(rows) {
+    return rows.map((r) => {
+      const out = {};
+      Object.keys(r || {}).forEach((k) => {
+        out[normalizeKey(k)] = r[k];
+      });
+      return out;
+    });
+  }
+
   // Regra: pega exatamente as colunas do novo layout; extras ficam vazias
   function buildResumoRows(rows) {
-    return rows.map((r) => {
+    const normalized = normalizeRows(rows);
+
+    return normalized.map((r) => {
       const out = {};
       BASE_COLUMNS.forEach((c) => (out[c] = clean(r[c])));
 
@@ -141,24 +179,35 @@
     fileLabelNew.textContent = file.name;
     setLoading(true);
 
-    readFileAsJson(file, (json) => {
-      try {
-        if (!json || !json.length) {
-          alert("NOVO: arquivo vazio ou não foi possível ler.");
+    readFileAsJson(
+      file,
+      (json) => {
+        try {
+          if (!json || !json.length) {
+            alert("NOVO: arquivo vazio ou não foi possível ler.");
+            resumoData = [];
+            setLoading(false);
+            return;
+          }
+
+          resumoData = buildResumoRows(json);
+
+          console.log("[NOVO] origem:", json.length, "resumo:", resumoData.length);
           setLoading(false);
-          return;
+        } catch (err) {
+          console.error("[NOVO] erro:", err);
+          alert("Erro no NOVO. Veja o console.");
+          resumoData = [];
+          setLoading(false);
         }
-
-        resumoData = buildResumoRows(json);
-
-        console.log("[NOVO] origem:", json.length, "resumo:", resumoData.length);
-        setLoading(false);
-      } catch (err) {
-        console.error("[NOVO] erro:", err);
-        alert("Erro no NOVO. Veja o console.");
+      },
+      (err) => {
+        console.error("[NOVO] erro leitura:", err);
+        alert("Erro ao ler o arquivo (NOVO). Veja o console.");
+        resumoData = [];
         setLoading(false);
       }
-    });
+    );
   });
 
   btnExportarNew.addEventListener("click", function () {
