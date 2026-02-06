@@ -1,4 +1,4 @@
-// src/js/fdvBasica_novo.js (NOVO)
+// src/js/fdvBasica_novo.js (AJUSTADO)
 
 (function () {
   const loaderNew = document.getElementById("loaderNew");
@@ -10,37 +10,44 @@
   // Se a página não tiver o novo, não faz nada
   if (!loaderNew || !pNew || !btnExportarNew || !fileLabelNew || !fileInputNew) return;
 
-  // Colunas finais (ordem)
+  // Colunas finais (ordem) - NOVO LAYOUT
   const BASE_COLUMNS = [
     "NR_DOCUMENTO",
     "ID_SIMULACAO",
     "STATUS_SIMULACAO",
     "FILA_SIMPLIFIQUE",
-    "DT_CRIACAO_SIMULACAO",
     "CRITICA_SIMULACAO",
-    "FL_CRITICA_TRATAVEL",
-    "TP_SOLICITACAO",
+    "MOTIVO_NAOTRATAVEL_SIMULACAO",
     "FILA_ESTEIRA_SIEBEL",
     "FILA_ESTEIRA_WFM",
     "MOTIVO_PENDENCIA_WFM",
+    "SUB_MOTIVO_WFM",
     "STATUS_ATIVIDADE_ZEUS",
-    "NOTA_OPERADOR_ZEUS",
     "NOTA_TECNICO",
+    "NOT_DONE_ZEUS",
     "DATA_AGENDAMENTO_ZEUS",
     "INICIO_ATIVIDADE_ZEUS",
     "FIM_DA_ATIVIDADE_ZEUS",
     "NR_RPON",
+    "NR_PON_VENDA",
     "NR_ORDEM",
     "DT_VENDA",
     "DT_ATIVACAO",
+    "DT_CANCELAMENTO",
+    "DT_DESCONEXAO",
     "SIT_PORTABILIDADE",
     "DT_INI_PORTABILIDADE",
     "DT_EXEC_PORT",
     "STATUS_BACKLOG",
     "DETALHAMENTO_BACKLOG",
+    "TP_CANCELAMENTO",
+    "MOTIVO_CANCELAMENTO",
     "BASE_ORIGEM",
+    "DT_CARGA",
+    "DT_CARGA_WFM_ZEUS",
   ];
 
+  // Se ainda quiser manter extras (opcional)
   const EXTRA_COLUMNS = ["STATUS_ATUAL", "DT_STATUS", "NOTA_ATUALIZACAO"];
   const HEADER_ORDER = [...BASE_COLUMNS, ...EXTRA_COLUMNS];
 
@@ -112,14 +119,17 @@
     return String(v).replace(/[\x00-\x1F\x7F]/g, "").trim();
   }
 
-  // Regra simples: colunas base = do arquivo, extras vazias
+  // Regra: pega exatamente as colunas do novo layout; extras ficam vazias
   function buildResumoRows(rows) {
     return rows.map((r) => {
       const out = {};
       BASE_COLUMNS.forEach((c) => (out[c] = clean(r[c])));
+
+      // Extras (opcional)
       out.STATUS_ATUAL = "";
-      out.DT_STATUS = ""; // se você quiser preencher depois, aqui é o lugar
+      out.DT_STATUS = "";
       out.NOTA_ATUALIZACAO = "";
+
       return out;
     });
   }
