@@ -95,48 +95,50 @@
       </div>
     </aside>
 
-    <!-- CONTEÚDO CENTRAL -->
-    <main class="fdv-page">
-      <section class="fdv-wrapper">
-        <!-- CARD LEGADO -->
-        <div class="ferramenta-card" id="ferramentaLegacy">
-          <h1>FDV Básica</h1>
+<!-- CONTEÚDO CENTRAL -->
+<main class="fdv-page">
+  <section class="fdv-wrapper">
+    <!-- CARD LEGADO -->
+    <div class="ferramenta-card" id="ferramentaLegacy">
+      <h1>FDV Básica</h1>
 
-          <label class="labelFileInput" id="labelFileInput" for="fileInput">
-            Escolha o arquivo Fixa Básica (.xlsx)
-            <i class="fa-solid fa-file-excel"></i>
-          </label><br>
+      <label class="labelFileInput" id="labelFileInput" for="fileInput">
+        Escolha o arquivo Fixa Básica (.xlsx)
+        <i class="fa-solid fa-file-excel"></i>
+      </label>
+      <br />
 
-          <input type="file" id="fileInput" accept=".xlsx" />
+      <input type="file" id="fileInput" accept=".xlsx" />
 
-          <button class="btns" id="exportBtn" type="button">
-            Exportar para XLSX
-          </button>
+      <button class="btns" id="exportBtn" type="button">
+        Exportar para XLSX
+      </button>
 
-          <p id="p" class="statusText">Processando..</p>
-          <div id="loader" class="loader"></div>
-        </div>
+      <p id="p" class="statusText">Processando..</p>
+      <div id="loader" class="loader"></div>
+    </div>
 
-        <div class="delay" id="ferramenta">
-        <h1>Esteira Básica</h1>
+    <!-- CARD NOVO -->
+    <div class="ferramenta-card delay" id="ferramenta">
+      <h1>Esteira Básica</h1>
 
-        <label class="labelFileInput" id="labelFileInputNew" for="fileInputNew">
-          Escolha o arquivo (.xlsx ou .csv)
-          <i class="fa-solid fa-file-excel"></i>
-        </label>
+      <label class="labelFileInput" id="labelFileInputNew" for="fileInputNew">
+        Escolha o arquivo (.xlsx ou .csv)
+        <i class="fa-solid fa-file-excel"></i>
+      </label>
 
-        <input type="file" id="fileInputNew" accept=".xlsx,.csv" />
+      <input type="file" id="fileInputNew" accept=".xlsx,.csv" />
 
-        <button class="btns" id="exportBtnNew" type="button">
-          Exportar para XLSX
-        </button>
+      <button class="btns" id="exportBtnNew" type="button">
+        Exportar para XLSX
+      </button>
 
-        <p id="pNew">Processando..</p>
-        <div id="loaderNew" class="loader"></div>
-      </div>
+      <p id="pNew" class="statusText">Processando..</p>
+      <div id="loaderNew" class="loader"></div>
+    </div>
+  </section>
+</main>
 
-      </section>
-    </main>
 
     <script
       src="https://kit.fontawesome.com/f3b3db3001.js"
