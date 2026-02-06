@@ -1,4 +1,4 @@
-// src/js/fdvBasica_novo.js (AJUSTADO FINAL)
+// src/js/fdvBasica_novo.js (REVISTO - mantém acentos)
 
 (function () {
   const loaderNew = document.getElementById("loaderNew");
@@ -7,10 +7,8 @@
   const fileLabelNew = document.getElementById("labelFileInputNew");
   const fileInputNew = document.getElementById("fileInputNew");
 
-  // Se a página não tiver o novo, não faz nada
   if (!loaderNew || !pNew || !btnExportarNew || !fileLabelNew || !fileInputNew) return;
 
-  // Colunas finais (ordem) - NOVO LAYOUT
   const BASE_COLUMNS = [
     "NR_DOCUMENTO",
     "ID_SIMULACAO",
@@ -47,7 +45,6 @@
     "DT_CARGA_WFM_ZEUS",
   ];
 
-  // Extras (opcional)
   const EXTRA_COLUMNS = ["STATUS_ATUAL", "DT_STATUS", "NOTA_ATUALIZACAO"];
   const HEADER_ORDER = [...BASE_COLUMNS, ...EXTRA_COLUMNS];
 
@@ -57,8 +54,6 @@
     loaderNew.style.display = isLoading ? "block" : "none";
     pNew.style.display = isLoading ? "block" : "none";
   }
-
-  // garante estado inicial
   setLoading(false);
 
   function downloadWorkbook(workbook, filename) {
@@ -89,6 +84,77 @@
     return semiCount > commaCount ? ";" : ",";
   }
 
+  function clean(v) {
+    if (v === null || v === undefined) return "";
+    // NÃO remove acento; só remove caracteres de controle e trim
+    return String(v).replace(/[\x00-\x1F\x7F]/g, "").trim();
+  }
+
+  function normalizeKey(k) {
+    return clean(k)
+      .toUpperCase()
+      .replace(/\s+/g, "_")
+      .replace(/-+/g, "_");
+  }
+
+  function normalizeRows(rows) {
+    return rows.map((r) => {
+      const out = {};
+      Object.keys(r || {}).forEach((k) => {
+        out[normalizeKey(k)] = r[k];
+      });
+      return out;
+    });
+  }
+
+  function buildResumoRows(rows) {
+    const normalized = normalizeRows(rows);
+
+    return normalized.map((r) => {
+      const out = {};
+
+      BASE_COLUMNS.forEach((c) => (out[c] = clean(r[c])));
+
+      out.STATUS_ATUAL = "";
+      out.DT_STATUS = "";
+      out.NOTA_ATUALIZACAO = "";
+
+      return out;
+    });
+  }
+
+  // Heurística simples: se o texto tem muitos "�" (replacement char),
+  // provavelmente decodificou errado.
+  function looksBroken(text) {
+    const rep = (text.match(/\uFFFD/g) || []).length; // "�"
+    return rep > 0;
+  }
+
+  // Lê CSV com fallback de encoding para manter acentos
+  function readCsvWithBestEncoding(arrayBuffer) {
+    const bytes = new Uint8Array(arrayBuffer);
+
+    // BOM UTF-8
+    const hasUtf8Bom = bytes.length >= 3 && bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
+
+    // tenta UTF-8 primeiro
+    let textUtf8 = new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+    if (hasUtf8Bom) textUtf8 = textUtf8.replace(/^\uFEFF/, "");
+
+    // se não aparenta quebrado, usa UTF-8
+    if (!looksBroken(textUtf8)) return textUtf8;
+
+    // fallback: Windows-1252 (muito comum no Brasil / Excel)
+    try {
+      const text1252 = new TextDecoder("windows-1252", { fatal: false }).decode(bytes);
+      if (!looksBroken(text1252)) return text1252;
+      return text1252; // mesmo se tiver algum "�", ainda tende a preservar mais
+    } catch (e) {
+      // fallback final: latin1
+      return new TextDecoder("iso-8859-1", { fatal: false }).decode(bytes);
+    }
+  }
+
   function readFileAsJson(file, cb, onErr) {
     const name = (file.name || "").toLowerCase();
 
@@ -96,11 +162,15 @@
       if (name.endsWith(".csv")) {
         const reader = new FileReader();
         reader.onerror = () => onErr && onErr(reader.error || new Error("Erro ao ler CSV"));
+
         reader.onload = function (event) {
           try {
-            const csvText = String(event.target.result || "");
+            const buffer = event.target.result; // ArrayBuffer
+            const csvText = readCsvWithBestEncoding(buffer);
+
             const delim = detectCsvDelimiter(csvText);
             const wb = XLSX.read(csvText, { type: "string", FS: delim });
+
             const sheet = wb.Sheets[wb.SheetNames[0]];
             const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
             cb(json);
@@ -108,12 +178,16 @@
             onErr && onErr(e);
           }
         };
-        reader.readAsText(file, "utf-8");
+
+        // Lê como ArrayBuffer (não como texto), para decidir encoding corretamente
+        reader.readAsArrayBuffer(file);
         return;
       }
 
+      // XLSX normal (já preserva acentos)
       const reader = new FileReader();
       reader.onerror = () => onErr && onErr(reader.error || new Error("Erro ao ler XLSX"));
+
       reader.onload = function (event) {
         try {
           const data = new Uint8Array(event.target.result);
@@ -125,51 +199,11 @@
           onErr && onErr(e);
         }
       };
+
       reader.readAsArrayBuffer(file);
     } catch (e) {
       onErr && onErr(e);
     }
-  }
-
-  function clean(v) {
-    if (v === null || v === undefined) return "";
-    return String(v).replace(/[\x00-\x1F\x7F]/g, "").trim();
-  }
-
-  // Normaliza cabeçalho: remove espaços, troca por underline, deixa em maiúsculo
-  function normalizeKey(k) {
-    return clean(k)
-      .toUpperCase()
-      .replace(/\s+/g, "_")
-      .replace(/-+/g, "_");
-  }
-
-  // Converte cada linha para ter chaves normalizadas
-  function normalizeRows(rows) {
-    return rows.map((r) => {
-      const out = {};
-      Object.keys(r || {}).forEach((k) => {
-        out[normalizeKey(k)] = r[k];
-      });
-      return out;
-    });
-  }
-
-  // Regra: pega exatamente as colunas do novo layout; extras ficam vazias
-  function buildResumoRows(rows) {
-    const normalized = normalizeRows(rows);
-
-    return normalized.map((r) => {
-      const out = {};
-      BASE_COLUMNS.forEach((c) => (out[c] = clean(r[c])));
-
-      // Extras (opcional)
-      out.STATUS_ATUAL = "";
-      out.DT_STATUS = "";
-      out.NOTA_ATUALIZACAO = "";
-
-      return out;
-    });
   }
 
   fileInputNew.addEventListener("change", function (event) {
